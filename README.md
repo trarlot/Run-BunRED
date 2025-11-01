@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Run&Bun - Tracker de Runs Pokémon 🎮
 
-## Getting Started
+Application Next.js moderne pour afficher vos runs Pokémon avec synchronisation automatique depuis Google Sheets.
 
-First, run the development server:
+## ✨ Fonctionnalités
+
+-   📊 **Frise chronologique horizontale** des rencontres Pokémon
+-   🔄 **Synchronisation automatique** depuis Google Sheets (toutes les 10 minutes)
+-   🖼️ **Sprites** des Pokémon et dresseurs depuis PokéAPI
+-   📈 **Statistiques détaillées** : IVs, talents, zones de rencontre
+-   🎨 **Design moderne** avec dégradés et effets visuels
+-   📱 **Responsive** (mobile, tablette, desktop)
+-   💀 **Distinction visuelle** des Pokémon K.O.
+
+## 🚀 Installation
+
+```bash
+npm install
+```
+
+## ⚙️ Configuration
+
+Créez un fichier `.env` à la racine :
+
+```env
+GOOGLE_SHEETS_API_KEY=votre_cle_api
+GOOGLE_SHEET_ID=1OrFcuxg5DE-TvhK9_dGrqWScT4PyjLJ3uObTP3Sclkk
+GOOGLE_SHEET_NAME=Runs
+```
+
+## 🎯 Utilisation
+
+### Lancer l'application
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Synchroniser les données
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Synchronisation manuelle
+npm run sheets:sync
 
-## Learn More
+# Synchronisation automatique (toutes les 10 minutes)
+npm run sheets:watch
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+runbun/
+├── app/
+│   ├── page.tsx              # Interface principale
+│   ├── layout.tsx            # Layout
+│   └── globals.css           # Styles
+├── data/
+│   └── runs.ts               # Données (généré automatiquement)
+├── scripts/
+│   ├── fetch-from-sheets.js  # Script de synchronisation
+│   └── watch-sheets.js       # Watcher automatique
+├── types/
+│   └── run.ts                # Types TypeScript
+└── utils/
+    └── pokemon.ts            # Utilitaires sprites
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Technologies
 
-## Deploy on Vercel
+-   **Next.js 16** - Framework React
+-   **TypeScript** - Typage statique
+-   **Tailwind CSS 4** - Styles
+-   **Google Sheets API** - Source de données
+-   **PokéAPI** - Sprites Pokémon et trainers
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📝 Format Google Sheet
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Le script lit automatiquement :
+
+-   **Run #X** : Numéro de run
+-   **Pokémon** : Noms, talents, niveaux, IVs
+-   **Zones** : Lieux de rencontre
+-   **Personal Best** : Type de dresseur (pour le sprite)
+
+---
+
+Créé avec ❤️ pour Run&Bun
