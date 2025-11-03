@@ -1,0 +1,9 @@
+{
+    "buildCommand": "npm run sheets:sync && next build",
+    "crons": [
+        {
+            "path": "/api/sync",
+            "schedule": "*/1 * * * *"
+        }
+    ]
+}

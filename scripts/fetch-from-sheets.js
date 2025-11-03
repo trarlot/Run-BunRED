@@ -981,8 +981,44 @@ async function fetchAndConvert() {
     }
 }
 
-// Export pour utilisation dans le watcher
-module.exports = { fetchAndConvert };
+/**
+ * Fonction qui retourne les données des runs sans écrire de fichier
+ * Utile pour les API routes qui chargent les données dynamiquement
+ */
+async function getRunsData() {
+    try {
+        // Vérifie la configuration
+        if (!API_KEY) {
+            throw new Error('Clé API Google Sheets non configurée');
+        }
+
+        // Récupère les données des runs
+        const rows = await fetchSheetData();
+
+        // Récupère les formules pour détecter les badges =RechercheV
+        const formulas = await fetchSheetFormulas();
+
+        // Compte les badges en détectant les formules =VLOOKUP
+        const { totalBadges, runCount, allRunsBadges } = countBadgesInAllRuns(
+            rows,
+            formulas,
+        );
+
+        // Parse les données
+        const runs = await parseSheetData(rows, formulas, allRunsBadges);
+
+        return runs;
+    } catch (error) {
+        console.error(
+            '❌ Erreur lors de la récupération des données:',
+            error.message,
+        );
+        throw error;
+    }
+}
+
+// Export pour utilisation dans le watcher et les API routes
+module.exports = { fetchAndConvert, getRunsData };
 
 // Exécute si appelé directement
 if (require.main === module) {
