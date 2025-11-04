@@ -39,26 +39,69 @@ const pokemonFrToEn = {
     tortipouss: 'turtwig',
 };
 
+// Track si c'est la première connexion de la session
+let isFirstConnection = true;
+
+// ⚡ OPTIMISATION : Cache du client Google Sheets pour éviter de le recréer à chaque appel
+// Sur Vercel Serverless, ce cache persiste entre les requêtes sur la même instance
+let cachedSheetsClient = null;
+let cachedAuth = null;
+
 /**
- * Initialise le client Google Sheets
+ * Initialise le client Google Sheets (avec cache pour réutilisation)
+ * ⚡ OPTIMISATION : Réutilise le même client entre les appels pour éviter les réinitialisations
  */
 async function getGoogleSheetsClient() {
-    const auth = new google.auth.GoogleAuth({
-        apiKey: API_KEY,
-        scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
-    });
+    // Si le client est déjà en cache, on le réutilise
+    if (cachedSheetsClient) {
+        return cachedSheetsClient;
+    }
 
-    const sheets = google.sheets({ version: 'v4', auth });
-    return sheets;
+    const startTime = Date.now();
+
+    // ⚡ OPTIMISATION : Cache aussi l'auth pour éviter de recréer l'objet
+    if (!cachedAuth) {
+        cachedAuth = new google.auth.GoogleAuth({
+            apiKey: API_KEY,
+            scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+        });
+    }
+
+    cachedSheetsClient = google.sheets({ version: 'v4', auth: cachedAuth });
+
+    const authTime = Date.now() - startTime;
+    if (authTime > 10) {
+        console.log(`[⏱️  Google Sheets] Authentification: ${authTime}ms`);
+    }
+
+    return cachedSheetsClient;
+}
+
+/**
+ * Mesure le temps de la première connexion réelle (première requête API)
+ */
+async function measureFirstConnection(apiCall) {
+    if (isFirstConnection) {
+        const firstConnectionStart = Date.now();
+        const result = await apiCall();
+        const firstConnectionTime = Date.now() - firstConnectionStart;
+        console.log(
+            `[🔌 Google Sheets] Première connexion: ${firstConnectionTime}ms`,
+        );
+        isFirstConnection = false;
+        return result;
+    }
+    return await apiCall();
 }
 
 /**
  * Récupère les données depuis Google Sheets
+ * @param {object} sheetsClient - Client Google Sheets réutilisable (optionnel)
  */
-async function fetchSheetData() {
+async function fetchSheetData(sheetsClient = null) {
     try {
-        console.log('🔄 Connexion à Google Sheets...');
-        const sheets = await getGoogleSheetsClient();
+        console.log('🔄 Récupération des données...');
+        const sheets = sheetsClient || (await getGoogleSheetsClient());
 
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId: SHEET_ID,
@@ -83,11 +126,12 @@ async function fetchSheetData() {
 
 /**
  * Récupère les formules depuis Google Sheets (pour détecter les images =IMAGE())
+ * @param {object} sheetsClient - Client Google Sheets réutilisable (optionnel)
  */
-async function fetchSheetFormulas() {
+async function fetchSheetFormulas(sheetsClient = null) {
     try {
-        console.log('🔄 Récupération des formules pour détecter les images...');
-        const sheets = await getGoogleSheetsClient();
+        console.log('🔄 Récupération des formules...');
+        const sheets = sheetsClient || (await getGoogleSheetsClient());
 
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId: SHEET_ID,
@@ -474,10 +518,6 @@ async function parseRun(rows, startLine, runNumber, formulas) {
         move4Row ? move4Row.length : 0,
     );
 
-    console.log(
-        `    🔍 Scan de ${maxCol} colonnes pour trouver les Pokémon...`,
-    );
-
     for (let col = 10; col < maxCol; col += 5) {
         const pokemonName = String(runIdRow[col] || '').trim();
         if (!pokemonName) continue;
@@ -570,17 +610,9 @@ async function parseRun(rows, startLine, runNumber, formulas) {
                 const data = await response.json();
                 const pokemonId = data.id;
                 sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
-                console.log(
-                    `      🖼️  Sprite récupéré pour ${englishName} (ID: ${pokemonId})`,
-                );
-            } else {
-                console.log(`      ⚠️  Sprite non trouvé pour ${englishName}`);
             }
-        } catch (error) {
-            console.log(
-                `      ❌ Erreur récupération sprite pour ${englishName}:`,
-                error.message,
-            );
+        } catch {
+            // Erreur silencieuse lors de la récupération du sprite
         }
 
         // Vérifie si le Pokémon est mort (emoji 💀 dans la même ligne que le nom)
@@ -602,11 +634,6 @@ async function parseRun(rows, startLine, runNumber, formulas) {
                     ) {
                         if (row[j] && row[j].includes('💀')) {
                             isDead = true;
-                            console.log(
-                                `      💀 ${nickname} détecté comme mort (emoji 💀 trouvé ligne ${
-                                    lineIndex + 1
-                                })`,
-                            );
                             break;
                         }
                     }
@@ -629,13 +656,7 @@ async function parseRun(rows, startLine, runNumber, formulas) {
             isDead,
             sprite,
         });
-
-        console.log(
-            `      ✓ Pokémon ${team.length}: ${nickname} (${englishName}) - Niveau ${level}`,
-        );
     }
-
-    console.log(`    ✅ ${team.length} Pokémon trouvés dans Run #${runNumber}`);
 
     // Calcule les badges pour ce run en scannant sous la ligne "Gym Badges"
     const runBadges = [];
@@ -715,31 +736,6 @@ async function parseRun(rows, startLine, runNumber, formulas) {
             }
             if (showcasePokemon.length >= 6) break;
         }
-        // Debug log: what we picked up (IDs from formulas)
-        try {
-            const f1 = formulas[showcaseRow] || [];
-            const f2 = formulas[showcaseRow + 1] || [];
-            const f3 = formulas[showcaseRow + 2] || [];
-            const f4 = formulas[showcaseRow + 3] || [];
-            console.log(
-                `🔎 Showcase rows ${showcaseRow + 1}/${
-                    showcaseRow + 2
-                } FGH formulas:`,
-                [f1[5], f1[6], f1[7]],
-                [f2[5], f2[6], f2[7]],
-            );
-            console.log(
-                `🔎 Showcase rows ${showcaseRow + 3}/${
-                    showcaseRow + 4
-                } FGH formulas:`,
-                [f3[5], f3[6], f3[7]],
-                [f4[5], f4[6], f4[7]],
-            );
-            console.log(
-                `✅ Showcase Pokémon IDs parsed (max6):`,
-                showcasePokemon,
-            );
-        } catch {}
     }
 
     // Détermine le starter (premier Pokémon) - utilise le nom anglais
@@ -928,7 +924,87 @@ export const runs: Run[] = [\n`;
 }
 
 /**
- * Fonction principale
+ * Fonction optimisée qui vérifie seulement si la première run a obtenu un runEnd
+ * et l'ajoute aux statiques si nécessaire (sans parser toutes les runs)
+ * ⚡ OPTIMISATION : Beaucoup plus rapide que fetchAndConvert() pour les vérifications périodiques
+ *
+ * NOTE: Cette fonction n'est plus utilisée par défaut (pas de watcher)
+ * Elle peut être utile pour des scripts personnalisés si nécessaire
+ */
+async function checkAndUpdateFirstRun() {
+    try {
+        if (!API_KEY) {
+            throw new Error('Clé API Google Sheets non configurée');
+        }
+
+        // Lit le fichier statique actuel pour connaître le dernier runNumber
+        let maxStaticRunNumber = 0;
+        try {
+            const staticContent = fs.readFileSync(OUTPUT_FILE, 'utf-8');
+            // Extrait le numéro de la première run (la plus récente) dans les statiques
+            const runNumberMatch = staticContent.match(/runNumber:\s*(\d+)/);
+            if (runNumberMatch) {
+                // Parse toutes les runs pour trouver le max
+                const allRunMatches =
+                    staticContent.matchAll(/runNumber:\s*(\d+)/g);
+                for (const match of allRunMatches) {
+                    const num = parseInt(match[1]);
+                    if (num > maxStaticRunNumber) {
+                        maxStaticRunNumber = num;
+                    }
+                }
+            }
+        } catch {
+            // Si le fichier n'existe pas, on continue
+            console.log('   ℹ️  Aucun fichier statique existant');
+        }
+
+        // Récupère seulement la première run depuis Google Sheets
+        console.log(
+            '🔄 Vérification de la première run depuis Google Sheets...',
+        );
+        const firstRun = await getFirstRun();
+
+        if (!firstRun) {
+            console.log('   ℹ️  Aucune première run trouvée');
+            return false;
+        }
+
+        // Vérifie si la première run a un runEnd et si elle n'est pas déjà dans les statiques
+        if (firstRun.runEnd && firstRun.runNumber > maxStaticRunNumber) {
+            console.log(
+                `\n🎯 La première run (Run #${firstRun.runNumber}) a un runEnd et n'est pas encore dans les statiques !`,
+            );
+            console.log('   ⚡ Mise à jour des statiques...\n');
+
+            // Parse toutes les runs et met à jour les statiques
+            // (nécessaire pour générer le fichier complet)
+            return await fetchAndConvert();
+        } else if (
+            firstRun.runEnd &&
+            firstRun.runNumber <= maxStaticRunNumber
+        ) {
+            console.log(
+                `   ✅ La première run (Run #${firstRun.runNumber}) est déjà dans les statiques`,
+            );
+            return false; // Pas besoin de mettre à jour
+        } else {
+            console.log(
+                `   ℹ️  La première run (Run #${firstRun.runNumber}) est encore en cours (pas de runEnd)`,
+            );
+            return false; // Pas besoin de mettre à jour
+        }
+    } catch (error) {
+        console.error(
+            '❌ Erreur lors de la vérification de la première run:',
+            error.message,
+        );
+        return false;
+    }
+}
+
+/**
+ * Fonction principale - Parse toutes les runs et génère le fichier statique
  */
 async function fetchAndConvert() {
     try {
@@ -939,11 +1015,15 @@ async function fetchAndConvert() {
             return false;
         }
 
-        // Récupère les données des runs
-        const rows = await fetchSheetData();
-
-        // Récupère les formules pour détecter les badges =RechercheV
-        const formulas = await fetchSheetFormulas();
+        // ⚡ OPTIMISATION : Parallélise les 2 appels API pour réduire le temps total
+        // On réutilise aussi le même client Google Sheets
+        console.log('🔄 Connexion à Google Sheets...');
+        const sheets = await getGoogleSheetsClient();
+        console.log('🔄 Récupération des données et formules en parallèle...');
+        const [rows, formulas] = await Promise.all([
+            fetchSheetData(sheets),
+            fetchSheetFormulas(sheets),
+        ]);
 
         // Compte les badges en détectant les formules =VLOOKUP
         const { totalBadges, runCount, allRunsBadges } = countBadgesInAllRuns(
@@ -955,17 +1035,75 @@ async function fetchAndConvert() {
 
         // Parse les données
         console.log('🔍 Analyse des données...');
-        const runs = await parseSheetData(rows, formulas, allRunsBadges);
-        console.log(`✅ ${runs.length} run(s) trouvé(s)`);
+        const allRuns = await parseSheetData(rows, formulas, allRunsBadges);
+        console.log(`✅ ${allRuns.length} run(s) trouvé(s)`);
 
-        runs.forEach((run) => {
+        // ⚡ FILTRAGE : Ne garde que les runs terminées (avec runEnd) pour le cache statique
+        // Les runs sans runEnd seront chargées dynamiquement depuis Google Sheets par l'API
+        // Ce fichier est généré une fois au build, puis les nouvelles runs terminées seront
+        // ajoutées automatiquement au cache en mémoire par l'API (pas d'écriture de fichiers)
+        const runsWithEnd = allRuns.filter((run) => run.runEnd);
+        const runsWithoutEnd = allRuns.filter((run) => !run.runEnd);
+
+        // Trie les runs par numéro pour identifier la première (la plus récente)
+        allRuns.sort((a, b) => b.runNumber - a.runNumber);
+        const firstRunNumber = allRuns.length > 0 ? allRuns[0].runNumber : null;
+
+        // Logs informatifs
+        allRuns.forEach((run) => {
+            const isFirst = run.runNumber === firstRunNumber;
+            const status = run.runEnd
+                ? `(terminée le ${run.runEnd})`
+                : isFirst
+                ? '(en cours - première run)'
+                : '(en cours)';
             console.log(
-                `   → Run #${run.runNumber}: ${run.team.length} Pokémon`,
+                `   → Run #${run.runNumber}: ${run.team.length} Pokémon ${status}`,
             );
         });
 
-        // Génère le fichier TypeScript
-        const tsContent = generateRunsFile(runs);
+        if (runsWithoutEnd.length > 0) {
+            console.log(
+                `\n⚠️  ${runsWithoutEnd.length} run(s) en cours (sans runEnd) ne seront pas dans le cache statique:`,
+            );
+            runsWithoutEnd.forEach((run) => {
+                const isFirst = run.runNumber === firstRunNumber;
+                console.log(
+                    `   → Run #${run.runNumber} ${
+                        isFirst
+                            ? "(PREMIÈRE RUN - sera chargée en live par l'API)"
+                            : '(en cours, pas de runEnd)'
+                    }`,
+                );
+            });
+            console.log(
+                "   Ces runs seront chargées dynamiquement depuis Google Sheets par l'API.\n",
+            );
+        }
+
+        if (runsWithEnd.length === 0) {
+            console.warn(
+                '⚠️  Aucune run terminée trouvée. Le cache statique sera vide.',
+            );
+        } else {
+            console.log(
+                `\n✅ ${runsWithEnd.length} run(s) terminée(s) seront dans le cache statique (data/runs.ts):`,
+            );
+            runsWithEnd.forEach((run) => {
+                console.log(
+                    `   → Run #${run.runNumber} (terminée le ${run.runEnd})`,
+                );
+            });
+            console.log(
+                "\n📝 Note: Les nouvelles runs terminées seront automatiquement ajoutées au cache en mémoire par l'API",
+            );
+            console.log(
+                '   (pas besoin de régénérer ce fichier, compatible Vercel read-only filesystem)\n',
+            );
+        }
+
+        // Génère le fichier TypeScript avec uniquement les runs terminées (cache par défaut)
+        const tsContent = generateRunsFile(runsWithEnd);
 
         // Écrit le fichier
         fs.writeFileSync(OUTPUT_FILE, tsContent, 'utf-8');
@@ -992,11 +1130,17 @@ async function getRunsData() {
             throw new Error('Clé API Google Sheets non configurée');
         }
 
-        // Récupère les données des runs
-        const rows = await fetchSheetData();
-
-        // Récupère les formules pour détecter les badges =RechercheV
-        const formulas = await fetchSheetFormulas();
+        // ⚡ OPTIMISATION : Parallélise les 2 appels API pour réduire le temps total
+        // Au lieu d'attendre séquentiellement (10s + 10s = 20s),
+        // on fait les 2 appels en parallèle (max(10s, 10s) = 10s)
+        // On réutilise aussi le même client Google Sheets
+        console.log('🔄 Connexion à Google Sheets...');
+        const sheets = await getGoogleSheetsClient();
+        console.log('🔄 Récupération des données et formules en parallèle...');
+        const [rows, formulas] = await Promise.all([
+            fetchSheetData(sheets),
+            fetchSheetFormulas(sheets),
+        ]);
 
         // Compte les badges en détectant les formules =VLOOKUP
         const { totalBadges, runCount, allRunsBadges } = countBadgesInAllRuns(
@@ -1017,8 +1161,620 @@ async function getRunsData() {
     }
 }
 
+/**
+ * Récupère une plage limitée de données depuis Google Sheets (optimisé pour getRunsList)
+ * Ne récupère que les colonnes nécessaires (A-F pour trouver Run # et Run end)
+ */
+async function fetchRunsListData(sheetsClient = null) {
+    const totalStart = Date.now();
+    try {
+        let clientStart = Date.now();
+        const sheets = sheetsClient || (await getGoogleSheetsClient());
+        const clientTime = Date.now() - clientStart;
+        if (clientTime > 10) {
+            console.log(
+                `[⏱️  fetchRunsListData] Client Google Sheets: ${clientTime}ms`,
+            );
+        }
+
+        // ⚡ OPTIMISATION : Ne récupère que les colonnes A-F (6 colonnes) au lieu de ZZ (702 colonnes)
+        // Les colonnes A-F contiennent "Run #", "Run end", etc.
+        const apiStart = Date.now();
+        const response = await measureFirstConnection(() =>
+            sheets.spreadsheets.values.get({
+                spreadsheetId: SHEET_ID,
+                range: `${SHEET_NAME}!A1:F1000`, // Seulement 6 colonnes au lieu de 702
+            }),
+        );
+        const apiTime = Date.now() - apiStart;
+        const totalTime = Date.now() - totalStart;
+        const rows = response.data.values || [];
+        console.log(
+            `[⏱️  fetchRunsListData] Total: ${totalTime}ms (Client: ${clientTime}ms, API: ${apiTime}ms) | ${rows.length} lignes`,
+        );
+
+        return rows;
+    } catch (error) {
+        const totalTime = Date.now() - totalStart;
+        console.error(
+            `[❌ fetchRunsListData] Erreur après ${totalTime}ms:`,
+            error.message,
+        );
+        throw error;
+    }
+}
+
+/**
+ * Fonction qui retourne uniquement la liste des runs avec métadonnées minimales
+ * Plus rapide car elle ne parse pas tous les détails et n'utilise qu'une plage limitée
+ */
+async function getRunsList() {
+    const totalStart = Date.now();
+    try {
+        if (!API_KEY) {
+            throw new Error('Clé API Google Sheets non configurée');
+        }
+
+        // ⚡ OPTIMISATION : Récupère seulement les colonnes A-F (6 colonnes) au lieu de toutes les colonnes
+        const fetchStart = Date.now();
+        const rows = await fetchRunsListData();
+        const fetchTime = Date.now() - fetchStart;
+
+        const parseStart = Date.now();
+        const runsList = [];
+
+        // Trouve toutes les sections de run (cherche "Run #")
+        for (let i = 0; i < rows.length; i++) {
+            const row = rows[i];
+            if (!row || row.length === 0) continue;
+
+            // Cherche "Run #" dans n'importe quelle colonne
+            let runNumber = 0;
+            for (let col = 0; col < row.length; col++) {
+                const cell = String(row[col] || '').trim();
+                if (cell.startsWith('Run #')) {
+                    runNumber = parseInt(cell.replace('Run #', '')) || 0;
+                    break;
+                }
+            }
+
+            if (runNumber > 0) {
+                // Cherche les métadonnées basiques dans les lignes suivantes
+                let runId = '';
+                let starter = '';
+                let wonBattles = '';
+                let personalBest = '';
+                let runStart = '';
+                let runEnd = '';
+                let gymBadges = 0;
+
+                // Scanne les 20 lignes suivantes pour trouver les infos basiques
+                for (let j = i; j < Math.min(i + 20, rows.length); j++) {
+                    const searchRow = rows[j];
+                    if (!searchRow) continue;
+
+                    const firstCell = String(searchRow[1] || '').trim(); // Colonne B
+
+                    if (firstCell.startsWith('RundId')) {
+                        runId = String(searchRow[2] || '').trim();
+                    } else if (firstCell === 'Starter') {
+                        starter = String(searchRow[2] || '').trim();
+                    } else if (firstCell === 'Gym Badges') {
+                        // Compte les badges dans cette ligne (colonnes A-H)
+                        for (let col = 0; col < 8; col++) {
+                            const badge = String(searchRow[col] || '').trim();
+                            if (badge && badge !== 'Gym Badges') {
+                                gymBadges++;
+                            }
+                        }
+                    } else if (firstCell === 'Run start') {
+                        // runStart est dans la colonne 5 (F)
+                        runStart = searchRow[5]
+                            ? String(searchRow[5]).trim()
+                            : '';
+                    } else if (firstCell === 'Run end') {
+                        // runEnd est dans la colonne 5 (F)
+                        runEnd = searchRow[5]
+                            ? String(searchRow[5]).trim()
+                            : '';
+                    } else if (
+                        firstCell === 'Won battles' ||
+                        firstCell.includes('Battles Won')
+                    ) {
+                        // wonBattles est dans la colonne 5 (F), pas la colonne 2
+                        wonBattles = searchRow[5]
+                            ? String(searchRow[5]).trim()
+                            : '';
+                    } else if (firstCell.includes('Personal Best')) {
+                        // Personal Best peut être dans la colonne 1 ou 2 selon le format
+                        // Essaye d'extraire depuis la colonne 1 (format "Personal Best : X")
+                        const pbMatch = firstCell.match(
+                            /Personal Best\s*:\s*(.+)/,
+                        );
+                        personalBest = pbMatch
+                            ? pbMatch[1].trim()
+                            : searchRow[2]
+                            ? String(searchRow[2]).trim()
+                            : '';
+                    }
+                }
+
+                runsList.push({
+                    id: String(runNumber),
+                    runNumber,
+                    runId,
+                    starter,
+                    gymBadges,
+                    wonBattles: wonBattles || undefined,
+                    personalBest: personalBest || undefined,
+                    runStart: runStart || undefined,
+                    runEnd: runEnd || undefined,
+                    startLine: i, // ⚡ Ajoute la ligne de départ pour optimiser getRunByNumber
+                });
+            }
+        }
+
+        // Trie par numéro décroissant (14, 13, ..., 2, 1)
+        const sortStart = Date.now();
+        runsList.sort((a, b) => b.runNumber - a.runNumber);
+        const sortTime = Date.now() - sortStart;
+
+        const parseTime = Date.now() - parseStart;
+        const totalTime = Date.now() - totalStart;
+        console.log(
+            `[⏱️  getRunsList] Total: ${totalTime}ms (Fetch: ${fetchTime}ms, Parse: ${parseTime}ms, Sort: ${sortTime}ms) | ${runsList.length} runs`,
+        );
+
+        return runsList;
+    } catch (error) {
+        const totalTime = Date.now() - totalStart;
+        console.error(
+            `[❌ getRunsList] Erreur après ${totalTime}ms:`,
+            error.message,
+        );
+        throw error;
+    }
+}
+
+/**
+ * Récupère une plage limitée de données pour une run spécifique (optimisé)
+ * Ne charge que les lignes nécessaires autour de la run (~50 lignes au lieu de 1000)
+ */
+async function fetchRunRange(startLine, sheetsClient = null) {
+    const totalStart = Date.now();
+    try {
+        let clientStart = Date.now();
+        const sheets = sheetsClient || (await getGoogleSheetsClient());
+        const clientTime = Date.now() - clientStart;
+        if (clientTime > 10) {
+            console.log(
+                `[⏱️  fetchRunRange] Client Google Sheets: ${clientTime}ms`,
+            );
+        }
+
+        // Charge environ 50 lignes autour de la run
+        // ⚡ OPTIMISATION : Limite les colonnes à GR (200) au lieu de ZZ (702)
+        // Les Pokémon commencent à la colonne K (10) et sont espacés de 5 colonnes
+        // Colonne GR (200) = 10 + (38 Pokémon × 5) = suffisant pour une run complète
+        // startLine est 0-based (index dans le tableau), mais l'API Google Sheets utilise 1-based (numéro de ligne)
+        const startRow = Math.max(1, startLine + 1); // Conversion 0-based -> 1-based
+        const endRow = startLine + 55; // +55 lignes au total (suffisant pour une run complète)
+        const maxCol = 'GR'; // Colonne 200 au lieu de ZZ (702) - réduit les données de ~71%
+
+        // ⚡ OPTIMISATION : Les formules ne sont nécessaires que pour les badges (colonnes A-H) et showcase (F-H)
+        // On charge les formules pour toutes les lignes mais seulement les colonnes A-H (8 colonnes au lieu de 200)
+        const formulasRange = `A${startRow}:H${endRow}`; // Colonnes A-H seulement pour les badges/showcase
+
+        const apiStart = Date.now();
+        const [rows, formulas] = await measureFirstConnection(() =>
+            Promise.all([
+                sheets.spreadsheets.values.get({
+                    spreadsheetId: SHEET_ID,
+                    range: `${SHEET_NAME}!A${startRow}:${maxCol}${endRow}`,
+                }),
+                sheets.spreadsheets.values.get({
+                    spreadsheetId: SHEET_ID,
+                    range: `${SHEET_NAME}!${formulasRange}`,
+                    valueRenderOption: 'FORMULA',
+                }),
+            ]),
+        );
+        const apiTime = Date.now() - apiStart;
+
+        const adjustedRows = rows.data.values || [];
+        const formulasData = formulas.data.values || [];
+
+        // ⚡ Les formules sont seulement pour les colonnes A-H, on doit les étendre pour correspondre aux rows
+        // On crée un tableau de formules avec la même structure que rows (mais seulement A-H seront remplis)
+        const adjustedFormulas = adjustedRows.map((row, rowIdx) => {
+            const formulaRow = formulasData[rowIdx] || [];
+            // Crée un tableau de 200 colonnes (GR) avec les formules A-H aux bonnes positions
+            const extendedRow = new Array(200).fill('');
+            for (let i = 0; i < Math.min(8, formulaRow.length); i++) {
+                extendedRow[i] = formulaRow[i] || '';
+            }
+            return extendedRow;
+        });
+
+        // adjustedStartLine = 0 car les données récupérées commencent à startRow
+        // donc l'index 0 correspond à la ligne startRow du sheet
+
+        // Calcule le nombre réel de colonnes chargées
+        const maxColsLoaded = Math.max(
+            ...adjustedRows.map((row) => (row ? row.length : 0)),
+            0,
+        );
+
+        const totalTime = Date.now() - totalStart;
+        console.log(
+            `[⏱️  fetchRunRange] Total: ${totalTime}ms (Client: ${clientTime}ms, API: ${apiTime}ms) | Lignes ${startRow}-${endRow} (${adjustedRows.length} lignes) | Colonnes A-${maxCol} (${maxColsLoaded} colonnes) | Formules A-H seulement`,
+        );
+
+        return {
+            rows: adjustedRows,
+            formulas: adjustedFormulas,
+            adjustedStartLine: 0,
+        };
+    } catch (error) {
+        const totalTime = Date.now() - totalStart;
+        console.error(
+            `[❌ fetchRunRange] Erreur après ${totalTime}ms:`,
+            error.message,
+        );
+        throw error;
+    }
+}
+
+/**
+ * Récupère une plage qui couvre plusieurs runs (optimisé pour parser plusieurs runs d'un coup)
+ * Calcule la plage minimale qui couvre toutes les runs demandées
+ */
+async function fetchMultipleRunsRange(runsWithStartLines, sheetsClient = null) {
+    const totalStart = Date.now();
+    try {
+        let clientStart = Date.now();
+        const sheets = sheetsClient || (await getGoogleSheetsClient());
+        const clientTime = Date.now() - clientStart;
+        if (clientTime > 10) {
+            console.log(
+                `[⏱️  fetchMultipleRunsRange] Client Google Sheets: ${clientTime}ms`,
+            );
+        }
+
+        // Trouve la plage minimale qui couvre toutes les runs
+        const calcStart = Date.now();
+        const startLines = runsWithStartLines.map((r) => r.startLine);
+        const minStartLine = Math.min(...startLines);
+        const maxStartLine = Math.max(...startLines);
+
+        // Charge de la première run jusqu'à la fin de la dernière run
+        // ⚡ OPTIMISATION : Limite les colonnes à GR (200) au lieu de ZZ (702)
+        // Chaque run fait environ 50 lignes, on ajoute une marge
+        const startRow = Math.max(1, minStartLine + 1); // Conversion 0-based -> 1-based
+        const endRow = maxStartLine + 55; // +55 lignes pour la dernière run
+        const maxCol = 'GR'; // Colonne 200 au lieu de ZZ (702) - réduit les données de ~71%
+
+        // ⚡ OPTIMISATION : Les formules ne sont nécessaires que pour les badges (colonnes A-H) et showcase (F-H)
+        // On charge les formules pour toutes les lignes mais seulement les colonnes A-H (8 colonnes au lieu de 200)
+        const formulasRange = `A${startRow}:H${endRow}`; // Colonnes A-H seulement pour les badges/showcase
+
+        const calcTime = Date.now() - calcStart;
+
+        const apiStart = Date.now();
+        const [rows, formulas] = await measureFirstConnection(() =>
+            Promise.all([
+                sheets.spreadsheets.values.get({
+                    spreadsheetId: SHEET_ID,
+                    range: `${SHEET_NAME}!A${startRow}:${maxCol}${endRow}`,
+                }),
+                sheets.spreadsheets.values.get({
+                    spreadsheetId: SHEET_ID,
+                    range: `${SHEET_NAME}!${formulasRange}`,
+                    valueRenderOption: 'FORMULA',
+                }),
+            ]),
+        );
+        const apiTime = Date.now() - apiStart;
+
+        const adjustedRows = rows.data.values || [];
+        const formulasData = formulas.data.values || [];
+
+        // ⚡ Les formules sont seulement pour les colonnes A-H, on doit les étendre pour correspondre aux rows
+        // On crée un tableau de formules avec la même structure que rows (mais seulement A-H seront remplis)
+        const adjustedFormulas = adjustedRows.map((row, rowIdx) => {
+            const formulaRow = formulasData[rowIdx] || [];
+            // Crée un tableau de 200 colonnes (GR) avec les formules A-H aux bonnes positions
+            const extendedRow = new Array(200).fill('');
+            for (let i = 0; i < Math.min(8, formulaRow.length); i++) {
+                extendedRow[i] = formulaRow[i] || '';
+            }
+            return extendedRow;
+        });
+
+        // Calcule le nombre réel de colonnes chargées
+        const maxColsLoaded = Math.max(
+            ...adjustedRows.map((row) => (row ? row.length : 0)),
+            0,
+        );
+
+        // Calcule les startLines ajustés pour chaque run dans la plage récupérée
+        const adjustStart = Date.now();
+        const adjustedRuns = runsWithStartLines.map((run) => ({
+            ...run,
+            adjustedStartLine: run.startLine - minStartLine, // Ajuste relativement au début de la plage
+        }));
+        const adjustTime = Date.now() - adjustStart;
+
+        const totalTime = Date.now() - totalStart;
+        console.log(
+            `[⏱️  fetchMultipleRunsRange] Total: ${totalTime}ms (Client: ${clientTime}ms, Calc: ${calcTime}ms, API: ${apiTime}ms, Adjust: ${adjustTime}ms) | ${runsWithStartLines.length} runs | Lignes ${startRow}-${endRow} (${adjustedRows.length} lignes) | Colonnes A-${maxCol} (${maxColsLoaded} colonnes) | Formules A-H seulement`,
+        );
+
+        return {
+            rows: adjustedRows,
+            formulas: adjustedFormulas,
+            runs: adjustedRuns, // Chaque run avec son startLine ajusté
+        };
+    } catch (error) {
+        const totalTime = Date.now() - totalStart;
+        console.error(
+            `[❌ fetchMultipleRunsRange] Erreur après ${totalTime}ms:`,
+            error.message,
+        );
+        throw error;
+    }
+}
+
+/**
+ * Fonction qui retourne une run spécifique par son numéro
+ * ⚡ OPTIMISATION : Accepte startLine et données pré-chargées (rows/formulas) pour éviter les appels API redondants
+ * Si rows et formulas sont fournis, utilise ces données au lieu de charger depuis Google Sheets
+ */
+async function getRunByNumber(
+    runNumber,
+    startLine = null,
+    rows = null,
+    formulas = null,
+) {
+    const totalStart = Date.now();
+    try {
+        let adjustedStartLine = 0;
+        let findStartLineTime = 0;
+        let fetchTime = 0;
+        let badgesTime = 0;
+        let parseTime = 0;
+
+        // Si rows et formulas sont fournis, on les utilise directement
+        if (rows !== null && formulas !== null && startLine !== null) {
+            // Les données sont déjà chargées, on utilise startLine tel quel
+            adjustedStartLine = startLine;
+        } else {
+            // Sinon, on charge les données depuis Google Sheets
+            if (!API_KEY) {
+                throw new Error('Clé API Google Sheets non configurée');
+            }
+
+            // Trouve la ligne de départ si elle n'est pas fournie
+            if (startLine === null) {
+                const findStart = Date.now();
+                const quickRows = await fetchRunsListData();
+                for (let i = 0; i < quickRows.length; i++) {
+                    const row = quickRows[i];
+                    if (!row || row.length === 0) continue;
+                    for (let col = 0; col < Math.min(6, row.length); col++) {
+                        const cell = String(row[col] || '').trim();
+                        if (
+                            cell === `Run #${runNumber}` ||
+                            cell.startsWith(`Run #${runNumber} `)
+                        ) {
+                            startLine = i;
+                            break;
+                        }
+                    }
+                    if (startLine !== null) break;
+                }
+                findStartLineTime = Date.now() - findStart;
+            }
+
+            if (startLine === null || startLine === -1) {
+                throw new Error(
+                    `Ligne de départ pour Run #${runNumber} non trouvée`,
+                );
+            }
+
+            // Charge seulement la plage nécessaire autour de cette run (~50 lignes)
+            const fetchStart = Date.now();
+            const sheets = await getGoogleSheetsClient();
+            const result = await fetchRunRange(startLine, sheets);
+            fetchTime = Date.now() - fetchStart;
+            rows = result.rows;
+            formulas = result.formulas;
+            adjustedStartLine = result.adjustedStartLine;
+        }
+
+        // Compte les badges pour cette run (plage limitée)
+        const badgesStart = Date.now();
+        const { allRunsBadges } = countBadgesInAllRuns(rows, formulas);
+        const runBadges =
+            allRunsBadges.find((rb) => rb.runNumber === runNumber)?.badges ||
+            [];
+        badgesTime = Date.now() - badgesStart;
+
+        // Parse cette run spécifique
+        const parseStart = Date.now();
+        const run = await parseRun(
+            rows,
+            adjustedStartLine,
+            runNumber,
+            formulas,
+        );
+        parseTime = Date.now() - parseStart;
+        if (!run) {
+            throw new Error(`Impossible de parser Run #${runNumber}`);
+        }
+
+        // Assure que les badges sont correctement assignés
+        run.badges = runBadges;
+        run.gymBadges = runBadges.length;
+
+        const totalTime = Date.now() - totalStart;
+        const parts = [];
+        if (findStartLineTime > 0)
+            parts.push(`FindStartLine: ${findStartLineTime}ms`);
+        if (fetchTime > 0) parts.push(`Fetch: ${fetchTime}ms`);
+        if (badgesTime > 0) parts.push(`Badges: ${badgesTime}ms`);
+        if (parseTime > 0) parts.push(`Parse: ${parseTime}ms`);
+        console.log(
+            `[⏱️  getRunByNumber #${runNumber}] Total: ${totalTime}ms${
+                parts.length > 0
+                    ? ` (${parts.join(', ')})`
+                    : ' (données pré-chargées)'
+            }`,
+        );
+
+        return run;
+    } catch (error) {
+        const totalTime = Date.now() - totalStart;
+        console.error(
+            `[❌ getRunByNumber #${runNumber}] Erreur après ${totalTime}ms:`,
+            error.message,
+        );
+        throw error;
+    }
+}
+
+/**
+ * Fonction qui retourne uniquement la première run (la plus récente)
+ * ⚡ OPTIMISATION : Ne parse que la première run au lieu de toutes les runs
+ * Retourne toujours la première run, même si elle a un runEnd (l'API décidera si elle doit l'inclure)
+ */
+async function getFirstRun() {
+    const totalStart = Date.now();
+    try {
+        if (!API_KEY) {
+            throw new Error('Clé API Google Sheets non configurée');
+        }
+
+        console.log(
+            '🔄 Récupération de la première run depuis Google Sheets...',
+        );
+
+        let clientStart = Date.now();
+        const sheets = await getGoogleSheetsClient();
+        const clientTime = Date.now() - clientStart;
+
+        const fetchStart = Date.now();
+        const [rows, formulas] = await Promise.all([
+            fetchSheetData(sheets),
+            fetchSheetFormulas(sheets),
+        ]);
+        const fetchTime = Date.now() - fetchStart;
+
+        // Trouve toutes les runs et leurs numéros pour trouver la première (la plus récente)
+        const findStart = Date.now();
+        const runsFound = [];
+        for (let i = 0; i < rows.length; i++) {
+            const row = rows[i];
+            if (!row || row.length === 0) continue;
+
+            // Cherche "Run #" dans n'importe quelle colonne
+            let runNumber = 0;
+            for (let col = 0; col < row.length; col++) {
+                const cell = String(row[col] || '').trim();
+                if (cell.startsWith('Run #')) {
+                    runNumber = parseInt(cell.replace('Run #', '')) || 0;
+                    break;
+                }
+            }
+
+            if (runNumber > 0) {
+                runsFound.push({ runNumber, startLine: i });
+            }
+        }
+        const findTime = Date.now() - findStart;
+
+        if (runsFound.length === 0) {
+            console.log('⚠️  Aucune run trouvée dans Google Sheets');
+            return null;
+        }
+
+        // Trie par numéro décroissant pour avoir la première (la plus récente) en premier
+        const sortStart = Date.now();
+        runsFound.sort((a, b) => b.runNumber - a.runNumber);
+        const firstRunInfo = runsFound[0];
+        const sortTime = Date.now() - sortStart;
+
+        console.log(
+            `  📝 Première run détectée: Run #${firstRunInfo.runNumber}`,
+        );
+
+        // Compte les badges pour cette run
+        const badgesStart = Date.now();
+        const { allRunsBadges } = countBadgesInAllRuns(rows, formulas);
+        const badgesTime = Date.now() - badgesStart;
+
+        // Parse uniquement la première run
+        const parseStart = Date.now();
+        const run = await parseRun(
+            rows,
+            firstRunInfo.startLine,
+            firstRunInfo.runNumber,
+            formulas,
+        );
+        const parseTime = Date.now() - parseStart;
+
+        if (!run) {
+            console.log(
+                `⚠️  Impossible de parser la run #${firstRunInfo.runNumber}`,
+            );
+            return null;
+        }
+
+        // Assure que les badges sont correctement assignés
+        const runBadges =
+            allRunsBadges.find((rb) => rb.runNumber === firstRunInfo.runNumber)
+                ?.badges || [];
+        run.badges = runBadges;
+        run.gymBadges = runBadges.length;
+
+        const totalTime = Date.now() - totalStart;
+        console.log(
+            `[⏱️  getFirstRun] Total: ${totalTime}ms (Client: ${clientTime}ms, Fetch: ${fetchTime}ms, Find: ${findTime}ms, Sort: ${sortTime}ms, Badges: ${badgesTime}ms, Parse: ${parseTime}ms) | Run #${firstRunInfo.runNumber} | ${rows.length} lignes chargées`,
+        );
+
+        // ⚡ On retourne toujours la première run, même si elle a un runEnd
+        // L'API décidera si elle doit l'inclure (si elle n'est pas encore dans les statiques)
+        if (run.runEnd) {
+            console.log(
+                `  ✅ Run #${firstRunInfo.runNumber} récupérée (terminée avec runEnd: ${run.runEnd})`,
+            );
+        } else {
+            console.log(
+                `  ✅ Première run récupérée: Run #${firstRunInfo.runNumber} (en cours)`,
+            );
+        }
+        return run;
+    } catch (error) {
+        const totalTime = Date.now() - totalStart;
+        console.error(
+            `[❌ getFirstRun] Erreur après ${totalTime}ms:`,
+            error.message,
+        );
+        throw error;
+    }
+}
+
 // Export pour utilisation dans le watcher et les API routes
-module.exports = { fetchAndConvert, getRunsData };
+module.exports = {
+    fetchAndConvert,
+    checkAndUpdateFirstRun,
+    getRunsData,
+    getRunsList,
+    getRunByNumber,
+    getFirstRun,
+    fetchMultipleRunsRange,
+    getGoogleSheetsClient,
+};
 
 // Exécute si appelé directement
 if (require.main === module) {

@@ -4,17 +4,20 @@ import { Run } from '@/types/run';
 import PokemonCard from '@/app/components/PokemonCard';
 import RunHeader from '@/app/components/RunHeader';
 import RunDetailsPanel from '@/app/components/RunDetailsPanel';
+import LoadingSkeleton from '@/app/components/LoadingSkeleton';
 import { useEffect, useState } from 'react';
 
 // Import des runs statiques en fallback (pour le premier render)
 import { runs as staticRuns } from '@/data/runs';
 
 export default function Home() {
-    const [runs, setRuns] = useState<Run[]>(staticRuns);
-    const [selectedRun, setSelectedRun] = useState<Run>(staticRuns[0]);
-    const [isLoading, setIsLoading] = useState(false);
+    // ⚡ FIX : Ne pas initialiser avec staticRuns pour éviter le flash
+    // On affiche le skeleton immédiatement jusqu'à ce que les données soient chargées
+    const [runs, setRuns] = useState<Run[]>([]);
+    const [selectedRun, setSelectedRun] = useState<Run | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Charge les données depuis l'API au montage du composant
+    // Charge toutes les runs depuis l'API au montage du composant
     useEffect(() => {
         async function loadRuns() {
             setIsLoading(true);
@@ -25,11 +28,21 @@ export default function Home() {
                     if (data.runs && data.runs.length > 0) {
                         setRuns(data.runs);
                         setSelectedRun(data.runs[0]);
+                    } else {
+                        // Fallback vers les runs statiques si l'API ne retourne rien
+                        setRuns(staticRuns);
+                        setSelectedRun(staticRuns[0]);
                     }
+                } else {
+                    // Fallback vers les runs statiques en cas d'erreur HTTP
+                    setRuns(staticRuns);
+                    setSelectedRun(staticRuns[0]);
                 }
             } catch (error) {
                 console.error('Erreur lors du chargement des runs:', error);
-                // On garde les runs statiques en cas d'erreur
+                // Fallback vers les runs statiques en cas d'erreur
+                setRuns(staticRuns);
+                setSelectedRun(staticRuns[0]);
             } finally {
                 setIsLoading(false);
             }
@@ -48,14 +61,9 @@ export default function Home() {
         }
     }, [runs, selectedRun]);
 
-    if (isLoading && runs === staticRuns) {
-        return (
-            <div className="relative min-h-screen bg-gray-700 flex items-center justify-center">
-                <div className="text-white text-xl">
-                    Chargement des données...
-                </div>
-            </div>
-        );
+    // Affiche le skeleton pendant le chargement
+    if (isLoading || !selectedRun || runs.length === 0) {
+        return <LoadingSkeleton />;
     }
 
     return (

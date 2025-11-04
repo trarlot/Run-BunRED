@@ -3,7 +3,7 @@ import { getPokemonSprite } from '@/utils/pokemon';
 
 // 🔄 Ce fichier est généré automatiquement depuis Google Sheets
 // Ne pas modifier manuellement - vos modifications seront écrasées !
-// Dernière synchronisation : 03/11/2025 17:41:16
+// Dernière synchronisation : 03/11/2025 18:12:11
 // Source : https://docs.google.com/spreadsheets/d/1OrFcuxg5DE-TvhK9_dGrqWScT4PyjLJ3uObTP3Sclkk
 
 export const runs: Run[] = [
