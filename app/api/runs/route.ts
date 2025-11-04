@@ -9,6 +9,14 @@ import { runs as staticRuns } from '@/data/runs';
 
 import { Run } from '@/types/run';
 
+// Type helper for getRunByNumber to accept number | null | undefined for startLine
+type GetRunByNumber = (
+    runNumber: number,
+    startLine?: number | null,
+    rows?: unknown,
+    formulas?: unknown,
+) => Promise<Run | null>;
+
 // Cache en mémoire (persiste entre les requêtes sur le même instance)
 // ⚠️ NOTE: Sur Vercel Serverless, le cache peut être perdu si une nouvelle instance est créée
 // Pour un cache persistant, considérer l'utilisation de Vercel KV ou Redis
@@ -129,11 +137,10 @@ export async function GET() {
                         ? firstRunData.startLine
                         : undefined;
                 // getRunByNumber accepts number | null | undefined in JavaScript, but TypeScript types it as null | undefined
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const rawFirstRun = (await (getRunByNumber as any)(
+                const rawFirstRun = await (getRunByNumber as GetRunByNumber)(
                     firstRunData.runNumber,
                     startLineValue,
-                )) as Run | null;
+                );
                 if (rawFirstRun) {
                     firstRun = {
                         ...rawFirstRun,
@@ -234,11 +241,10 @@ export async function GET() {
                         typeof runMeta.startLine === 'number'
                             ? runMeta.startLine
                             : undefined;
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    const parsedRun = (await (getRunByNumber as any)(
+                    const parsedRun = await (getRunByNumber as GetRunByNumber)(
                         runMeta.runNumber,
                         startLine,
-                    )) as Run | null;
+                    );
                     if (parsedRun) {
                         const normalizedRun: Run = {
                             ...parsedRun,
@@ -280,9 +286,14 @@ export async function GET() {
                         // Parse toutes les runs depuis cette plage unique
                         for (const adjustedRun of adjustedRuns) {
                             try {
-                                const parsedRun = await getRunByNumber(
+                                const parsedRun = await (
+                                    getRunByNumber as GetRunByNumber
+                                )(
                                     adjustedRun.runNumber,
-                                    adjustedRun.adjustedStartLine,
+                                    typeof adjustedRun.adjustedStartLine ===
+                                        'number'
+                                        ? adjustedRun.adjustedStartLine
+                                        : undefined,
                                     rows,
                                     formulas,
                                 );
@@ -307,10 +318,9 @@ export async function GET() {
                         // Fallback : parse une par une si pas de startLine
                         for (const runMeta of newFinishedRuns) {
                             try {
-                                const parsedRun = await getRunByNumber(
-                                    runMeta.runNumber,
-                                    null,
-                                );
+                                const parsedRun = await (
+                                    getRunByNumber as GetRunByNumber
+                                )(runMeta.runNumber, undefined);
                                 if (parsedRun) {
                                     const normalizedRun: Run = {
                                         ...parsedRun,
@@ -337,13 +347,14 @@ export async function GET() {
                                 'startLine' in runMeta
                                     ? runMeta.startLine
                                     : null;
-                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            const parsedRun = (await (getRunByNumber as any)(
+                            const parsedRun = await (
+                                getRunByNumber as GetRunByNumber
+                            )(
                                 runMeta.runNumber,
                                 typeof startLine === 'number'
                                     ? startLine
                                     : undefined,
-                            )) as Run | null;
+                            );
                             if (parsedRun) {
                                 const normalizedRun: Run = {
                                     ...parsedRun,
