@@ -123,12 +123,17 @@ export async function GET() {
             if (firstRunData && !firstRunData.runEnd) {
                 // ⚡ OPTIMISATION : Utilise getRunByNumber avec startLine au lieu de getFirstRun
                 // Cela évite de charger toutes les colonnes (A1:ZZ1000)
-                const startLine =
-                    'startLine' in firstRunData ? firstRunData.startLine : null;
-                const rawFirstRun = await getRunByNumber(
+                const startLineValue =
+                    'startLine' in firstRunData &&
+                    typeof firstRunData.startLine === 'number'
+                        ? firstRunData.startLine
+                        : undefined;
+                // getRunByNumber accepts number | null | undefined in JavaScript, but TypeScript types it as null | undefined
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const rawFirstRun = (await (getRunByNumber as any)(
                     firstRunData.runNumber,
-                    startLine,
-                );
+                    startLineValue,
+                )) as Run | null;
                 if (rawFirstRun) {
                     firstRun = {
                         ...rawFirstRun,
@@ -173,9 +178,6 @@ export async function GET() {
         } else {
             // Cache existant : s'assure qu'on a toutes les runs statiques (au cas où elles ont été mises à jour)
             // On merge les runs statiques avec le cache existant pour éviter de perdre les nouvelles runs parsées
-            const staticRunNumbers = new Set(
-                staticRuns.map((r) => r.runNumber),
-            );
             const cachedRunNumbers = new Set(
                 persistentCache.map((r) => r.runNumber),
             );
@@ -228,11 +230,15 @@ export async function GET() {
                 try {
                     const runMeta = newFinishedRuns[0];
                     const startLine =
-                        'startLine' in runMeta ? runMeta.startLine : null;
-                    const parsedRun = await getRunByNumber(
+                        'startLine' in runMeta &&
+                        typeof runMeta.startLine === 'number'
+                            ? runMeta.startLine
+                            : undefined;
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const parsedRun = (await (getRunByNumber as any)(
                         runMeta.runNumber,
                         startLine,
-                    );
+                    )) as Run | null;
                     if (parsedRun) {
                         const normalizedRun: Run = {
                             ...parsedRun,
@@ -331,10 +337,13 @@ export async function GET() {
                                 'startLine' in runMeta
                                     ? runMeta.startLine
                                     : null;
-                            const parsedRun = await getRunByNumber(
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            const parsedRun = (await (getRunByNumber as any)(
                                 runMeta.runNumber,
-                                startLine,
-                            );
+                                typeof startLine === 'number'
+                                    ? startLine
+                                    : undefined,
+                            )) as Run | null;
                             if (parsedRun) {
                                 const normalizedRun: Run = {
                                     ...parsedRun,
