@@ -49,7 +49,7 @@ export default function Home() {
                             );
                             if (savedRunId) {
                                 const savedRun = filteredRuns.find(
-                                    (r) => r.id === savedRunId,
+                                    (r: Run) => r.id === savedRunId,
                                 );
                                 if (savedRun) {
                                     setSelectedRun(savedRun);
