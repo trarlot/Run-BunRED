@@ -220,7 +220,7 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
                 className={`relative w-full overflow-hidden rounded-2xl  pb-4 bg-gray-900 shadow-xl`}>
                 <div
                     className={`text-xs lg:text-sm ${
-                        pokemon.isDead ? 'bg-red-600' : 'bg-green-600'
+                        pokemon.isDead ? 'bg-red-600' : 'bg-green-700'
                     } mb-4 py-2 font-semibold text-white text-center`}>
                     {pokemon.location}
                 </div>

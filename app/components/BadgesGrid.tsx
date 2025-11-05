@@ -22,7 +22,7 @@ export default function BadgesGrid({ run }: BadgesGridProps) {
     const badges = run.badges ?? [];
 
     return (
-        <div className="w-[265px] xl:w-[344px] h-full">
+        <div className="w-[265px] xl:w-[344px]">
             <div className="flex flex-wrap gap-2">
                 {ALL_EMERALD_BADGES.map((imgName) => {
                     const obtained = badges.some(

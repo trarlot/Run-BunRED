@@ -105,19 +105,39 @@ export default function RunHeader({
                     </svg>
                 </button>
 
-                {/* Bouton run */}
-                <button
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className="px-4 py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-all">
-                    <span className="text-base">
-                        Run #{selectedRun.runNumber}
-                    </span>
-                    {selectedRun.wonBattles && (
-                        <span className="ml-2 text-base opacity-75 font-normal">
-                            {selectedRun.wonBattles}
-                        </span>
-                    )}
-                </button>
+                {/* Bouton run avec border gold/silver/bronze si dans le top 3 */}
+                {(() => {
+                    const rank = topIds.has(selectedRun.id)
+                        ? topIds.get(selectedRun.id)!
+                        : -1;
+                    const gradient =
+                        rank === 0
+                            ? 'bg-gradient-to-br from-yellow-300 via-yellow-500 to-yellow-300'
+                            : rank === 1
+                            ? 'bg-gradient-to-br from-gray-200 via-gray-400 to-gray-200'
+                            : rank === 2
+                            ? 'bg-gradient-to-br from-amber-950 via-amber-900 to-amber-950'
+                            : '';
+                    const wrapperClass = gradient
+                        ? `rounded-lg p-[2px] ${gradient}`
+                        : 'p-[2px] ';
+                    return (
+                        <div className={wrapperClass}>
+                            <button
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className="px-4 py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-all">
+                                <span className="text-base">
+                                    Run #{selectedRun.runNumber}
+                                </span>
+                                {selectedRun.wonBattles && (
+                                    <span className="ml-2 text-base opacity-75 font-normal">
+                                        {selectedRun.wonBattles}
+                                    </span>
+                                )}
+                            </button>
+                        </div>
+                    );
+                })()}
 
                 {/* Flèche droite : vers la run suivante (numéro plus petit) */}
                 <button
@@ -234,7 +254,7 @@ export default function RunHeader({
                             : '';
                         const isSelected = selectedRun.id === run.id;
                         const btnBase = isSelected
-                            ? 'bg-green-600 text-white scale-105'
+                            ? 'bg-green-700 text-white scale-105'
                             : 'bg-gray-900 text-gray-300 hover:bg-gray-800';
                         return (
                             <div key={run.id} className={wrapperClass}>

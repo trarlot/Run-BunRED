@@ -411,6 +411,10 @@ export async function GET() {
                 `[📦 Combinaison] ${runs.length} runs au total: toutes terminées`,
             );
         }
+
+        // ⚡ FILTRAGE : Exclut la run 6 (garder les mêmes IDs, passer de 5 à 7)
+        runs = runs.filter((r) => r.runNumber !== 6);
+
         timings.combineRuns = Date.now() - combineStart;
 
         // Met à jour le cache

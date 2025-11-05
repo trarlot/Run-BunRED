@@ -14,7 +14,7 @@ export default function RunStats({ run }: RunStatsProps) {
     return (
         <div className="flex flex-col justify-between lg:justify-center gap-2 h-full">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-2 items-stretch h-full">
-                <div className="flex items-center gap-2 bg-green-600 rounded-lg px-3 py-2 h-full">
+                <div className="flex items-center gap-2 bg-green-700 rounded-lg px-3 py-2 h-full">
                     <span className="text-white font-semibold text-sm xl:text-xl">
                         Run #{run.runNumber}
                     </span>

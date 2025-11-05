@@ -45,7 +45,7 @@ export default function TrainerShowcase({ run }: TrainerShowcaseProps) {
 
     return (
         <div className="h-full max-w-[264px] lg:max-w-none flex flex-col justify-center bg-white/10 rounded-lg px-3 py-3">
-            <div className="text-xs  text-gray-300 mb-2">
+            <div className="text-xs text-gray-300 mb-2">
                 Personal Best :{' '}
                 <span className="text-white  truncate">{run.personalBest}</span>
             </div>
