@@ -194,12 +194,12 @@ export default function Home() {
                 />
 
                 <div className="flex-1 flex flex-col justify-center max-w-full px-4 py-2">
-                    <div className="w-full  flex flex-col  justify-center ">
+                    <div className="w-full flex flex-col justify-center ">
                         <RunDetailsPanel run={selectedRun} />
 
                         {/* Rencontres - scroll horizontal */}
                         <div className="w-full overflow-x-auto pb-4">
-                            <div className="inline-flex gap-7 min-w-max">
+                            <div className="inline-flex gap-4 sm:gap-7 min-w-max">
                                 {selectedRun.team
                                     .sort(
                                         (a, b) =>

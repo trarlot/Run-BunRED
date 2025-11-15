@@ -20,14 +20,14 @@ function ShowcasePokemon({
     return (
         <div
             key={`showcase-${idx}`}
-            className="w-10 h-10 xl:w-14 xl:h-14 rounded bg-white/10 flex items-center justify-center overflow-hidden shrink-0">
+            className="w-10 h-10 sm:w-12 sm:h-12 xl:w-16 xl:h-16 rounded bg-white/10 flex items-center justify-center overflow-hidden shrink-0">
             {spriteUrl ? (
                 <ImagePkn
                     src={spriteUrl}
                     alt={String(nameOrId || `empty-${idx}`)}
                     width={45}
                     height={45}
-                    className="object-contain"
+                    className="object-contain w-full h-full"
                 />
             ) : null}
         </div>
@@ -44,28 +44,28 @@ export default function TrainerShowcase({ run }: TrainerShowcaseProps) {
     }
 
     return (
-        <div className="h-full max-w-[264px] lg:max-w-none flex flex-col justify-center bg-white/10 rounded-lg px-3 py-3">
-            <div className="text-xs text-gray-300 mb-2">
+        <div className="h-full max-w-full sm:max-w-[290px] lg:max-w-none flex flex-col justify-center bg-white/10 rounded-lg px-2 sm:px-3 py-2 sm:py-3">
+            <div className="text-[10px] sm:text-xs text-gray-300 mb-1.5 sm:mb-2 md:mb-0">
                 Personal Best :{' '}
                 <span className="text-white  truncate">{run.personalBest}</span>
             </div>
 
-            <div className="flex items-center h-full gap-2">
+            <div className="flex items-center h-full gap-1.5 sm:gap-2">
                 {run.trainerSprite && (
-                    <div className="h-22 w-22 xl:h-30 xl:w-30 rounded bg-white/10 flex items-center justify-center overflow-hidden">
+                    <div className="h-20 w-20 sm:h-[96px] sm:w-[96px] xl:h-[128px] xl:w-[128px] rounded bg-white/10 flex items-center justify-center overflow-hidden shrink-0">
                         <ImagePkn
                             src={run.trainerSprite}
                             alt="Trainer"
                             width={100}
                             height={100}
-                            className="object-contain"
+                            className="object-contain w-full h-full"
                         />
                     </div>
                 )}
                 {run.showcasePokemon && run.showcasePokemon.length > 0 && (
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-1.5 sm:gap-2">
                         {/* Première ligne: 3 premiers Pokémon */}
-                        <div className="flex gap-2">
+                        <div className="flex gap-1.5 sm:gap-2">
                             {[0, 1, 2].map((idx) => {
                                 const nameOrId = run.showcasePokemon![idx];
                                 let spriteUrl = '';
@@ -104,7 +104,7 @@ export default function TrainerShowcase({ run }: TrainerShowcaseProps) {
                             })}
                         </div>
                         {/* Deuxième ligne: 3 derniers Pokémon */}
-                        <div className="flex gap-2">
+                        <div className="flex gap-1.5 sm:gap-2">
                             {[3, 4, 5].map((idx) => {
                                 const nameOrId = run.showcasePokemon![idx];
                                 let spriteUrl = '';

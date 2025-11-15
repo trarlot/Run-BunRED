@@ -22,8 +22,9 @@ export default function BadgesGrid({ run }: BadgesGridProps) {
     const badges = run.badges ?? [];
 
     return (
-        <div className="w-[265px] xl:w-[344px]">
-            <div className="flex flex-wrap gap-2">
+        <div className="w-[100px] sm:w-[268px]  xl:w-[344px]">
+            {/* Grille 2x3 sur très petits écrans, flex-wrap sur sm, 3x2 à partir de md */}
+            <div className="grid grid-cols-2 gap-1 sm:grid sm:grid-cols-4 sm:gap-1.5  md:gap-1.5 xl:gap-2">
                 {ALL_EMERALD_BADGES.map((imgName) => {
                     const obtained = badges.some(
                         (b) => b.imageName === imgName,
@@ -31,13 +32,13 @@ export default function BadgesGrid({ run }: BadgesGridProps) {
                     return (
                         <div
                             key={imgName}
-                            className="w-15 h-15 xl:w-20 xl:h-20 rounded flex items-center justify-center overflow-hidden bg-white/10">
+                            className="w-12 h-12 sm:w-[64px] sm:h-[64px] xl:w-20 xl:h-20 rounded flex items-center justify-center overflow-hidden bg-white/10">
                             <Image
                                 src={`/assets/${imgName}`}
                                 alt={imgName}
                                 width={40}
                                 height={40}
-                                className="object-contain"
+                                className="object-contain w-full h-full"
                                 style={
                                     obtained
                                         ? { opacity: 1 }
