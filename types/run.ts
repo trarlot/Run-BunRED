@@ -32,6 +32,7 @@ export interface Badge {
 export interface Run {
     id: string;
     runNumber: number;
+    originalRunNumber?: number; // ⚡ Numéro original du Google Sheet (pour référence/filtrage)
     runId: string;
     starter: string;
     gymBadges: number;

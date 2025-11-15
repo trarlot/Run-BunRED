@@ -185,6 +185,7 @@ export async function GET() {
         } else {
             // Cache existant : s'assure qu'on a toutes les runs statiques (au cas où elles ont été mises à jour)
             // On merge les runs statiques avec le cache existant pour éviter de perdre les nouvelles runs parsées
+            // ⚡ DÉDUPLICATION : Utilise runNumber comme clé unique pour éviter les doublons
             const cachedRunNumbers = new Set(
                 persistentCache.map((r) => r.runNumber),
             );
@@ -197,9 +198,17 @@ export async function GET() {
             if (missingStaticRuns.length > 0) {
                 // Fusionne les runs statiques manquantes avec le cache existant
                 const allRuns = [...persistentCache, ...missingStaticRuns];
-                persistentCache = allRuns.sort(
-                    (a, b) => b.runNumber - a.runNumber,
-                );
+                // ⚡ DÉDUPLICATION FINALE : S'assure qu'il n'y a pas de doublons après la fusion
+                const seenRunNumbers = new Set<number>();
+                persistentCache = allRuns
+                    .filter((r) => {
+                        if (seenRunNumbers.has(r.runNumber)) {
+                            return false;
+                        }
+                        seenRunNumbers.add(r.runNumber);
+                        return true;
+                    })
+                    .sort((a, b) => b.runNumber - a.runNumber);
             }
         }
         timings.initCache = Date.now() - initCacheStart;
@@ -379,13 +388,41 @@ export async function GET() {
                 console.log(
                     `[✅ Parsing] ${newRunsToAdd.length}/${newFinishedRuns.length} nouvelle(s) run(s) parsée(s) avec succès`,
                 );
-                const allRuns = [...newRunsToAdd, ...persistentCache];
-                persistentCache = allRuns.sort(
-                    (a, b) => b.runNumber - a.runNumber,
+
+                // ⚡ DÉDUPLICATION : Évite d'ajouter des runs déjà présentes dans le cache
+                // Utilise runNumber (ID séquentiel) comme clé unique
+                const existingRunNumbers = new Set(
+                    persistentCache.map((r) => r.runNumber),
                 );
-                console.log(
-                    `[💾 Cache] Cache persistant mis à jour: ${persistentCache.length} runs (${staticRuns.length} statiques + ${newRunsToAdd.length} nouvelles)`,
+                const uniqueNewRuns = newRunsToAdd.filter(
+                    (r) => !existingRunNumbers.has(r.runNumber),
                 );
+
+                if (uniqueNewRuns.length < newRunsToAdd.length) {
+                    console.log(
+                        `[⚠️  Déduplication] ${
+                            newRunsToAdd.length - uniqueNewRuns.length
+                        } run(s) déjà présente(s) dans le cache, ignorée(s)`,
+                    );
+                }
+
+                if (uniqueNewRuns.length > 0) {
+                    const allRuns = [...uniqueNewRuns, ...persistentCache];
+                    persistentCache = allRuns.sort(
+                        (a, b) => b.runNumber - a.runNumber,
+                    );
+                    console.log(
+                        `[💾 Cache] Cache persistant mis à jour: ${
+                            persistentCache.length
+                        } runs (${
+                            persistentCache.length - uniqueNewRuns.length
+                        } existantes + ${uniqueNewRuns.length} nouvelles)`,
+                    );
+                } else {
+                    console.log(
+                        `[ℹ️  Cache] Aucune nouvelle run unique à ajouter (toutes déjà présentes)`,
+                    );
+                }
             } else if (newFinishedRuns.length > 0) {
                 console.warn(
                     `[⚠️  Parsing] Aucune run n'a pu être parsée sur ${newFinishedRuns.length} détectée(s)`,
@@ -412,8 +449,29 @@ export async function GET() {
             );
         }
 
-        // ⚡ FILTRAGE : Exclut la run 6 (garder les mêmes IDs, passer de 5 à 7)
-        runs = runs.filter((r) => r.runNumber !== 6);
+        // ⚡ DÉDUPLICATION FINALE : S'assure qu'il n'y a pas de doublons (au cas où)
+        const seenRunNumbers = new Set<number>();
+        runs = runs.filter((r) => {
+            if (seenRunNumbers.has(r.runNumber)) {
+                console.warn(
+                    `[⚠️  Doublon détecté] Run #${r.runNumber} apparaît plusieurs fois, suppression du doublon`,
+                );
+                return false;
+            }
+            seenRunNumbers.add(r.runNumber);
+            return true;
+        });
+
+        // ⚡ FILTRAGE : Exclut la run originale #6 du sheet (même si elle a maintenant un ID séquentiel différent)
+        runs = runs.filter((r) => {
+            // Utilise originalRunNumber si disponible, sinon runNumber (pour compatibilité)
+            const originalNum =
+                'originalRunNumber' in r &&
+                typeof r.originalRunNumber === 'number'
+                    ? r.originalRunNumber
+                    : r.runNumber;
+            return originalNum !== 6;
+        });
 
         timings.combineRuns = Date.now() - combineStart;
 

@@ -36,10 +36,12 @@ export default function Home() {
                 if (response.ok) {
                     const data = await response.json();
                     if (data.runs && data.runs.length > 0) {
-                        // ⚡ FILTRAGE : Exclut la run 6 (garder les mêmes IDs, passer de 5 à 7)
-                        const filteredRuns = data.runs.filter(
-                            (r: Run) => r.runNumber !== 6,
-                        );
+                        // ⚡ FILTRAGE : Exclut la run originale #6 du sheet
+                        const filteredRuns = data.runs.filter((r: Run) => {
+                            const originalNum =
+                                r.originalRunNumber ?? r.runNumber;
+                            return originalNum !== 6;
+                        });
                         setRuns(filteredRuns);
 
                         // ⚡ RESTAURATION : Essaie de restaurer la run sauvegardée
@@ -61,9 +63,13 @@ export default function Home() {
                         setSelectedRun(filteredRuns[0]);
                     } else {
                         // Fallback vers les runs statiques si l'API ne retourne rien
-                        // ⚡ FILTRAGE : Exclut aussi la run 6 dans le fallback
+                        // ⚡ FILTRAGE : Exclut aussi la run originale #6 du sheet dans le fallback
                         const filteredStaticRuns = staticRuns.filter(
-                            (r) => r.runNumber !== 6,
+                            (r: Run) => {
+                                const originalNum =
+                                    r.originalRunNumber ?? r.runNumber;
+                                return originalNum !== 6;
+                            },
                         );
                         setRuns(filteredStaticRuns);
 
@@ -87,10 +93,11 @@ export default function Home() {
                     }
                 } else {
                     // Fallback vers les runs statiques en cas d'erreur HTTP
-                    // ⚡ FILTRAGE : Exclut aussi la run 6 dans le fallback
-                    const filteredStaticRuns = staticRuns.filter(
-                        (r) => r.runNumber !== 6,
-                    );
+                    // ⚡ FILTRAGE : Exclut aussi la run originale #6 du sheet dans le fallback
+                    const filteredStaticRuns = staticRuns.filter((r: Run) => {
+                        const originalNum = r.originalRunNumber ?? r.runNumber;
+                        return originalNum !== 6;
+                    });
                     setRuns(filteredStaticRuns);
 
                     // ⚡ RESTAURATION : Essaie de restaurer la run sauvegardée
@@ -114,10 +121,11 @@ export default function Home() {
             } catch (error) {
                 console.error('Erreur lors du chargement des runs:', error);
                 // Fallback vers les runs statiques en cas d'erreur
-                // ⚡ FILTRAGE : Exclut aussi la run 6 dans le fallback
-                const filteredStaticRuns = staticRuns.filter(
-                    (r) => r.runNumber !== 6,
-                );
+                // ⚡ FILTRAGE : Exclut aussi la run originale #6 du sheet dans le fallback
+                const filteredStaticRuns = staticRuns.filter((r: Run) => {
+                    const originalNum = r.originalRunNumber ?? r.runNumber;
+                    return originalNum !== 6;
+                });
                 setRuns(filteredStaticRuns);
 
                 // ⚡ RESTAURATION : Essaie de restaurer la run sauvegardée

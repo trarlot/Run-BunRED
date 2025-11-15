@@ -221,6 +221,7 @@ function countBadgesInAllRuns(rows, formulas) {
     let totalBadges = 0;
     let runCount = 0;
     const allRunsBadges = []; // Collecte les badges de tous les runs
+    const seenRunNumbers = new Set(); // ⚡ DÉDUPLICATION : Évite de compter les mêmes runs plusieurs fois
 
     // Trouve toutes les lignes "Gym Badges"
     for (let i = 0; i < rows.length; i++) {
@@ -231,6 +232,36 @@ function countBadgesInAllRuns(rows, formulas) {
 
         if (firstCell === 'Gym Badges' || firstCell.includes('Vital Spirit')) {
             runCount++;
+
+            // ⚡ NOUVEAU SYSTÈME : Trouve le numéro original du sheet pour cette run
+            // On cherche la ligne "Run #X" qui précède cette ligne "Gym Badges"
+            let originalRunNumber = null;
+            for (let j = Math.max(0, i - 20); j < i; j++) {
+                const searchRow = rows[j];
+                if (!searchRow) continue;
+
+                // Cherche "Run #" dans n'importe quelle colonne
+                for (let col = 0; col < searchRow.length; col++) {
+                    const cell = String(searchRow[col] || '').trim();
+                    if (cell.startsWith('Run #')) {
+                        originalRunNumber =
+                            parseInt(cell.replace('Run #', '')) || null;
+                        break;
+                    }
+                }
+                if (originalRunNumber !== null) break;
+            }
+
+            // Si on n'a pas trouvé le numéro original, on utilise le compteur comme fallback
+            const runNumberForBadges =
+                originalRunNumber !== null ? originalRunNumber : runCount;
+
+            // ⚡ DÉDUPLICATION : Ignore les runs déjà vues (doublons dans le sheet)
+            if (seenRunNumbers.has(runNumberForBadges)) {
+                continue; // Skip cette run, elle a déjà été comptée
+            }
+            seenRunNumbers.add(runNumberForBadges);
+
             let runBadgeCount = 0;
             const runBadges = []; // Collecte les badges de ce run
 
@@ -288,8 +319,9 @@ function countBadgesInAllRuns(rows, formulas) {
             }
 
             // Ajoute les badges de ce run à la collection globale
+            // ⚡ Utilise le numéro original du sheet pour pouvoir matcher avec les runs parsées
             allRunsBadges.push({
-                runNumber: runCount,
+                runNumber: runNumberForBadges,
                 badges: runBadges,
             });
         }
@@ -304,39 +336,61 @@ function countBadgesInAllRuns(rows, formulas) {
  */
 async function parseSheetData(rows, formulas, allRunsBadges = []) {
     const runs = [];
+    const runsWithOriginalNumbers = []; // Stocke temporairement avec le numéro original
 
     // Les Pokémon commencent à la colonne 10 (K) et sont espacés de 5 colonnes
     const POKEMON_START_COL = 10; // Colonne K
     const POKEMON_SPACING = 5;
 
     // Trouve toutes les sections de run (cherche "Run #")
+    // On garde l'ordre d'apparition dans le sheet (première trouvée = plus récente)
     for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
         if (!row || row.length === 0) continue;
 
         // Cherche "Run #" dans n'importe quelle colonne
         let runNumberCol = -1;
-        let runNumber = 0;
+        let originalRunNumber = 0;
 
         for (let col = 0; col < row.length; col++) {
             const cell = String(row[col] || '').trim();
             if (cell.startsWith('Run #')) {
                 runNumberCol = col;
-                runNumber = parseInt(cell.replace('Run #', '')) || 0;
+                originalRunNumber = parseInt(cell.replace('Run #', '')) || 0;
                 break;
             }
         }
 
-        if (runNumber > 0) {
-            console.log(`  📝 Run #${runNumber} détecté à la ligne ${i + 1}`);
+        if (originalRunNumber > 0) {
+            console.log(
+                `  📝 Run #${originalRunNumber} détecté à la ligne ${i + 1}`,
+            );
 
             // Parse ce run (les badges seront calculés depuis les formules à partir de la zone du run)
-            const run = await parseRun(rows, i, runNumber, formulas);
+            // On passe le numéro original pour le parsing, mais on assignera un ID séquentiel après
+            const run = await parseRun(rows, i, originalRunNumber, formulas);
             if (run) {
-                runs.push(run);
+                runsWithOriginalNumbers.push({
+                    run,
+                    originalRunNumber,
+                });
             }
         }
     }
+
+    // ⚡ NOUVEAU SYSTÈME : Assignation d'IDs séquentiels selon l'ordre d'apparition
+    // La première run trouvée (plus récente) = numéro le plus élevé
+    // La dernière run trouvée (plus ancienne) = numéro 1
+    const totalRuns = runsWithOriginalNumbers.length;
+    runsWithOriginalNumbers.forEach(({ run }, index) => {
+        // Index 0 = première trouvée = plus récente = numéro total
+        // Index totalRuns-1 = dernière trouvée = plus ancienne = numéro 1
+        const sequentialNumber = totalRuns - index;
+        run.runNumber = sequentialNumber;
+        run.id = String(sequentialNumber);
+        // ⚡ Le numéro original est déjà stocké dans run.originalRunNumber par parseRun
+        runs.push(run);
+    });
 
     return runs;
 }
@@ -771,8 +825,9 @@ async function parseRun(rows, startLine, runNumber, formulas) {
         .filter(Boolean);
 
     return {
-        id: String(runNumber),
-        runNumber,
+        id: String(runNumber), // Sera remplacé par l'ID séquentiel dans parseSheetData
+        runNumber, // Sera remplacé par l'ID séquentiel dans parseSheetData
+        originalRunNumber: runNumber, // ⚡ Garde le numéro original du sheet pour référence
         runId,
         starter,
         gymBadges: runBadges.length, // Nombre de badges obtenus
@@ -1224,21 +1279,23 @@ async function getRunsList() {
         const runsList = [];
 
         // Trouve toutes les sections de run (cherche "Run #")
+        // On garde l'ordre d'apparition dans le sheet (première trouvée = plus récente)
         for (let i = 0; i < rows.length; i++) {
             const row = rows[i];
             if (!row || row.length === 0) continue;
 
             // Cherche "Run #" dans n'importe quelle colonne
-            let runNumber = 0;
+            let originalRunNumber = 0;
             for (let col = 0; col < row.length; col++) {
                 const cell = String(row[col] || '').trim();
                 if (cell.startsWith('Run #')) {
-                    runNumber = parseInt(cell.replace('Run #', '')) || 0;
+                    originalRunNumber =
+                        parseInt(cell.replace('Run #', '')) || 0;
                     break;
                 }
             }
 
-            if (runNumber > 0) {
+            if (originalRunNumber > 0) {
                 // Cherche les métadonnées basiques dans les lignes suivantes
                 let runId = '';
                 let starter = '';
@@ -1300,8 +1357,7 @@ async function getRunsList() {
                 }
 
                 runsList.push({
-                    id: String(runNumber),
-                    runNumber,
+                    originalRunNumber, // Garde le numéro original du sheet pour référence
                     runId,
                     starter,
                     gymBadges,
@@ -1310,13 +1366,23 @@ async function getRunsList() {
                     runStart: runStart || undefined,
                     runEnd: runEnd || undefined,
                     startLine: i, // ⚡ Ajoute la ligne de départ pour optimiser getRunByNumber
+                    // id et runNumber seront assignés après
                 });
             }
         }
 
-        // Trie par numéro décroissant (14, 13, ..., 2, 1)
+        // ⚡ NOUVEAU SYSTÈME : Assignation d'IDs séquentiels selon l'ordre d'apparition
+        // La première run trouvée (plus récente) = numéro le plus élevé
+        // La dernière run trouvée (plus ancienne) = numéro 1
+        const totalRuns = runsList.length;
         const sortStart = Date.now();
-        runsList.sort((a, b) => b.runNumber - a.runNumber);
+        runsList.forEach((run, index) => {
+            // Index 0 = première trouvée = plus récente = numéro total
+            // Index totalRuns-1 = dernière trouvée = plus ancienne = numéro 1
+            const sequentialNumber = totalRuns - index;
+            run.runNumber = sequentialNumber;
+            run.id = String(sequentialNumber);
+        });
         const sortTime = Date.now() - sortStart;
 
         const parseTime = Date.now() - parseStart;
@@ -1555,23 +1621,20 @@ async function getRunByNumber(
             }
 
             // Trouve la ligne de départ si elle n'est pas fournie
+            // ⚡ NOUVEAU SYSTÈME : runNumber est maintenant un ID séquentiel, pas le numéro original du sheet
             if (startLine === null) {
                 const findStart = Date.now();
-                const quickRows = await fetchRunsListData();
-                for (let i = 0; i < quickRows.length; i++) {
-                    const row = quickRows[i];
-                    if (!row || row.length === 0) continue;
-                    for (let col = 0; col < Math.min(6, row.length); col++) {
-                        const cell = String(row[col] || '').trim();
-                        if (
-                            cell === `Run #${runNumber}` ||
-                            cell.startsWith(`Run #${runNumber} `)
-                        ) {
-                            startLine = i;
-                            break;
-                        }
-                    }
-                    if (startLine !== null) break;
+                // Utilise getRunsList() pour obtenir la liste avec les IDs séquentiels
+                const runsList = await getRunsList();
+                const targetRun = runsList.find(
+                    (r) => r.runNumber === runNumber,
+                );
+                if (targetRun && typeof targetRun.startLine === 'number') {
+                    startLine = targetRun.startLine;
+                } else {
+                    throw new Error(
+                        `Run avec ID séquentiel #${runNumber} non trouvée dans la liste`,
+                    );
                 }
                 findStartLineTime = Date.now() - findStart;
             }
@@ -1593,25 +1656,55 @@ async function getRunByNumber(
         }
 
         // Compte les badges pour cette run (plage limitée)
+        // ⚡ NOTE : countBadgesInAllRuns utilise encore les numéros originaux du sheet
+        // On doit trouver le numéro original pour chercher les badges
         const badgesStart = Date.now();
         const { allRunsBadges } = countBadgesInAllRuns(rows, formulas);
+
+        // Trouve le numéro original du sheet pour cette run
+        // On cherche dans les lignes chargées pour trouver le numéro original
+        let originalRunNumber = null;
+        if (adjustedStartLine < rows.length) {
+            const headerRow = rows[adjustedStartLine];
+            if (headerRow) {
+                for (let col = 0; col < headerRow.length; col++) {
+                    const cell = String(headerRow[col] || '').trim();
+                    if (cell.startsWith('Run #')) {
+                        originalRunNumber =
+                            parseInt(cell.replace('Run #', '')) || null;
+                        break;
+                    }
+                }
+            }
+        }
+
         const runBadges =
-            allRunsBadges.find((rb) => rb.runNumber === runNumber)?.badges ||
+            (originalRunNumber &&
+                allRunsBadges.find((rb) => rb.runNumber === originalRunNumber)
+                    ?.badges) ||
             [];
         badgesTime = Date.now() - badgesStart;
 
-        // Parse cette run spécifique
+        // Parse cette run spécifique avec le numéro original pour le parsing interne
         const parseStart = Date.now();
+        const originalNumberForParsing = originalRunNumber || runNumber;
         const run = await parseRun(
             rows,
             adjustedStartLine,
-            runNumber,
+            originalNumberForParsing,
             formulas,
         );
         parseTime = Date.now() - parseStart;
         if (!run) {
             throw new Error(`Impossible de parser Run #${runNumber}`);
         }
+
+        // ⚡ NOUVEAU SYSTÈME : Assigne l'ID séquentiel correct
+        // Le run parsé a encore l'ancien ID basé sur le numéro original
+        // On doit le remplacer par l'ID séquentiel
+        run.runNumber = runNumber;
+        run.id = String(runNumber);
+        // ⚡ Le originalRunNumber est déjà stocké dans run.originalRunNumber par parseRun
 
         // Assure que les badges sont correctement assignés
         run.badges = runBadges;
@@ -1670,42 +1763,44 @@ async function getFirstRun() {
         ]);
         const fetchTime = Date.now() - fetchStart;
 
-        // Trouve toutes les runs et leurs numéros pour trouver la première (la plus récente)
+        // ⚡ NOUVEAU SYSTÈME : Trouve la première run (première trouvée dans le sheet = plus récente)
         const findStart = Date.now();
-        const runsFound = [];
+        let firstRunInfo = null;
         for (let i = 0; i < rows.length; i++) {
             const row = rows[i];
             if (!row || row.length === 0) continue;
 
             // Cherche "Run #" dans n'importe quelle colonne
-            let runNumber = 0;
+            let originalRunNumber = 0;
             for (let col = 0; col < row.length; col++) {
                 const cell = String(row[col] || '').trim();
                 if (cell.startsWith('Run #')) {
-                    runNumber = parseInt(cell.replace('Run #', '')) || 0;
+                    originalRunNumber =
+                        parseInt(cell.replace('Run #', '')) || 0;
                     break;
                 }
             }
 
-            if (runNumber > 0) {
-                runsFound.push({ runNumber, startLine: i });
+            if (originalRunNumber > 0) {
+                // Première run trouvée = plus récente
+                firstRunInfo = { originalRunNumber, startLine: i };
+                break;
             }
         }
         const findTime = Date.now() - findStart;
 
-        if (runsFound.length === 0) {
+        if (!firstRunInfo) {
             console.log('⚠️  Aucune run trouvée dans Google Sheets');
             return null;
         }
 
-        // Trie par numéro décroissant pour avoir la première (la plus récente) en premier
-        const sortStart = Date.now();
-        runsFound.sort((a, b) => b.runNumber - a.runNumber);
-        const firstRunInfo = runsFound[0];
-        const sortTime = Date.now() - sortStart;
+        // Compte toutes les runs pour déterminer l'ID séquentiel de la première
+        const runsList = await getRunsList();
+        const totalRuns = runsList.length;
+        const sequentialNumber = totalRuns; // Première run = numéro le plus élevé
 
         console.log(
-            `  📝 Première run détectée: Run #${firstRunInfo.runNumber}`,
+            `  📝 Première run détectée: Run originale #${firstRunInfo.originalRunNumber} -> ID séquentiel #${sequentialNumber}`,
         );
 
         // Compte les badges pour cette run
@@ -1713,44 +1808,50 @@ async function getFirstRun() {
         const { allRunsBadges } = countBadgesInAllRuns(rows, formulas);
         const badgesTime = Date.now() - badgesStart;
 
-        // Parse uniquement la première run
+        // Parse uniquement la première run avec le numéro original pour le parsing
         const parseStart = Date.now();
         const run = await parseRun(
             rows,
             firstRunInfo.startLine,
-            firstRunInfo.runNumber,
+            firstRunInfo.originalRunNumber,
             formulas,
         );
         const parseTime = Date.now() - parseStart;
 
         if (!run) {
             console.log(
-                `⚠️  Impossible de parser la run #${firstRunInfo.runNumber}`,
+                `⚠️  Impossible de parser la run originale #${firstRunInfo.originalRunNumber}`,
             );
             return null;
         }
 
+        // ⚡ NOUVEAU SYSTÈME : Assigne l'ID séquentiel correct
+        run.runNumber = sequentialNumber;
+        run.id = String(sequentialNumber);
+        // ⚡ Le originalRunNumber est déjà stocké dans run.originalRunNumber par parseRun
+
         // Assure que les badges sont correctement assignés
         const runBadges =
-            allRunsBadges.find((rb) => rb.runNumber === firstRunInfo.runNumber)
-                ?.badges || [];
+            allRunsBadges.find(
+                (rb) => rb.runNumber === firstRunInfo.originalRunNumber,
+            )?.badges || [];
         run.badges = runBadges;
         run.gymBadges = runBadges.length;
 
         const totalTime = Date.now() - totalStart;
         console.log(
-            `[⏱️  getFirstRun] Total: ${totalTime}ms (Client: ${clientTime}ms, Fetch: ${fetchTime}ms, Find: ${findTime}ms, Sort: ${sortTime}ms, Badges: ${badgesTime}ms, Parse: ${parseTime}ms) | Run #${firstRunInfo.runNumber} | ${rows.length} lignes chargées`,
+            `[⏱️  getFirstRun] Total: ${totalTime}ms (Client: ${clientTime}ms, Fetch: ${fetchTime}ms, Find: ${findTime}ms, Badges: ${badgesTime}ms, Parse: ${parseTime}ms) | Run #${sequentialNumber} (originale #${firstRunInfo.originalRunNumber}) | ${rows.length} lignes chargées`,
         );
 
         // ⚡ On retourne toujours la première run, même si elle a un runEnd
         // L'API décidera si elle doit l'inclure (si elle n'est pas encore dans les statiques)
         if (run.runEnd) {
             console.log(
-                `  ✅ Run #${firstRunInfo.runNumber} récupérée (terminée avec runEnd: ${run.runEnd})`,
+                `  ✅ Run #${sequentialNumber} récupérée (terminée avec runEnd: ${run.runEnd})`,
             );
         } else {
             console.log(
-                `  ✅ Première run récupérée: Run #${firstRunInfo.runNumber} (en cours)`,
+                `  ✅ Première run récupérée: Run #${sequentialNumber} (en cours)`,
             );
         }
         return run;
