@@ -16,44 +16,34 @@ export default function HorizontalScrollContainer({
     const startXRef = useRef(0);
     const scrollLeftRef = useRef(0);
 
-    // Gestion du scroll à la roulette avec smooth scroll
+    // Gestion du scroll à la roulette
     const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
         if (scrollContainerRef.current) {
             // Si Shift est pressé ou si on scroll horizontalement, on scroll horizontalement
             // Sinon, on convertit le scroll vertical en scroll horizontal
-            const isHorizontalScroll = e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY);
-            
-            // Facteur de réduction pour un scroll plus fluide (réduit la vitesse)
-            const scrollFactor = 0.5;
-            
+            const isHorizontalScroll =
+                e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY);
+
             if (isHorizontalScroll) {
-                // Scroll horizontal direct avec smooth
+                // Scroll horizontal direct
                 if (e.deltaX !== 0) {
-                    scrollContainerRef.current.scrollBy({
-                        left: e.deltaX * scrollFactor,
-                        behavior: 'smooth'
-                    });
+                    scrollContainerRef.current.scrollLeft += e.deltaX;
                 } else {
                     // Si c'est deltaY avec Shift, on inverse pour correspondre au comportement naturel
-                    scrollContainerRef.current.scrollBy({
-                        left: -e.deltaY * scrollFactor,
-                        behavior: 'smooth'
-                    });
+                    scrollContainerRef.current.scrollLeft -= e.deltaY;
                 }
                 e.preventDefault();
             } else {
                 // Convertit le scroll vertical en scroll horizontal
                 // Seulement si on est au-dessus du conteneur et qu'il y a du contenu à scroller
-                const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+                const { scrollLeft, scrollWidth, clientWidth } =
+                    scrollContainerRef.current;
                 const canScrollLeft = scrollLeft > 0;
                 const canScrollRight = scrollLeft < scrollWidth - clientWidth;
-                
+
                 if (canScrollLeft || canScrollRight) {
-                    // Inversé : scroll vers le bas = scroll vers la droite, avec smooth
-                    scrollContainerRef.current.scrollBy({
-                        left: -e.deltaY * scrollFactor,
-                        behavior: 'smooth'
-                    });
+                    // Inversé : scroll vers le bas = scroll vers la droite
+                    scrollContainerRef.current.scrollLeft -= e.deltaY;
                     e.preventDefault();
                 }
             }
@@ -125,7 +115,8 @@ export default function HorizontalScrollContainer({
             const rect = scrollContainerRef.current.getBoundingClientRect();
             const x = e.pageX - rect.left;
             const walk = (x - startXRef.current) * 2;
-            scrollContainerRef.current.scrollLeft = scrollLeftRef.current - walk;
+            scrollContainerRef.current.scrollLeft =
+                scrollLeftRef.current - walk;
         };
 
         if (isDragging) {
@@ -148,10 +139,8 @@ export default function HorizontalScrollContainer({
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseLeave}
             onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
-        >
+            onMouseMove={handleMouseMove}>
             {children}
         </div>
     );
 }
-
