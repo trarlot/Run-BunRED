@@ -2,6 +2,7 @@
 
 import { Run } from '@/types/run';
 import { useState } from 'react';
+import HorizontalScrollContainer from '@/app/components/HorizontalScrollContainer';
 
 interface RunHeaderProps {
     runs: Run[];
@@ -232,41 +233,43 @@ export default function RunHeader({
             </div>
 
             {/* Scroll horizontal pour desktop (à partir de lg) */}
-            <div className="hidden lg:flex justify-center overflow-x-scroll overflow-y-hidden items-center max-w-[70%]">
-                <h2 className="text-xl xl:text-2xl font-bold text-white">
+            <div className="hidden lg:flex justify-center items-center max-w-[70%]">
+                <h2 className="text-xl xl:text-2xl font-bold text-white shrink-0">
                     Runs:&nbsp;
                 </h2>
-                <div className="flex overflow-x-scroll overflow-y-hidden p-2 m-2 gap-2 w-full flex-nowrap">
-                    {sortedRuns.map((run) => {
-                        const rank = topIds.has(run.id)
-                            ? topIds.get(run.id)!
-                            : -1;
-                        const gradient =
-                            rank === 0
-                                ? 'bg-gradient-to-br from-yellow-300 via-yellow-500 to-yellow-300'
-                                : rank === 1
-                                ? 'bg-gradient-to-br from-gray-200 via-gray-400 to-gray-200'
-                                : rank === 2
-                                ? 'bg-gradient-to-br from-amber-950 via-amber-900 to-amber-950'
-                                : '';
-                        const wrapperClass = gradient
-                            ? `rounded-lg p-[2px] ${gradient}`
-                            : '';
-                        const isSelected = selectedRun.id === run.id;
-                        const btnBase = isSelected
-                            ? 'bg-green-700 text-white scale-105'
-                            : 'bg-gray-900 text-gray-300 hover:bg-gray-800';
-                        return (
-                            <div key={run.id} className={wrapperClass}>
-                                <button
-                                    onClick={() => onSelectRun(run)}
-                                    className={`min-w-10 min-h-10 text-amber rounded-lg font-semibold transition-all ${btnBase}`}>
-                                    {run.runNumber}
-                                </button>
-                            </div>
-                        );
-                    })}
-                </div>
+                <HorizontalScrollContainer className="flex-1">
+                    <div className="flex p-2 m-2 gap-2 flex-nowrap">
+                        {sortedRuns.map((run) => {
+                            const rank = topIds.has(run.id)
+                                ? topIds.get(run.id)!
+                                : -1;
+                            const gradient =
+                                rank === 0
+                                    ? 'bg-gradient-to-br from-yellow-300 via-yellow-500 to-yellow-300'
+                                    : rank === 1
+                                    ? 'bg-gradient-to-br from-gray-200 via-gray-400 to-gray-200'
+                                    : rank === 2
+                                    ? 'bg-gradient-to-br from-amber-950 via-amber-900 to-amber-950'
+                                    : '';
+                            const wrapperClass = gradient
+                                ? `rounded-lg p-[2px] ${gradient} shrink-0`
+                                : 'shrink-0';
+                            const isSelected = selectedRun.id === run.id;
+                            const btnBase = isSelected
+                                ? 'bg-green-700 text-white scale-105'
+                                : 'bg-gray-900 text-gray-300 hover:bg-gray-800';
+                            return (
+                                <div key={run.id} className={wrapperClass}>
+                                    <button
+                                        onClick={() => onSelectRun(run)}
+                                        className={`min-w-10 min-h-10 text-amber rounded-lg font-semibold transition-all ${btnBase}`}>
+                                        {run.runNumber}
+                                    </button>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </HorizontalScrollContainer>
             </div>
         </header>
     );

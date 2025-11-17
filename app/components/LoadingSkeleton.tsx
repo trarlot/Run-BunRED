@@ -22,19 +22,21 @@ export default function LoadingSkeleton() {
                     </div>
 
                     {/* Desktop menu - scroll horizontal de runs */}
-                    <div className="hidden lg:flex justify-center overflow-x-scroll overflow-y-hidden items-center max-w-[70%]">
-                        <div className="h-6 w-20 bg-gray-600/50 rounded animate-pulse" />
-                        <div className="flex overflow-x-scroll overflow-y-hidden p-2 m-2 gap-2">
-                            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                                <div
-                                    key={i}
-                                    className="h-10 w-10 bg-gray-600/50 rounded-lg animate-pulse shrink-0"
-                                    style={{
-                                        animationDelay: `${i * 0.05}s`,
-                                    }}
-                                />
-                            ))}
-                        </div>
+                    <div className="hidden lg:flex justify-center items-center max-w-[70%]">
+                        <div className="h-6 w-20 bg-gray-600/50 rounded animate-pulse shrink-0" />
+                        <HorizontalScrollContainer className="flex-1">
+                            <div className="flex p-2 m-2 gap-2">
+                                {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                                    <div
+                                        key={i}
+                                        className="h-10 w-10 bg-gray-600/50 rounded-lg animate-pulse shrink-0"
+                                        style={{
+                                            animationDelay: `${i * 0.05}s`,
+                                        }}
+                                    />
+                                ))}
+                            </div>
+                        </HorizontalScrollContainer>
                     </div>
                 </header>
 

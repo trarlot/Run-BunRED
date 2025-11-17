@@ -16,20 +16,29 @@ export default function HorizontalScrollContainer({
     const startXRef = useRef(0);
     const scrollLeftRef = useRef(0);
 
-    // Gestion du scroll à la roulette
+    // Gestion du scroll à la roulette avec smooth scroll
     const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
         if (scrollContainerRef.current) {
             // Si Shift est pressé ou si on scroll horizontalement, on scroll horizontalement
             // Sinon, on convertit le scroll vertical en scroll horizontal
             const isHorizontalScroll = e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY);
             
+            // Facteur de réduction pour un scroll plus fluide (réduit la vitesse)
+            const scrollFactor = 0.5;
+            
             if (isHorizontalScroll) {
-                // Scroll horizontal direct
+                // Scroll horizontal direct avec smooth
                 if (e.deltaX !== 0) {
-                    scrollContainerRef.current.scrollLeft += e.deltaX;
+                    scrollContainerRef.current.scrollBy({
+                        left: e.deltaX * scrollFactor,
+                        behavior: 'smooth'
+                    });
                 } else {
                     // Si c'est deltaY avec Shift, on inverse pour correspondre au comportement naturel
-                    scrollContainerRef.current.scrollLeft -= e.deltaY;
+                    scrollContainerRef.current.scrollBy({
+                        left: -e.deltaY * scrollFactor,
+                        behavior: 'smooth'
+                    });
                 }
                 e.preventDefault();
             } else {
@@ -40,8 +49,11 @@ export default function HorizontalScrollContainer({
                 const canScrollRight = scrollLeft < scrollWidth - clientWidth;
                 
                 if (canScrollLeft || canScrollRight) {
-                    // Inversé : scroll vers le bas = scroll vers la droite
-                    scrollContainerRef.current.scrollLeft -= e.deltaY;
+                    // Inversé : scroll vers le bas = scroll vers la droite, avec smooth
+                    scrollContainerRef.current.scrollBy({
+                        left: -e.deltaY * scrollFactor,
+                        behavior: 'smooth'
+                    });
                     e.preventDefault();
                 }
             }
