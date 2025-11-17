@@ -36,9 +36,9 @@ export default function BadgesGrid({ run }: BadgesGridProps) {
                             <Image
                                 src={`/assets/${imgName}`}
                                 alt={imgName}
-                                width={40}
-                                height={40}
-                                className="object-contain w-full h-full"
+                                width={50}
+                                height={50}
+                                className="object-contain max-w-[80%] "
                                 style={
                                     obtained
                                         ? { opacity: 1 }

@@ -5,6 +5,7 @@ import PokemonCard from '@/app/components/PokemonCard';
 import RunHeader from '@/app/components/RunHeader';
 import RunDetailsPanel from '@/app/components/RunDetailsPanel';
 import LoadingSkeleton from '@/app/components/LoadingSkeleton';
+import HorizontalScrollContainer from '@/app/components/HorizontalScrollContainer';
 import { useEffect, useState } from 'react';
 
 // Import des runs statiques en fallback (pour le premier render)
@@ -198,7 +199,7 @@ export default function Home() {
                         <RunDetailsPanel run={selectedRun} />
 
                         {/* Rencontres - scroll horizontal */}
-                        <div className="w-full overflow-x-auto pb-4">
+                        <HorizontalScrollContainer>
                             <div className="inline-flex gap-4 sm:gap-7 min-w-max">
                                 {selectedRun.team
                                     .sort(
@@ -213,7 +214,7 @@ export default function Home() {
                                         />
                                     ))}
                             </div>
-                        </div>
+                        </HorizontalScrollContainer>
                     </div>
                 </div>
             </div>

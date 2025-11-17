@@ -1,5 +1,7 @@
 'use client';
 
+import HorizontalScrollContainer from '@/app/components/HorizontalScrollContainer';
+
 export default function LoadingSkeleton() {
     return (
         <div className="relative min-h-screen bg-gray-700 bg-[url('/assets/bg2.jpg')] bg-cover bg-center bg-no-repeat bg-fixed flex flex-col">
@@ -196,7 +198,7 @@ export default function LoadingSkeleton() {
                         </div>
 
                         {/* Pokemon Cards Skeleton - scroll horizontal */}
-                        <div className="w-full overflow-x-auto pb-4">
+                        <HorizontalScrollContainer>
                             <div className="inline-flex gap-4 sm:gap-7 min-w-max">
                                 {[1, 2, 3, 4, 5, 6].map((i) => (
                                     <div
@@ -240,7 +242,7 @@ export default function LoadingSkeleton() {
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </HorizontalScrollContainer>
                     </div>
                 </div>
             </div>
