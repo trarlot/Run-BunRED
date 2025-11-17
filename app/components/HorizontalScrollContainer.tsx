@@ -25,7 +25,12 @@ export default function HorizontalScrollContainer({
             
             if (isHorizontalScroll) {
                 // Scroll horizontal direct
-                scrollContainerRef.current.scrollLeft += e.deltaX || e.deltaY;
+                if (e.deltaX !== 0) {
+                    scrollContainerRef.current.scrollLeft += e.deltaX;
+                } else {
+                    // Si c'est deltaY avec Shift, on inverse pour correspondre au comportement naturel
+                    scrollContainerRef.current.scrollLeft -= e.deltaY;
+                }
                 e.preventDefault();
             } else {
                 // Convertit le scroll vertical en scroll horizontal
@@ -35,7 +40,8 @@ export default function HorizontalScrollContainer({
                 const canScrollRight = scrollLeft < scrollWidth - clientWidth;
                 
                 if (canScrollLeft || canScrollRight) {
-                    scrollContainerRef.current.scrollLeft += e.deltaY;
+                    // Inversé : scroll vers le bas = scroll vers la droite
+                    scrollContainerRef.current.scrollLeft -= e.deltaY;
                     e.preventDefault();
                 }
             }
