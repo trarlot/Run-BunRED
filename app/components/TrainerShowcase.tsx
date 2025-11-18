@@ -58,7 +58,7 @@ export default function TrainerShowcase({ run }: TrainerShowcaseProps) {
                             alt="Trainer"
                             width={100}
                             height={100}
-                            className="object-contain w-full h-full"
+                            className="object-contain w-[80%] h-[80%]"
                         />
                     </div>
                 )}
