@@ -25,16 +25,16 @@ export default function HorizontalScrollContainer({
                 e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY);
 
             if (isHorizontalScroll) {
-                // Scroll horizontal direct
+                // Scroll horizontal direct (inversé)
                 if (e.deltaX !== 0) {
-                    scrollContainerRef.current.scrollLeft += e.deltaX;
+                    scrollContainerRef.current.scrollLeft -= e.deltaX;
                 } else {
                     // Si c'est deltaY avec Shift, on inverse pour correspondre au comportement naturel
-                    scrollContainerRef.current.scrollLeft -= e.deltaY;
+                    scrollContainerRef.current.scrollLeft += e.deltaY;
                 }
                 e.preventDefault();
             } else {
-                // Convertit le scroll vertical en scroll horizontal
+                // Convertit le scroll vertical en scroll horizontal (inversé)
                 // Seulement si on est au-dessus du conteneur et qu'il y a du contenu à scroller
                 const { scrollLeft, scrollWidth, clientWidth } =
                     scrollContainerRef.current;
@@ -42,8 +42,8 @@ export default function HorizontalScrollContainer({
                 const canScrollRight = scrollLeft < scrollWidth - clientWidth;
 
                 if (canScrollLeft || canScrollRight) {
-                    // Inversé : scroll vers le bas = scroll vers la droite
-                    scrollContainerRef.current.scrollLeft -= e.deltaY;
+                    // Inversé : scroll vers le bas = scroll vers la gauche
+                    scrollContainerRef.current.scrollLeft += e.deltaY;
                     e.preventDefault();
                 }
             }
@@ -96,7 +96,7 @@ export default function HorizontalScrollContainer({
         const rect = scrollContainerRef.current.getBoundingClientRect();
         const x = e.pageX - rect.left;
         const walk = (x - startXRef.current) * 2; // Multiplié par 2 pour un scroll plus rapide
-        scrollContainerRef.current.scrollLeft = scrollLeftRef.current - walk;
+        scrollContainerRef.current.scrollLeft = scrollLeftRef.current + walk;
     };
 
     // Gestion des événements globaux pour le drag
@@ -116,7 +116,7 @@ export default function HorizontalScrollContainer({
             const x = e.pageX - rect.left;
             const walk = (x - startXRef.current) * 2;
             scrollContainerRef.current.scrollLeft =
-                scrollLeftRef.current - walk;
+                scrollLeftRef.current + walk;
         };
 
         if (isDragging) {
