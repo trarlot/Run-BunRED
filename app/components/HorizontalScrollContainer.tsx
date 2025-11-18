@@ -96,7 +96,7 @@ export default function HorizontalScrollContainer({
         const rect = scrollContainerRef.current.getBoundingClientRect();
         const x = e.pageX - rect.left;
         const walk = (x - startXRef.current) * 2; // Multiplié par 2 pour un scroll plus rapide
-        scrollContainerRef.current.scrollLeft = scrollLeftRef.current + walk;
+        scrollContainerRef.current.scrollLeft = scrollLeftRef.current - walk;
     };
 
     // Gestion des événements globaux pour le drag
@@ -116,7 +116,7 @@ export default function HorizontalScrollContainer({
             const x = e.pageX - rect.left;
             const walk = (x - startXRef.current) * 2;
             scrollContainerRef.current.scrollLeft =
-                scrollLeftRef.current + walk;
+                scrollLeftRef.current - walk;
         };
 
         if (isDragging) {
