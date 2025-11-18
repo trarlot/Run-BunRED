@@ -18,6 +18,213 @@ const SHEET_ID =
 const SHEET_NAME = process.env.GOOGLE_SHEET_NAME || 'SpritesRuns';
 const API_KEY = process.env.GOOGLE_SHEETS_API_KEY;
 
+// Mapping des formes alternatives (IDs > 905) vers les IDs PokéAPI
+// Copié depuis utils/pokemon.ts pour être utilisé dans le script
+const ALT_FORM_ID_MAP = {
+    906: { apiId: 10033 },
+    907: { apiId: 10034 },
+    908: { apiId: 10035 },
+    909: { apiId: 10036 },
+    910: { apiId: 10090 },
+    911: { apiId: 10073 },
+    912: { apiId: 10037 },
+    913: { apiId: 10071 },
+    914: { apiId: 10038 },
+    915: { apiId: 10039 },
+    916: { apiId: 10040 },
+    917: { apiId: 10041 },
+    918: { apiId: 10042 },
+    919: { apiId: 10043 },
+    920: { apiId: 10044 },
+    921: { apiId: 10045 },
+    922: { apiId: 10072 },
+    923: { apiId: 10046 },
+    924: { apiId: 10047 },
+    925: { apiId: 10048 },
+    926: { apiId: 10049 },
+    927: { apiId: 10065 },
+    928: { apiId: 10050 },
+    929: { apiId: 10064 },
+    930: { apiId: 10051 },
+    931: { apiId: 10066 },
+    932: { apiId: 10052 },
+    933: { apiId: 10053 },
+    934: { apiId: 10054 },
+    935: { apiId: 10055 },
+    936: { apiId: 10070 },
+    937: { apiId: 10087 },
+    938: { apiId: 10067 },
+    939: { apiId: 10056 },
+    940: { apiId: 10057 },
+    941: { apiId: 10074 },
+    942: { apiId: 10089 },
+    943: { apiId: 10076 },
+    944: { apiId: 10062 },
+    945: { apiId: 10063 },
+    946: { apiId: 10088 },
+    947: { apiId: 10058 },
+    948: { apiId: 10059 },
+    949: { apiId: 10160 },
+    950: { apiId: 10068 },
+    951: { apiId: 10069 },
+    952: { apiId: 10075 },
+    953: { apiId: 10079 },
+    954: { apiId: 10077 },
+    955: { apiId: 10078 },
+    956: { apiId: 10091 },
+    957: { apiId: 10092 },
+    958: { apiId: 10100 },
+    959: { apiId: 10101 },
+    960: { apiId: 10102 },
+    961: { apiId: 10103 },
+    962: { apiId: 10104 },
+    963: { apiId: 10105 },
+    964: { apiId: 10106 },
+    965: { apiId: 10107 },
+    966: { apiId: 10108 },
+    967: { apiId: 10109 },
+    968: { apiId: 10110 },
+    969: { apiId: 10111 },
+    970: { apiId: 10112 },
+    971: { apiId: 10113 },
+    972: { apiId: 10114 },
+    973: { apiId: 10115 },
+    974: { apiId: 10161 },
+    975: { apiId: 10162 },
+    976: { apiId: 10163 },
+    977: { apiId: 10164 },
+    978: { apiId: 10165 },
+    979: { apiId: 10166 },
+    980: { apiId: 10167 },
+    981: { apiId: 10168 },
+    982: { apiId: 10169 },
+    983: { apiId: 10170 },
+    984: { apiId: 10171 },
+    985: { apiId: 10172 },
+    986: { apiId: 10173 },
+    987: { apiId: 10174 },
+    988: { apiId: 10175 },
+    989: { apiId: 10176 },
+    990: { apiId: 10177 },
+    991: { apiId: 10179 },
+    992: { apiId: 10180 },
+    993: { apiId: 10229 },
+    994: { apiId: 10230 },
+    995: { apiId: 10231 },
+    996: { apiId: 10232 },
+    997: { apiId: 10233 },
+    998: { apiId: 10234 },
+    999: { apiId: 10235 },
+    1000: { apiId: 10236 },
+    1001: { apiId: 10237 },
+    1002: { apiId: 10238 },
+    1003: { apiId: 10239 },
+    1004: { apiId: 10240 },
+    1005: { apiId: 10241 },
+    1006: { apiId: 10242 },
+    1007: { apiId: 10243 },
+    1008: { apiId: 10244 },
+    1009: { apiId: 10085 },
+    1010: { apiId: 10080 },
+    1011: { apiId: 10081 },
+    1012: { apiId: 10082 },
+    1013: { apiId: 10083 },
+    1014: { apiId: 10084 },
+    1015: { apiId: 10094 },
+    1016: { apiId: 10095 },
+    1017: { apiId: 10096 },
+    1018: { apiId: 10097 },
+    1019: { apiId: 10098 },
+    1020: { apiId: 10099 },
+    1021: { apiId: 10148 },
+    1022: { apiId: 10160 },
+    1023: { apiId: 172 },
+    1024: { apiId: 201 },
+    1025: { apiId: 201 },
+    1026: { apiId: 201 },
+    1027: { apiId: 201 },
+    1028: { apiId: 201 },
+    1029: { apiId: 201 },
+    1030: { apiId: 201 },
+    1031: { apiId: 201 },
+    1032: { apiId: 201 },
+    1033: { apiId: 201 },
+    1034: { apiId: 201 },
+    1035: { apiId: 201 },
+    1036: { apiId: 201 },
+    1037: { apiId: 201 },
+    1038: { apiId: 201 },
+    1039: { apiId: 201 },
+    1040: { apiId: 201 },
+    1041: { apiId: 201 },
+    1042: { apiId: 201 },
+    1043: { apiId: 201 },
+    1044: { apiId: 201 },
+    1045: { apiId: 201 },
+    1046: { apiId: 201 },
+    1047: { apiId: 201 },
+    1048: { apiId: 201 },
+    1049: { apiId: 201 },
+    1050: { apiId: 201 },
+    1051: { apiId: 10013 },
+    1052: { apiId: 10014 },
+    1053: { apiId: 10015 },
+    1054: { apiId: 10001 },
+    1055: { apiId: 10002 },
+    1056: { apiId: 10003 },
+    1057: { apiId: 412 },
+    1058: { apiId: 412 },
+    1059: { apiId: 10004 },
+    1060: { apiId: 10005 },
+    1062: { apiId: 422 },
+    1063: { apiId: 423 },
+    1064: { apiId: 10008 },
+    1065: { apiId: 10009 },
+    1066: { apiId: 10010 },
+    1067: { apiId: 10011 },
+    1068: { apiId: 10012 },
+    1070: { apiId: 10124 },
+    1071: { apiId: 10007 },
+    1072: { apiId: 10006 },
+    1073: { apiId: 494 },
+    1074: { apiId: 494 },
+    1075: { apiId: 494 },
+    1076: { apiId: 494 },
+    1077: { apiId: 494 },
+    1078: { apiId: 494 },
+    1079: { apiId: 494 },
+    1080: { apiId: 494 },
+    1081: { apiId: 494 },
+    1082: { apiId: 494 },
+    1083: { apiId: 494 },
+    1084: { apiId: 494 },
+    1085: { apiId: 494 },
+    1086: { apiId: 494 },
+    1087: { apiId: 494 },
+    1088: { apiId: 494 },
+    1089: { apiId: 494 },
+    1104: { apiId: 10023 },
+    1105: { apiId: 10022 },
+    1113: { apiId: 10116 },
+    1148: { apiId: 10061 },
+    1155: { apiId: 10025 },
+    1168: { apiId: 10086 },
+    1169: { apiId: 10123 },
+    1170: { apiId: 10124 },
+    1171: { apiId: 10125 },
+    1173: { apiId: 10126 },
+    1174: { apiId: 10152 },
+    1224: { apiId: 10185 },
+    1225: { apiId: 10186 },
+    1226: { apiId: 10187 },
+    1227: { apiId: 10188 },
+    1228: { apiId: 10189 },
+    1230: { apiId: 10191 },
+    1231: { apiId: 10192 },
+    1232: { apiId: 10193 },
+    1233: { apiId: 10194 },
+};
+
 // Mapping des noms de Pokémon français vers anglais
 const pokemonFrToEn = {
     chimpenfeu: 'monferno',
@@ -420,6 +627,7 @@ async function parseRun(rows, startLine, runNumber, formulas) {
     let personalBestRowIndex = null;
 
     // Scanne les 20 lignes suivantes pour trouver les infos
+    let runIdRowIndex = null;
     for (let i = startLine; i < Math.min(startLine + 20, rows.length); i++) {
         const row = rows[i];
         if (!row) continue;
@@ -428,6 +636,7 @@ async function parseRun(rows, startLine, runNumber, formulas) {
 
         if (firstCell.startsWith('RundId')) {
             runIdRow = row;
+            runIdRowIndex = i; // Sauvegarde l'index de la ligne
         } else if (
             firstCell === 'Gym Badges' ||
             firstCell.includes('Vital Spirit')
@@ -636,37 +845,83 @@ async function parseRun(rows, startLine, runNumber, formulas) {
             if (move4) moves.push(move4);
         }
 
-        // Récupère le sprite depuis PokéAPI par nom
+        // Récupère l'ID du Pokémon depuis les formules Google Sheets (comme pour showcasePokemon)
+        let pokemonId = null;
         let sprite = null;
 
-        try {
-            // Utilise l'API PokéAPI pour récupérer l'ID par nom
-            let pokemonName = englishName.toLowerCase();
+        // Cherche l'ID dans la formule de la case juste au-dessus du prénom du Pokémon
+        // Le prénom est dans runIdRow[col], et l'ID se trouve dans les colonnes col, col+1, col+2, col+3
+        // juste au-dessus du prénom (ligne runIdRowIndex - 1)
+        if (
+            Array.isArray(formulas) &&
+            runIdRowIndex !== null &&
+            runIdRowIndex > 0
+        ) {
+            const formulaRowIndex = runIdRowIndex - 1; // Ligne juste au-dessus
+            const formulaRow = formulas[formulaRowIndex];
 
-            // Pour les formes régionales (Hisui, Galar), PokéAPI utilise le nom avec tiret
-            if (
-                pokemonName.includes('-hisui') ||
-                pokemonName.includes('-galar') ||
-                pokemonName.includes('-alola')
-            ) {
-                // Garde le nom avec tiret pour les formes régionales
-                pokemonName = pokemonName;
-            } else {
-                // Pour les autres Pokémon, enlève les tirets
-                pokemonName = pokemonName.replace(/-/g, '');
+            // Cherche dans les colonnes col, col+1, col+2, col+3 (les 4 colonnes suivantes)
+            const colsToCheck = [col, col + 1, col + 2, col + 3];
+
+            for (const checkCol of colsToCheck) {
+                if (formulaRow && formulaRow[checkCol]) {
+                    const f = String(formulaRow[checkCol] || '').trim();
+
+                    // Cherche un pattern comme =VLOOKUP(123 ou =VLOOKUP(123,
+                    const mId = f.match(/=VLOOKUP\((\d+)/i);
+                    if (mId && mId[1]) {
+                        pokemonId = parseInt(mId[1], 10);
+                        break; // On a trouvé l'ID, on peut arrêter
+                    }
+                }
             }
+        }
 
-            const response = await fetch(
-                `https://pokeapi.co/api/v2/pokemon/${pokemonName}`,
-            );
-
-            if (response.ok) {
-                const data = await response.json();
-                const pokemonId = data.id;
+        // Si on a trouvé l'ID, construit directement l'URL du sprite
+        if (pokemonId && !Number.isNaN(pokemonId)) {
+            // Pour les IDs <= 905, utilise directement l'ID
+            if (pokemonId > 0 && pokemonId <= 905) {
                 sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+            } else if (pokemonId > 905) {
+                // Pour les IDs > 905 (formes alternatives), utilise le mapping ALT_FORM_ID_MAP
+                const altFormEntry = ALT_FORM_ID_MAP[pokemonId];
+                if (altFormEntry && altFormEntry.apiId) {
+                    sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${altFormEntry.apiId}.png`;
+                }
             }
-        } catch {
-            // Erreur silencieuse lors de la récupération du sprite
+        }
+
+        // Fallback: récupère le sprite depuis PokéAPI par nom si l'ID n'a pas été trouvé
+        if (!sprite) {
+            try {
+                // Utilise l'API PokéAPI pour récupérer l'ID par nom
+                let pokemonName = englishName.toLowerCase();
+
+                // Pour les formes régionales (Hisui, Galar), PokéAPI utilise le nom avec tiret
+                if (
+                    pokemonName.includes('-hisui') ||
+                    pokemonName.includes('-galar') ||
+                    pokemonName.includes('-alola')
+                ) {
+                    // Garde le nom avec tiret pour les formes régionales
+                    pokemonName = pokemonName;
+                } else {
+                    // Pour les autres Pokémon, enlève les tirets
+                    pokemonName = pokemonName.replace(/-/g, '');
+                }
+
+                const response = await fetch(
+                    `https://pokeapi.co/api/v2/pokemon/${pokemonName}`,
+                );
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const apiPokemonId = data.id;
+                    sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${apiPokemonId}.png`;
+                }
+            } catch {
+                // Erreur silencieuse lors de la récupération du sprite
+            }
         }
 
         // Vérifie si le Pokémon est mort (emoji 💀 dans la même ligne que le nom)

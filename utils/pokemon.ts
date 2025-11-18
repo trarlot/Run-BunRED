@@ -1,11 +1,36 @@
 /**
+ * Construit l'URL du sprite directement depuis le nom du Pokémon
+ * Sans appeler l'API PokéAPI (pour éviter les dépendances à Cloudflare)
+ */
+function buildSpriteUrlFromName(nameEn: string): string {
+    let pokemonName = nameEn.toLowerCase();
+
+    // Pour les formes régionales (Hisui, Galar, Alola), PokéAPI utilise le nom avec tiret
+    if (
+        pokemonName.includes('-hisui') ||
+        pokemonName.includes('-galar') ||
+        pokemonName.includes('-alola')
+    ) {
+        // Garde le nom avec tiret pour les formes régionales
+        pokemonName = pokemonName;
+    } else {
+        // Pour les autres Pokémon, enlève les tirets
+        pokemonName = pokemonName.replace(/-/g, '');
+    }
+
+    // Construit l'URL GitHub directement avec le nom
+    // GitHub/PokeAPI sprites supporte les noms dans certains cas
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonName}.png`;
+}
+
+/**
  * Fonction fallback pour les sprites
  * (Utilisée seulement si le script de sync n'a pas récupéré le sprite)
+ * Construit l'URL directement depuis le nom, sans appeler l'API
  */
 export function getPokemonSprite(nameEn: string): string {
-    // Image par défaut si aucun sprite n'est trouvé
-    console.warn(`⚠️  Sprite manquant pour : ${nameEn}`);
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png`;
+    // Construit l'URL directement depuis le nom
+    return buildSpriteUrlFromName(nameEn);
 }
 
 /**

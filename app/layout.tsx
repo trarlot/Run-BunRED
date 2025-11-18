@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: 'Run&Bun - Runs Tracker',
-    description: 'Suivez tous les runs Pokémon du streamer Run&Bun',
+    title: 'Run&Bun RED - Runs Tracker',
+    description:
+        'Suivez tous les runs Pokémon du streamer Redemption sur Run&Bun',
 };
 
 export default function RootLayout({

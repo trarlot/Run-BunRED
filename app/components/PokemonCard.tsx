@@ -1,7 +1,7 @@
 'use client';
 
 import { Pokemon } from '@/types/run';
-import { getNatureEffect } from '@/utils/pokemon';
+import { getNatureEffect, getPokemonSprite } from '@/utils/pokemon';
 import ImagePkn from '@/app/components/ImagePkn';
 import { useEffect, useState, useRef } from 'react';
 
@@ -206,12 +206,36 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
     // Effet de la nature
     const natureEffect = pokemon.nature ? getNatureEffect(pokemon.nature) : {};
 
+    // État pour le sprite avec fallback
+    const [spriteUrl, setSpriteUrl] = useState<string | null>(pokemon.sprite || null);
+    const fetchedPokemonRef = useRef<string | null>(null);
+
     // Fonction pour obtenir la couleur d'une stat selon la nature
     const getStatColor = (stat: string) => {
         if (natureEffect.increased === stat) return 'text-red-400'; // +10%
         if (natureEffect.decreased === stat) return 'text-red-300'; // -10%
         return 'text-white'; // Neutre
     };
+
+    // Fallback: construit l'URL du sprite directement depuis le nom (sans appeler l'API)
+    useEffect(() => {
+        // Si le sprite est déjà défini, l'utiliser
+        if (pokemon.sprite) {
+            setSpriteUrl(pokemon.sprite);
+            fetchedPokemonRef.current = pokemon.nameEn; // Marquer comme traité
+            return;
+        }
+
+        // Si on a déjà traité ce Pokémon, ne pas refaire
+        if (fetchedPokemonRef.current === pokemon.nameEn) return;
+
+        fetchedPokemonRef.current = pokemon.nameEn;
+
+        // Construit l'URL directement depuis le nom, sans appeler l'API
+        // Cela évite les dépendances à Cloudflare/PokéAPI
+        const sprite = getPokemonSprite(pokemon.nameEn);
+        setSpriteUrl(sprite);
+    }, [pokemon.nameEn, pokemon.sprite]);
 
     return (
         <div className="relative min-w-[140px] sm:min-w-[170px] lg:min-w-[280px] flex flex-col items-center">
@@ -233,9 +257,9 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
                         className={`relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-white/10 rounded-2xl flex items-center justify-center shrink-0 ${
                             pokemon.isDead ? 'grayscale' : ''
                         }`}>
-                        {pokemon.sprite ? (
+                        {spriteUrl ? (
                             <ImagePkn
-                                src={pokemon.sprite}
+                                src={spriteUrl}
                                 alt={pokemon.nameEn}
                                 width={96}
                                 height={96}
