@@ -19,30 +19,31 @@ export default function HorizontalScrollContainer({
     // Gestion du scroll à la roulette
     const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
         if (scrollContainerRef.current) {
-            // Si Shift est pressé ou si on scroll horizontalement, on scroll horizontalement
-            // Sinon, on convertit le scroll vertical en scroll horizontal
+            // Si c'est un scroll horizontal natif (deltaX significatif), on laisse le comportement natif
+            // On ne convertit que le scroll vertical en scroll horizontal
             const isHorizontalScroll =
-                e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY);
+                Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey;
 
-            if (isHorizontalScroll) {
-                // Scroll horizontal direct (inversé)
-                if (e.deltaX !== 0) {
-                    scrollContainerRef.current.scrollLeft -= e.deltaX;
-                } else {
-                    // Si c'est deltaY avec Shift, on inverse pour correspondre au comportement naturel
+            if (isHorizontalScroll && !e.shiftKey) {
+                // Scroll horizontal natif du trackpad - on laisse le navigateur gérer
+                // Ne pas appeler preventDefault() pour permettre le comportement natif
+                return;
+            }
+
+            // Convertit le scroll vertical en scroll horizontal
+            // Seulement si on est au-dessus du conteneur et qu'il y a du contenu à scroller
+            const { scrollLeft, scrollWidth, clientWidth } =
+                scrollContainerRef.current;
+            const canScrollLeft = scrollLeft > 0;
+            const canScrollRight = scrollLeft < scrollWidth - clientWidth;
+
+            if (canScrollLeft || canScrollRight) {
+                if (e.shiftKey && e.deltaY !== 0) {
+                    // Shift + scroll vertical = scroll horizontal
                     scrollContainerRef.current.scrollLeft += e.deltaY;
-                }
-                e.preventDefault();
-            } else {
-                // Convertit le scroll vertical en scroll horizontal (inversé)
-                // Seulement si on est au-dessus du conteneur et qu'il y a du contenu à scroller
-                const { scrollLeft, scrollWidth, clientWidth } =
-                    scrollContainerRef.current;
-                const canScrollLeft = scrollLeft > 0;
-                const canScrollRight = scrollLeft < scrollWidth - clientWidth;
-
-                if (canScrollLeft || canScrollRight) {
-                    // Inversé : scroll vers le bas = scroll vers la gauche
+                    e.preventDefault();
+                } else if (!isHorizontalScroll && e.deltaY !== 0) {
+                    // Scroll vertical simple = scroll horizontal
                     scrollContainerRef.current.scrollLeft += e.deltaY;
                     e.preventDefault();
                 }
@@ -65,8 +66,8 @@ export default function HorizontalScrollContainer({
 
         if (scrollContainerRef.current) {
             setIsDragging(true);
-            const rect = scrollContainerRef.current.getBoundingClientRect();
-            startXRef.current = e.pageX - rect.left;
+            // Utiliser clientX au lieu de pageX pour une meilleure compatibilité trackpad/souris
+            startXRef.current = e.clientX;
             scrollLeftRef.current = scrollContainerRef.current.scrollLeft;
             // Change le curseur pour indiquer qu'on peut drag
             scrollContainerRef.current.style.cursor = 'grabbing';
@@ -93,10 +94,12 @@ export default function HorizontalScrollContainer({
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!isDragging || !scrollContainerRef.current) return;
         e.preventDefault();
-        const rect = scrollContainerRef.current.getBoundingClientRect();
-        const x = e.pageX - rect.left;
-        const walk = (x - startXRef.current) * 2; // Multiplié par 2 pour un scroll plus rapide
-        scrollContainerRef.current.scrollLeft = scrollLeftRef.current - walk;
+        // Utiliser clientX pour une meilleure compatibilité trackpad/souris
+        const deltaX = (e.clientX - startXRef.current) * 2; // Multiplié par 2 pour un scroll plus rapide
+        scrollContainerRef.current.scrollLeft = scrollLeftRef.current - deltaX;
+        // Mettre à jour startXRef pour le prochain mouvement (évite l'accumulation d'erreurs)
+        startXRef.current = e.clientX;
+        scrollLeftRef.current = scrollContainerRef.current.scrollLeft;
     };
 
     // Gestion des événements globaux pour le drag
@@ -112,11 +115,13 @@ export default function HorizontalScrollContainer({
         const handleGlobalMouseMove = (e: MouseEvent) => {
             if (!isDragging || !scrollContainerRef.current) return;
             e.preventDefault();
-            const rect = scrollContainerRef.current.getBoundingClientRect();
-            const x = e.pageX - rect.left;
-            const walk = (x - startXRef.current) * 2;
+            // Utiliser clientX pour une meilleure compatibilité trackpad/souris
+            const deltaX = (e.clientX - startXRef.current) * 2;
             scrollContainerRef.current.scrollLeft =
-                scrollLeftRef.current - walk;
+                scrollLeftRef.current - deltaX;
+            // Mettre à jour startXRef pour le prochain mouvement (évite l'accumulation d'erreurs)
+            startXRef.current = e.clientX;
+            scrollLeftRef.current = scrollContainerRef.current.scrollLeft;
         };
 
         if (isDragging) {
