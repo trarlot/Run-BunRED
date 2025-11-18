@@ -34,6 +34,12 @@ function ShowcasePokemon({
     );
 }
 
+// Fonction pour tronquer le texte à 50 caractères avec "..."
+function truncateText(text: string, maxLength: number = 50): string {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
+}
+
 export default function TrainerShowcase({ run }: TrainerShowcaseProps) {
     if (
         !run.trainerSprite ||
@@ -43,11 +49,15 @@ export default function TrainerShowcase({ run }: TrainerShowcaseProps) {
         return null;
     }
 
+    const truncatedPersonalBest = truncateText(run.personalBest);
+
     return (
         <div className="h-full max-w-full sm:max-w-[290px] lg:max-w-none flex flex-col justify-center bg-white/10 rounded-lg px-2 sm:px-3 py-2 sm:py-3">
             <div className="text-[10px] sm:text-xs text-gray-300 mb-1.5 sm:mb-2 md:mb-0">
                 Personal Best :{' '}
-                <span className="text-white  truncate">{run.personalBest}</span>
+                <span className="text-white  truncate">
+                    {truncatedPersonalBest}
+                </span>
             </div>
 
             <div className="flex items-center h-full gap-1.5 sm:gap-2">
