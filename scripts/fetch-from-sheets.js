@@ -1674,16 +1674,16 @@ async function fetchRunRange(startLine, sheetsClient = null) {
         }
 
         // Charge environ 50 lignes autour de la run
-        // ⚡ OPTIMISATION : Limite les colonnes à GR (200) au lieu de ZZ (702)
+        // ⚡ OPTIMISATION : Limite les colonnes à NU (385) pour inclure NQ, NR, NS, NT
         // Les Pokémon commencent à la colonne K (10) et sont espacés de 5 colonnes
-        // Colonne GR (200) = 10 + (38 Pokémon × 5) = suffisant pour une run complète
+        // Colonne NT (384) = dernière colonne nécessaire pour la première run
         // startLine est 0-based (index dans le tableau), mais l'API Google Sheets utilise 1-based (numéro de ligne)
         const startRow = Math.max(1, startLine + 1); // Conversion 0-based -> 1-based
         const endRow = startLine + 55; // +55 lignes au total (suffisant pour une run complète)
-        const maxCol = 'GR'; // Colonne 200 au lieu de ZZ (702) - réduit les données de ~71%
+        const maxCol = 'NU'; // Colonne 385 pour inclure NQ, NR, NS, NT (384) + marge
 
         // ⚡ OPTIMISATION : Les formules ne sont nécessaires que pour les badges (colonnes A-H) et showcase (F-H)
-        // On charge les formules pour toutes les lignes mais seulement les colonnes A-H (8 colonnes au lieu de 200)
+        // On charge les formules pour toutes les lignes mais seulement les colonnes A-H (8 colonnes au lieu de 385)
         const formulasRange = `A${startRow}:H${endRow}`; // Colonnes A-H seulement pour les badges/showcase
 
         const apiStart = Date.now();
@@ -1709,8 +1709,8 @@ async function fetchRunRange(startLine, sheetsClient = null) {
         // On crée un tableau de formules avec la même structure que rows (mais seulement A-H seront remplis)
         const adjustedFormulas = adjustedRows.map((row, rowIdx) => {
             const formulaRow = formulasData[rowIdx] || [];
-            // Crée un tableau de 200 colonnes (GR) avec les formules A-H aux bonnes positions
-            const extendedRow = new Array(200).fill('');
+            // Crée un tableau de 385 colonnes (NU) avec les formules A-H aux bonnes positions
+            const extendedRow = new Array(385).fill('');
             for (let i = 0; i < Math.min(8, formulaRow.length); i++) {
                 extendedRow[i] = formulaRow[i] || '';
             }
@@ -1769,14 +1769,14 @@ async function fetchMultipleRunsRange(runsWithStartLines, sheetsClient = null) {
         const maxStartLine = Math.max(...startLines);
 
         // Charge de la première run jusqu'à la fin de la dernière run
-        // ⚡ OPTIMISATION : Limite les colonnes à GR (200) au lieu de ZZ (702)
+        // ⚡ OPTIMISATION : Limite les colonnes à NU (385) pour inclure NQ, NR, NS, NT
         // Chaque run fait environ 50 lignes, on ajoute une marge
         const startRow = Math.max(1, minStartLine + 1); // Conversion 0-based -> 1-based
         const endRow = maxStartLine + 55; // +55 lignes pour la dernière run
-        const maxCol = 'GR'; // Colonne 200 au lieu de ZZ (702) - réduit les données de ~71%
+        const maxCol = 'NU'; // Colonne 385 pour inclure NQ, NR, NS, NT (384) + marge
 
         // ⚡ OPTIMISATION : Les formules ne sont nécessaires que pour les badges (colonnes A-H) et showcase (F-H)
-        // On charge les formules pour toutes les lignes mais seulement les colonnes A-H (8 colonnes au lieu de 200)
+        // On charge les formules pour toutes les lignes mais seulement les colonnes A-H (8 colonnes au lieu de 385)
         const formulasRange = `A${startRow}:H${endRow}`; // Colonnes A-H seulement pour les badges/showcase
 
         const calcTime = Date.now() - calcStart;
@@ -1804,8 +1804,8 @@ async function fetchMultipleRunsRange(runsWithStartLines, sheetsClient = null) {
         // On crée un tableau de formules avec la même structure que rows (mais seulement A-H seront remplis)
         const adjustedFormulas = adjustedRows.map((row, rowIdx) => {
             const formulaRow = formulasData[rowIdx] || [];
-            // Crée un tableau de 200 colonnes (GR) avec les formules A-H aux bonnes positions
-            const extendedRow = new Array(200).fill('');
+            // Crée un tableau de 385 colonnes (NU) avec les formules A-H aux bonnes positions
+            const extendedRow = new Array(385).fill('');
             for (let i = 0; i < Math.min(8, formulaRow.length); i++) {
                 extendedRow[i] = formulaRow[i] || '';
             }
