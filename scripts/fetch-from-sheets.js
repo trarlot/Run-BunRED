@@ -877,8 +877,14 @@ async function parseRun(rows, startLine, runNumber, formulas) {
             }
         }
 
+        // Cas spécial pour Basculegion (ID 902) - a des formes mâle/femelle différentes
+        const isBasculegion =
+            pokemonId === 902 ||
+            englishName.toLowerCase() === 'basculegion' ||
+            englishName.toLowerCase().includes('basculegion');
+
         // Si on a trouvé l'ID, construit directement l'URL du sprite
-        if (pokemonId && !Number.isNaN(pokemonId)) {
+        if (pokemonId && !Number.isNaN(pokemonId) && !isBasculegion) {
             // Pour les IDs <= 905, utilise directement l'ID
             if (pokemonId > 0 && pokemonId <= 905) {
                 sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
@@ -888,6 +894,35 @@ async function parseRun(rows, startLine, runNumber, formulas) {
                 if (altFormEntry && altFormEntry.apiId) {
                     sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${altFormEntry.apiId}.png`;
                 }
+            }
+        }
+
+        // Cas spécial pour Basculegion : récupère le sprite depuis l'API pour gérer mâle/femelle
+        if (isBasculegion && !sprite) {
+            try {
+                const response = await fetch(
+                    'https://pokeapi.co/api/v2/pokemon/902',
+                );
+                if (response.ok) {
+                    const data = await response.json();
+                    // Utilise le sprite "home" qui a des versions séparées pour mâle et femelle
+                    // Par défaut, on utilise le sprite mâle (front_default)
+                    // Si on veut la femelle, on peut utiliser data.sprites.other.home.front_female
+                    // Pour l'instant, on utilise le sprite home par défaut qui devrait fonctionner
+                    sprite =
+                        data.sprites.other?.home?.front_default ||
+                        data.sprites.front_default ||
+                        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/902.png`;
+                    console.log(
+                        `    🎯 Basculegion détecté -> Sprite: ${sprite}`,
+                    );
+                }
+            } catch (error) {
+                console.log(
+                    `    ⚠️  Erreur lors de la récupération de Basculegion: ${error.message}`,
+                );
+                // Fallback vers l'URL standard
+                sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/902.png`;
             }
         }
 
@@ -1069,15 +1104,43 @@ async function parseRun(rows, startLine, runNumber, formulas) {
     console.log(`    🎭 Run #${runNumber} -> Sprite trainer: ${trainerSprite}`);
 
     // Build sprite URLs for numeric IDs (<=905)
-    const showcasePokemonSprites = (showcasePokemon || [])
-        .map((entry) => {
+    // Cas spécial pour Basculegion (ID 902) - utilise le sprite "home"
+    const showcasePokemonSprites = await Promise.all(
+        (showcasePokemon || []).map(async (entry) => {
             const id = parseInt(String(entry).trim(), 10);
+
+            // Cas spécial pour Basculegion (ID 902)
+            if (id === 902) {
+                try {
+                    const response = await fetch(
+                        'https://pokeapi.co/api/v2/pokemon/902',
+                    );
+                    if (response.ok) {
+                        const data = await response.json();
+                        return (
+                            data.sprites.other?.home?.front_default ||
+                            data.sprites.front_default ||
+                            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/902.png'
+                        );
+                    }
+                } catch (error) {
+                    console.log(
+                        `    ⚠️  Erreur lors de la récupération de Basculegion (showcase): ${error.message}`,
+                    );
+                }
+                // Fallback
+                return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/902.png';
+            }
+
             if (!Number.isNaN(id) && id > 0 && id <= 905) {
                 return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
             }
             return '';
-        })
-        .filter(Boolean);
+        }),
+    );
+
+    // Filtre les valeurs vides
+    const filteredShowcaseSprites = showcasePokemonSprites.filter(Boolean);
 
     return {
         id: String(runNumber), // Sera remplacé par l'ID séquentiel dans parseSheetData
@@ -1099,7 +1162,7 @@ async function parseRun(rows, startLine, runNumber, formulas) {
         personalBest,
         trainerSprite,
         showcasePokemon,
-        showcasePokemonSprites,
+        showcasePokemonSprites: filteredShowcaseSprites,
     };
 }
 
