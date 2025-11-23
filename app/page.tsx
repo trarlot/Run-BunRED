@@ -20,6 +20,13 @@ export default function Home() {
     const [selectedRun, setSelectedRun] = useState<Run | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    // Lien vers le Google Doc de référence
+    const GOOGLE_SHEET_ID = '1OrFcuxg5DE-TvhK9_dGrqWScT4PyjLJ3uObTP3Sclkk';
+    const googleDocUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}`;
+
+    // Lien vers le site web du développeur
+    const developerWebsiteUrl = 'https://www.tristan-arlot.com'; // Modifiez cette URL avec votre site
+
     // Sauvegarde la run sélectionnée dans localStorage
     const handleSelectRun = (run: Run) => {
         setSelectedRun(run);
@@ -196,11 +203,25 @@ export default function Home() {
 
                 <div className="flex-1 flex flex-col justify-center max-w-full px-4 py-2">
                     <div className="w-full flex flex-col justify-center ">
+                        {/* Bloc mention du doc */}
+                        <div className="mb-4 w-fit px-4 py-2 bg-gray-800/60 backdrop-blur-sm border border-gray-600/50 rounded-lg shadow-lg">
+                            <p className="text-center text-md text-gray-300">
+                                D&apos;après le{' '}
+                                <a
+                                    href={googleDocUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-green-600 hover:text-green-400 font-medium  transition-colors">
+                                    Google doc
+                                </a>{' '}
+                                de Sykless
+                            </p>
+                        </div>
                         <RunDetailsPanel run={selectedRun} />
 
                         {/* Rencontres - scroll horizontal */}
                         <HorizontalScrollContainer>
-                            <div className="inline-flex gap-4 sm:gap-7 min-w-max">
+                            <div className="inline-flex gap-4 pb-4 sm:gap-7 min-w-max">
                                 {selectedRun.team
                                     .sort(
                                         (a, b) =>
@@ -217,6 +238,24 @@ export default function Home() {
                         </HorizontalScrollContainer>
                     </div>
                 </div>
+
+                {/* Crédit en bas à droite */}
+                <footer className="relative z-10 mt-auto py-4 px-4">
+                    <div className="flex justify-end">
+                        <div className="px-4 py-2 bg-gray-800/60 backdrop-blur-sm border border-gray-600/50 rounded-lg shadow-lg">
+                            <p className="text-[10px] text-gray-300">
+                                Développé par{' '}
+                                <a
+                                    href={developerWebsiteUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-green-600 hover:text-green-400 font-medium  transition-colors">
+                                    Tristan Arlot
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
     );

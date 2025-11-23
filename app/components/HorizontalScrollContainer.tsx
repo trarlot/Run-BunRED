@@ -138,7 +138,7 @@ export default function HorizontalScrollContainer({
     return (
         <div
             ref={scrollContainerRef}
-            className={`w-full overflow-x-auto pb-4 ${className}`}
+            className={`w-full overflow-x-auto  ${className}`}
             style={{ cursor: 'grab' }}
             onWheel={handleWheel}
             onMouseDown={handleMouseDown}

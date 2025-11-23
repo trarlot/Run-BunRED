@@ -220,8 +220,8 @@ export default function RunHeader({
                                                 {run.personalBest && (
                                                     <div className="text-xs opacity-75 mt-1">
                                                         PB:{' '}
-                                                        {run.personalBest.length >
-                                                        50
+                                                        {run.personalBest
+                                                            .length > 50
                                                             ? run.personalBest.substring(
                                                                   0,
                                                                   50,
