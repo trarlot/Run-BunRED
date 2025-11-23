@@ -26,7 +26,8 @@ export default function HorizontalScrollContainer({
 
             if (isHorizontalScroll && !e.shiftKey) {
                 // Scroll horizontal natif du trackpad - on laisse le navigateur gérer
-                // Ne pas appeler preventDefault() pour permettre le comportement natif
+                // Empêcher le scroll vertical de la page
+                e.preventDefault();
                 return;
             }
 
@@ -47,6 +48,9 @@ export default function HorizontalScrollContainer({
                     scrollContainerRef.current.scrollLeft += e.deltaY;
                     e.preventDefault();
                 }
+            } else {
+                // Même s'il n'y a pas de scroll horizontal possible, empêcher le scroll vertical
+                e.preventDefault();
             }
         }
     };
@@ -75,8 +79,19 @@ export default function HorizontalScrollContainer({
         }
     };
 
+    const handleMouseEnter = () => {
+        // Empêcher le scroll vertical de la page quand on survole le conteneur
+        if (typeof document !== 'undefined') {
+            document.body.style.overflow = 'hidden';
+        }
+    };
+
     const handleMouseLeave = () => {
         setIsDragging(false);
+        // Réactiver le scroll vertical de la page quand on quitte le conteneur
+        if (typeof document !== 'undefined') {
+            document.body.style.overflow = '';
+        }
         if (scrollContainerRef.current) {
             scrollContainerRef.current.style.cursor = 'grab';
             scrollContainerRef.current.style.userSelect = 'auto';
@@ -101,6 +116,15 @@ export default function HorizontalScrollContainer({
         startXRef.current = e.clientX;
         scrollLeftRef.current = scrollContainerRef.current.scrollLeft;
     };
+
+    // Nettoyage du style overflow quand le composant est démonté
+    useEffect(() => {
+        return () => {
+            if (typeof document !== 'undefined') {
+                document.body.style.overflow = '';
+            }
+        };
+    }, []);
 
     // Gestion des événements globaux pour le drag
     useEffect(() => {
@@ -141,6 +165,7 @@ export default function HorizontalScrollContainer({
             className={`w-full overflow-x-auto  ${className}`}
             style={{ cursor: 'grab' }}
             onWheel={handleWheel}
+            onMouseEnter={handleMouseEnter}
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseLeave}
             onMouseUp={handleMouseUp}
