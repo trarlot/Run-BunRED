@@ -31,9 +31,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Scrollbar personnalisée - pas de background */
+/* Scrollbar personnalisée - masquée pour la barre verticale */
+/* Masquer la barre verticale pour WebKit */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 0px;
   height: 4px;
 }
 
@@ -50,8 +51,12 @@ body {
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* Pour Firefox */
-* {
-  scrollbar-width: 4px;
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+/* Pour Firefox et autres - masquer la barre verticale */
+html {
+  scrollbar-width: none; /* Masque la barre verticale */
+  -ms-overflow-style: none; /* Pour IE et Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Masque la barre verticale pour WebKit */
 }

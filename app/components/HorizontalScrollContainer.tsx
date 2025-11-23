@@ -13,6 +13,7 @@ export default function HorizontalScrollContainer({
 }: HorizontalScrollContainerProps) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
     const startXRef = useRef(0);
     const scrollLeftRef = useRef(0);
 
@@ -80,18 +81,12 @@ export default function HorizontalScrollContainer({
     };
 
     const handleMouseEnter = () => {
-        // Empêcher le scroll vertical de la page quand on survole le conteneur
-        if (typeof document !== 'undefined') {
-            document.body.style.overflow = 'hidden';
-        }
+        setIsHovering(true);
     };
 
     const handleMouseLeave = () => {
         setIsDragging(false);
-        // Réactiver le scroll vertical de la page quand on quitte le conteneur
-        if (typeof document !== 'undefined') {
-            document.body.style.overflow = '';
-        }
+        setIsHovering(false);
         if (scrollContainerRef.current) {
             scrollContainerRef.current.style.cursor = 'grab';
             scrollContainerRef.current.style.userSelect = 'auto';
@@ -117,14 +112,26 @@ export default function HorizontalScrollContainer({
         scrollLeftRef.current = scrollContainerRef.current.scrollLeft;
     };
 
-    // Nettoyage du style overflow quand le composant est démonté
+    // Empêcher le scroll vertical de la page quand on survole le conteneur
     useEffect(() => {
-        return () => {
-            if (typeof document !== 'undefined') {
-                document.body.style.overflow = '';
+        if (!isHovering) return;
+
+        const handleGlobalWheel = (e: WheelEvent) => {
+            // Si c'est un scroll vertical (deltaY significatif), l'empêcher
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                e.preventDefault();
             }
         };
-    }, []);
+
+        // Utiliser { passive: false } pour pouvoir appeler preventDefault
+        document.addEventListener('wheel', handleGlobalWheel, {
+            passive: false,
+        });
+
+        return () => {
+            document.removeEventListener('wheel', handleGlobalWheel);
+        };
+    }, [isHovering]);
 
     // Gestion des événements globaux pour le drag
     useEffect(() => {
