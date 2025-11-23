@@ -75,18 +75,18 @@ export default function RunHeader({
 
     return (
         <header className="flex justify-between items-center py-4 lg:py-0 sticky top-0 px-4 sm:px-6 lg:px-8 border-b border-white/10 bg-black/20 backdrop-blur-sm z-50">
-            <h1 className="text-lg lg:text-2xl xl:text-4xl font-bold text-white">
+            <h1 className="text-sm md:text-lg lg:text-2xl xl:text-4xl font-bold text-white">
                 Run<span className="text-green-400">&</span>Bun
                 <span className="text-red-600">RED</span>
             </h1>
 
             {/* Bouton menu pour mobile (en dessous de lg) */}
-            <div className="relative lg:hidden flex items-center gap-2">
+            <div className="relative lg:hidden flex items-center gap-1">
                 {/* Flèche gauche : vers la run précédente (numéro plus grand) */}
                 <button
                     onClick={handlePrevious}
                     disabled={!runWithLargerNumber}
-                    className={`p-2 rounded-lg transition-all ${
+                    className={`p-1 rounded-lg transition-all ${
                         runWithLargerNumber
                             ? 'bg-gray-900 text-white hover:bg-gray-800'
                             : 'bg-gray-900/50 text-gray-600 cursor-not-allowed'
@@ -126,12 +126,12 @@ export default function RunHeader({
                         <div className={wrapperClass}>
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="px-4 py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-all">
-                                <span className="text-base">
+                                className="px-2 py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-all">
+                                <span className="text-xs sm:text-base">
                                     Run #{selectedRun.runNumber}
                                 </span>
                                 {selectedRun.wonBattles && (
-                                    <span className="ml-2 text-base opacity-75 font-normal">
+                                    <span className="ml-2 text-xs sm:text-base opacity-75 font-normal">
                                         {selectedRun.wonBattles}
                                     </span>
                                 )}
@@ -144,7 +144,7 @@ export default function RunHeader({
                 <button
                     onClick={handleNext}
                     disabled={!runWithSmallerNumber}
-                    className={`p-2 rounded-lg transition-all ${
+                    className={`p-1 rounded-lg transition-all ${
                         runWithSmallerNumber
                             ? 'bg-gray-900 text-white hover:bg-gray-800'
                             : 'bg-gray-900/50 text-gray-600 cursor-not-allowed'
@@ -208,11 +208,11 @@ export default function RunHeader({
                                                 }
                                                 className={`w-full px-3 py-2 rounded-lg transition-all text-left ${btnBase}`}>
                                                 <div className="flex items-center justify-between">
-                                                    <span className="text-base">
+                                                    <span className="text-xs sm:text-base">
                                                         Run #{run.runNumber}
                                                     </span>
                                                     {run.wonBattles && (
-                                                        <span className="ml-2 text-base opacity-75 font-normal">
+                                                        <span className="ml-2 text-xs sm:text-base opacity-75 font-normal">
                                                             {run.wonBattles}
                                                         </span>
                                                     )}

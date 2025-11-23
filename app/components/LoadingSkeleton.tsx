@@ -11,21 +11,24 @@ export default function LoadingSkeleton() {
             <div className="relative z-10 flex flex-col flex-1">
                 {/* Header Skeleton */}
                 <header className="flex justify-between items-center py-4 lg:py-0 sticky top-0 px-4 sm:px-6 lg:px-8 border-b border-white/10 bg-black/20 backdrop-blur-sm z-50">
-                    {/* Logo/Titre */}
-                    <div className="h-8 lg:h-10 xl:h-12 w-48 lg:w-64 xl:w-80 bg-gray-600/50 rounded-lg animate-pulse" />
+                    {/* Logo/Titre - exactement comme RunHeader (text-sm md:text-lg lg:text-2xl xl:text-4xl) */}
+                    <div className="h-5 md:h-6 lg:h-7 xl:h-10 w-28 md:w-36 lg:w-44 xl:w-56 bg-gray-600/50 rounded animate-pulse" />
 
-                    {/* Mobile menu */}
-                    <div className="lg:hidden flex items-center gap-2">
-                        <div className="h-10 w-10 bg-gray-600/50 rounded-lg animate-pulse" />
-                        <div className="h-10 w-32 bg-gray-600/50 rounded-lg animate-pulse" />
-                        <div className="h-10 w-10 bg-gray-600/50 rounded-lg animate-pulse" />
+                    {/* Mobile menu - exactement comme RunHeader avec flèches et bouton run */}
+                    <div className="lg:hidden flex items-center gap-1">
+                        {/* Flèche gauche */}
+                        <div className="h-7 w-7 sm:h-8 sm:w-8 bg-gray-600/50 rounded-lg animate-pulse" />
+                        {/* Bouton run avec border potentiel - doit contenir "Run #X" et potentiellement "wonBattles" */}
+                        <div className="h-8 sm:h-10 w-20 sm:w-28 bg-gray-600/50 rounded-lg animate-pulse" />
+                        {/* Flèche droite */}
+                        <div className="h-7 w-7 sm:h-8 sm:w-8 bg-gray-600/50 rounded-lg animate-pulse" />
                     </div>
 
-                    {/* Desktop menu - scroll horizontal de runs */}
+                    {/* Desktop menu - scroll horizontal de runs - exactement comme RunHeader */}
                     <div className="hidden lg:flex justify-center items-center max-w-[70%]">
-                        <div className="h-6 w-20 bg-gray-600/50 rounded animate-pulse shrink-0" />
+                        <div className="h-6 xl:h-7 w-16 xl:w-20 bg-gray-600/50 rounded animate-pulse shrink-0" />
                         <HorizontalScrollContainer className="flex-1">
-                            <div className="flex p-2 m-2 gap-2">
+                            <div className="flex p-2 m-2 gap-2 flex-nowrap">
                                 {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
                                     <div
                                         key={i}
@@ -40,54 +43,59 @@ export default function LoadingSkeleton() {
                     </div>
                 </header>
 
-                <div className="flex-1 flex flex-col justify-center max-w-full px-4 py-2">
+                <div className="flex-1 flex flex-col justify-center max-w-full px-4 pt-4 pb-2">
                     <div className="w-full flex flex-col justify-center ">
+                        {/* Bloc mention du doc - exactement comme page.tsx */}
+                        <div className="mb-4 w-fit px-4 py-2 bg-gray-800/60 backdrop-blur-sm border border-gray-600/50 rounded-lg shadow-lg">
+                            <div className="h-3 sm:h-4 w-48 sm:w-64 bg-gray-700/50 rounded animate-pulse" />
+                        </div>
+
                         {/* RunDetailsPanel Skeleton - exactement comme RunDetailsPanel */}
-                        <div className="w-full md:w-fit rounded-2xl bg-gray-900 mb-4">
-                            <div className="flex flex-col sm:flex-row items-start sm:items-center h-90 xs:h-82 lg:h-40 xl:h-50 px-4 py-3 gap-4">
+                        <div className="w-fit rounded-2xl bg-gray-900 mb-4">
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center h-92 sm:h-82 lg:h-40 xl:h-50 px-4 py-3 gap-4">
                                 {/* Ligne du haut sur très petits écrans: Stats + Badges */}
-                                <div className="flex flex-row items-start h-full w-full sm:w-auto gap-3 sm:gap-4">
+                                <div className="flex flex-row items-start w-full sm:w-auto gap-3 h-full sm:gap-4">
                                     {/* Colonne gauche: Stats - exactement comme RunStats */}
                                     <div className="shrink-0 h-full text-gray-300">
                                         <div className="flex flex-col justify-between lg:justify-center gap-1.5 h-full">
                                             {/* Ligne 1 : 4 colonnes - Run #, Alive, Battles, Deaths */}
                                             <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-1.5 items-stretch h-full">
-                                                {/* Run # - exactement comme le vrai */}
-                                                <div className="flex items-center gap-2 bg-gray-700/50 rounded-lg px-3 py-1.5 h-full">
-                                                    <div className="h-5 w-20 bg-gray-600/70 rounded animate-pulse" />
+                                                {/* Run # - exactement comme le vrai (bg-green-700) */}
+                                                <div className="flex items-center gap-2 bg-green-700/50 rounded-lg px-3 py-1.5 sm:py-3 h-full">
+                                                    <div className="h-4 sm:h-5 xl:h-6 w-16 sm:w-20 bg-gray-600/70 rounded animate-pulse" />
                                                 </div>
-                                                {/* Alive - exactement comme le vrai */}
-                                                <div className="bg-gray-700/50 rounded-lg px-3 py-1.5 w-full text-center flex flex-col justify-center h-full">
-                                                    <div className="h-6 w-12 bg-gray-600/70 rounded mx-auto mb-1 animate-pulse" />
+                                                {/* Alive - exactement comme le vrai (bg-blue-500/20) */}
+                                                <div className="bg-blue-500/10 rounded-lg px-3 py-1.5 sm:py-3 w-full text-center flex flex-col justify-center h-full">
+                                                    <div className="h-4 sm:h-5 xl:h-6 w-10 sm:w-12 bg-gray-600/70 rounded mx-auto mb-1 animate-pulse" />
                                                     <div className="h-3 w-10 bg-gray-600/70 rounded mx-auto animate-pulse" />
                                                 </div>
-                                                {/* Battles - exactement comme le vrai */}
-                                                <div className="bg-gray-700/50 rounded-lg px-3 py-1.5 flex items-center gap-2 h-full">
+                                                {/* Battles - exactement comme le vrai (bg-white/10) */}
+                                                <div className="bg-white/10 rounded-lg px-3 py-1.5 sm:py-3 flex items-center gap-2 h-full">
                                                     <div className="flex-1">
-                                                        <div className="h-3 w-12 bg-gray-600/70 rounded mb-1 animate-pulse" />
-                                                        <div className="h-5 w-16 bg-gray-600/70 rounded animate-pulse" />
+                                                        <div className="h-3 sm:h-3.5 w-12 sm:w-14 bg-gray-700/50 rounded mb-1 animate-pulse" />
+                                                        <div className="h-4 sm:h-5 xl:h-6 w-14 sm:w-16 bg-gray-700/50 rounded animate-pulse" />
                                                     </div>
                                                 </div>
-                                                {/* Deaths - exactement comme le vrai */}
-                                                <div className="bg-gray-700/50 rounded-lg px-3 py-1.5 text-center flex flex-col justify-center h-full">
-                                                    <div className="h-6 w-8 bg-gray-600/70 rounded mx-auto mb-1 animate-pulse" />
+                                                {/* Deaths - exactement comme le vrai (bg-green-500/20 ou bg-red-500/30) */}
+                                                <div className="bg-green-500/10 rounded-lg px-3 py-1.5 sm:py-3 text-center flex flex-col justify-center h-full">
+                                                    <div className="h-4 sm:h-5 xl:h-6 w-6 sm:w-8 bg-gray-600/70 rounded mx-auto mb-1 animate-pulse" />
                                                     <div className="h-3 w-12 bg-gray-600/70 rounded mx-auto animate-pulse" />
                                                 </div>
                                             </div>
                                             {/* Ligne 2 : 2 colonnes - Start, End */}
                                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-1.5 lg:gap-x-2 items-stretch h-full">
                                                 {/* Start - exactement comme le vrai */}
-                                                <div className="bg-white/10 rounded-lg px-3 py-1.5 flex items-center gap-2 h-full">
+                                                <div className="bg-white/10 rounded-lg px-3 py-1.5 sm:py-3 flex items-center gap-2 h-full">
                                                     <div className="flex-1">
-                                                        <div className="h-3 w-10 bg-gray-700/50 rounded mb-1 animate-pulse" />
-                                                        <div className="h-5 w-20 bg-gray-700/50 rounded animate-pulse" />
+                                                        <div className="h-3 sm:h-3.5 w-10 sm:w-12 bg-gray-700/50 rounded mb-1 animate-pulse" />
+                                                        <div className="h-4 sm:h-5 xl:h-6 w-16 sm:w-20 bg-gray-700/50 rounded animate-pulse" />
                                                     </div>
                                                 </div>
                                                 {/* End - exactement comme le vrai */}
-                                                <div className="bg-white/10 rounded-lg px-3 py-1.5 flex items-center gap-2 h-full">
+                                                <div className="bg-white/10 rounded-lg px-3 py-1.5 sm:py-3 flex items-center gap-2 h-full">
                                                     <div className="flex-1">
-                                                        <div className="h-3 w-8 bg-gray-700/50 rounded mb-1 animate-pulse" />
-                                                        <div className="h-5 w-20 bg-gray-700/50 rounded animate-pulse" />
+                                                        <div className="h-3 sm:h-3.5 w-8 sm:w-10 bg-gray-700/50 rounded mb-1 animate-pulse" />
+                                                        <div className="h-4 sm:h-5 xl:h-6 w-16 sm:w-20 bg-gray-700/50 rounded animate-pulse" />
                                                     </div>
                                                 </div>
                                             </div>
