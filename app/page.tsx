@@ -214,7 +214,7 @@ export default function Home() {
                                     className="text-green-600 hover:text-green-400 font-medium  transition-colors">
                                     Google doc
                                 </a>{' '}
-                                de Sykless
+                                de TristanPelleteuse
                             </p>
                         </div>
                         <RunDetailsPanel run={selectedRun} />

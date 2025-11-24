@@ -74,13 +74,72 @@ export const POKEMON_NATURES: Record<string, [string, string] | null> = {
 };
 
 /**
+ * Mapping des natures françaises vers anglaises
+ * Permet de gérer les natures en français depuis le Google Doc
+ */
+export const NATURE_FR_TO_EN: Record<string, string> = {
+    // Natures neutres
+    Bizarre: 'Quirky',
+    Docile: 'Docile',
+    Hardi: 'Hardy',
+    Pudique: 'Bashful',
+    Sérieux: 'Serious',
+
+    // Natures avec bonus/malus
+    Solo: 'Lonely',
+    Brave: 'Brave',
+    Rigide: 'Adamant',
+    Mauvais: 'Naughty',
+
+    Assuré: 'Bold',
+    Relax: 'Relaxed',
+    Malin: 'Impish',
+    Lâche: 'Lax',
+
+    Timide: 'Timid',
+    Pressé: 'Hasty',
+    Jovial: 'Jolly',
+    Naïf: 'Naive',
+
+    Modeste: 'Modest',
+    Doux: 'Mild',
+    Discret: 'Quiet',
+    Foufou: 'Rash',
+
+    Calme: 'Calm',
+    Gentil: 'Gentle',
+    Prudent: 'Careful',
+    Malpoli: 'Sassy',
+};
+
+/**
+ * Convertit une nature française en anglaise si nécessaire
+ * Retourne la nature en anglais, ou la nature originale si elle est déjà en anglais
+ */
+function normalizeNature(nature: string): string {
+    // Si la nature est déjà en anglais (dans POKEMON_NATURES), on la retourne telle quelle
+    if (POKEMON_NATURES[nature] !== undefined) {
+        return nature;
+    }
+
+    // Sinon, on essaie de la convertir depuis le français
+    const normalized = NATURE_FR_TO_EN[nature];
+    return normalized || nature; // Retourne la nature originale si pas trouvée
+}
+
+/**
  * Retourne la stat augmentée et diminuée par une nature
+ * Gère les natures en français et en anglais
  */
 export function getNatureEffect(nature: string): {
     increased?: string;
     decreased?: string;
 } {
-    const effect = POKEMON_NATURES[nature];
+    // Normalise la nature (convertit français → anglais si nécessaire)
+    const normalizedNature = normalizeNature(nature);
+
+    // Récupère l'effet depuis la table en anglais
+    const effect = POKEMON_NATURES[normalizedNature];
     if (!effect) return {};
 
     return {
