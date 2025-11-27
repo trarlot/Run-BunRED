@@ -1074,7 +1074,13 @@ async function parseRun(rows, startLine, runNumber, formulas) {
                 const f = String(formulaRow2[c] || '').trim();
                 const mId = f.match(/=VLOOKUP\((\d+)/i);
                 if (mId && mId[1]) {
-                    showcasePokemon.push(mId[1]); // store id as string
+                    const detectedId = mId[1];
+                    showcasePokemon.push(detectedId); // store id as string
+                    console.log(
+                        `    🎯 Showcase Pokémon détecté: ID ${detectedId} (ligne ${
+                            rIdx + 1
+                        }, colonne ${c + 1})`,
+                    );
                 }
                 if (showcasePokemon.length >= 6) break;
             }
@@ -1103,7 +1109,7 @@ async function parseRun(rows, startLine, runNumber, formulas) {
 
     console.log(`    🎭 Run #${runNumber} -> Sprite trainer: ${trainerSprite}`);
 
-    // Build sprite URLs for numeric IDs (<=905)
+    // Build sprite URLs for numeric IDs (<=905) et formes alternatives (>905)
     // Cas spécial pour Basculegion (ID 902) - utilise le sprite "home"
     const showcasePokemonSprites = await Promise.all(
         (showcasePokemon || []).map(async (entry) => {
@@ -1132,8 +1138,31 @@ async function parseRun(rows, startLine, runNumber, formulas) {
                 return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/902.png';
             }
 
+            // Pour les IDs <= 905, utilise directement l'ID
             if (!Number.isNaN(id) && id > 0 && id <= 905) {
                 return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+            }
+
+            // Pour les IDs > 905 (formes alternatives comme Méga), utilise le mapping ALT_FORM_ID_MAP
+            if (id > 905) {
+                const altFormEntry = ALT_FORM_ID_MAP[id];
+                if (altFormEntry && altFormEntry.apiId) {
+                    const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${altFormEntry.apiId}.png`;
+                    console.log(
+                        `    🎨 Showcase sprite (ID ${id} → apiId ${altFormEntry.apiId}): ${spriteUrl}`,
+                    );
+                    return spriteUrl;
+                } else {
+                    console.log(
+                        `    ⚠️  Showcase Pokémon ID ${id} non trouvé dans ALT_FORM_ID_MAP`,
+                    );
+                }
+            }
+
+            if (id > 0) {
+                console.log(
+                    `    ⚠️  Showcase Pokémon ID ${id} non géré (hors plage 1-905 et non dans ALT_FORM_ID_MAP)`,
+                );
             }
             return '';
         }),
