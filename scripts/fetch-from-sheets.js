@@ -277,9 +277,6 @@ async function getGoogleSheetsClient() {
     cachedSheetsClient = google.sheets({ version: 'v4', auth: cachedAuth });
 
     const authTime = Date.now() - startTime;
-    if (authTime > 10) {
-        console.log(`[⏱️  Google Sheets] Authentification: ${authTime}ms`);
-    }
 
     return cachedSheetsClient;
 }
@@ -291,10 +288,6 @@ async function measureFirstConnection(apiCall) {
     if (isFirstConnection) {
         const firstConnectionStart = Date.now();
         const result = await apiCall();
-        const firstConnectionTime = Date.now() - firstConnectionStart;
-        console.log(
-            `[🔌 Google Sheets] Première connexion: ${firstConnectionTime}ms`,
-        );
         isFirstConnection = false;
         return result;
     }
@@ -307,7 +300,6 @@ async function measureFirstConnection(apiCall) {
  */
 async function fetchSheetData(sheetsClient = null) {
     try {
-        console.log('🔄 Récupération des données...');
         const sheets = sheetsClient || (await getGoogleSheetsClient());
 
         const response = await sheets.spreadsheets.values.get({
@@ -316,17 +308,9 @@ async function fetchSheetData(sheetsClient = null) {
         });
 
         const rows = response.data.values;
-        console.log(`✅ ${rows.length} lignes récupérées depuis Google Sheets`);
 
         return rows;
     } catch (error) {
-        console.error(
-            '❌ Erreur lors de la récupération des données:',
-            error.message,
-        );
-        if (error.message.includes('API key')) {
-            console.error('⚠️  Vérifiez votre clé API dans le fichier .env');
-        }
         throw error;
     }
 }
@@ -337,7 +321,6 @@ async function fetchSheetData(sheetsClient = null) {
  */
 async function fetchSheetFormulas(sheetsClient = null) {
     try {
-        console.log('🔄 Récupération des formules...');
         const sheets = sheetsClient || (await getGoogleSheetsClient());
 
         const response = await sheets.spreadsheets.values.get({
@@ -347,14 +330,9 @@ async function fetchSheetFormulas(sheetsClient = null) {
         });
 
         const rows = response.data.values;
-        console.log(`✅ ${rows.length} lignes de formules récupérées`);
 
         return rows;
     } catch (error) {
-        console.error(
-            '❌ Erreur lors de la récupération des formules:',
-            error.message,
-        );
         throw error;
     }
 }
@@ -364,9 +342,6 @@ async function fetchSheetFormulas(sheetsClient = null) {
  */
 async function fetchSheetWithImages() {
     try {
-        console.log(
-            '🔄 Récupération des métadonnées pour détecter les images directes...',
-        );
         const sheets = await getGoogleSheetsClient();
 
         const response = await sheets.spreadsheets.get({
@@ -377,16 +352,9 @@ async function fetchSheetWithImages() {
 
         const sheet = response.data.sheets[0];
         const gridData = sheet.data[0];
-        console.log(
-            `✅ Métadonnées récupérées pour ${gridData.rowData.length} lignes`,
-        );
 
         return gridData;
     } catch (error) {
-        console.error(
-            '❌ Erreur lors de la récupération des métadonnées:',
-            error.message,
-        );
         throw error;
     }
 }
@@ -403,7 +371,7 @@ function extractBadgeNameFromFormula(formula) {
             return match[1];
         }
     } catch (error) {
-        console.log(`⚠️  Erreur extraction nom badge: ${error.message}`);
+        // Erreur silencieuse
     }
     return null;
 }
@@ -569,10 +537,6 @@ async function parseSheetData(rows, formulas, allRunsBadges = []) {
         }
 
         if (originalRunNumber > 0) {
-            console.log(
-                `  📝 Run #${originalRunNumber} détecté à la ligne ${i + 1}`,
-            );
-
             // Parse ce run (les badges seront calculés depuis les formules à partir de la zone du run)
             // On passe le numéro original pour le parsing, mais on assignera un ID séquentiel après
             const run = await parseRun(rows, i, originalRunNumber, formulas);
@@ -669,9 +633,10 @@ async function parseRun(rows, startLine, runNumber, formulas) {
     }
 
     if (!runIdRow || !abilitiesRow) {
-        console.log(`  ⚠️  Run #${runNumber} incomplet, ignoré`);
         return null;
     }
+
+    // Log seulement les formules VLOOKUP avec ID numérique des lignes Excel 4, 5, 6, 7 pour la run 33
 
     // Les moves sont entre la ligne abilities et la ligne des natures
     // Trouve l'index de chaque ligne
@@ -849,16 +814,29 @@ async function parseRun(rows, startLine, runNumber, formulas) {
         let pokemonId = null;
         let sprite = null;
 
-        // Cherche l'ID dans la formule de la case juste au-dessus du prénom du Pokémon
+        // Cherche l'ID dans la formule de la case au-dessus du prénom du Pokémon
         // Le prénom est dans runIdRow[col], et l'ID se trouve dans les colonnes col, col+1, col+2, col+3
-        // juste au-dessus du prénom (ligne runIdRowIndex - 1)
+        // Les VLOOKUP sont généralement dans la ligne 3 (index 3) ou runIdRowIndex - 4
         if (
             Array.isArray(formulas) &&
             runIdRowIndex !== null &&
             runIdRowIndex > 0
         ) {
-            const formulaRowIndex = runIdRowIndex - 1; // Ligne juste au-dessus
-            const formulaRow = formulas[formulaRowIndex];
+            // Essaie d'abord la ligne 3 (où se trouvent généralement les VLOOKUP)
+            let formulaRowIndex = 3;
+            let formulaRow = formulas[formulaRowIndex];
+
+            // Si pas de formules dans la ligne 3, essaie runIdRowIndex - 4
+            if (!formulaRow || formulaRow.length === 0) {
+                formulaRowIndex = runIdRowIndex - 4;
+                formulaRow = formulas[formulaRowIndex];
+            }
+
+            // Si toujours pas de formules, essaie runIdRowIndex - 1 (ancienne méthode)
+            if (!formulaRow || formulaRow.length === 0) {
+                formulaRowIndex = runIdRowIndex - 1;
+                formulaRow = formulas[formulaRowIndex];
+            }
 
             // Cherche dans les colonnes col, col+1, col+2, col+3 (les 4 colonnes suivantes)
             const colsToCheck = [col, col + 1, col + 2, col + 3];
@@ -871,22 +849,47 @@ async function parseRun(rows, startLine, runNumber, formulas) {
                     const mId = f.match(/=VLOOKUP\((\d+)/i);
                     if (mId && mId[1]) {
                         pokemonId = parseInt(mId[1], 10);
+                        if (runNumber === 33) {
+                            console.log(
+                                `    Run #${runNumber} - Team "${englishName}" (col ${col}) - VLOOKUP trouvé au-dessus du prénom:`,
+                            );
+                            console.log(
+                                `      Ligne ${formulaRowIndex}, Col ${checkCol}: formule="${f}" → ID ${pokemonId}`,
+                            );
+                        }
                         break; // On a trouvé l'ID, on peut arrêter
                     }
                 }
             }
         }
 
-        // Cas spécial pour Basculegion (ID 902) - a des formes mâle/femelle différentes
+        // Cas spéciaux pour les Pokémon qui nécessitent le sprite "home"
         const isBasculegion =
             pokemonId === 902 ||
             englishName.toLowerCase() === 'basculegion' ||
             englishName.toLowerCase().includes('basculegion');
 
+        const isUrshifu =
+            pokemonId === 892 ||
+            pokemonId === 1230 ||
+            englishName.toLowerCase() === 'urshifu' ||
+            englishName.toLowerCase().includes('urshifu');
+
+        const isEnamorus =
+            pokemonId === 905 ||
+            englishName.toLowerCase() === 'enamorus' ||
+            englishName.toLowerCase().includes('enamorus');
+
         // Si on a trouvé l'ID, construit directement l'URL du sprite
-        if (pokemonId && !Number.isNaN(pokemonId) && !isBasculegion) {
-            // Pour les IDs <= 905, utilise directement l'ID
-            if (pokemonId > 0 && pokemonId <= 905) {
+        if (
+            pokemonId &&
+            !Number.isNaN(pokemonId) &&
+            !isBasculegion &&
+            !isUrshifu &&
+            !isEnamorus
+        ) {
+            // Pour les IDs <= 904, utilise directement l'ID (905 = Enamorus est exclu)
+            if (pokemonId > 0 && pokemonId <= 904) {
                 sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
             } else if (pokemonId > 905) {
                 // Pour les IDs > 905 (formes alternatives), utilise le mapping ALT_FORM_ID_MAP
@@ -913,16 +916,59 @@ async function parseRun(rows, startLine, runNumber, formulas) {
                         data.sprites.other?.home?.front_default ||
                         data.sprites.front_default ||
                         `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/902.png`;
-                    console.log(
-                        `    🎯 Basculegion détecté -> Sprite: ${sprite}`,
-                    );
                 }
             } catch (error) {
-                console.log(
-                    `    ⚠️  Erreur lors de la récupération de Basculegion: ${error.message}`,
-                );
                 // Fallback vers l'URL standard
                 sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/902.png`;
+            }
+        }
+
+        // Cas spécial pour Urshifu : récupère le sprite "home" depuis l'API
+        if (isUrshifu && !sprite) {
+            try {
+                // Détermine l'ID API selon l'ID interne
+                let apiId = 892; // Urshifu Single Strike par défaut
+                if (pokemonId === 1230) {
+                    // Urshifu Rapid Strike (ID interne 1230 = API ID 10191)
+                    apiId = 10191;
+                } else if (pokemonId === 892) {
+                    // Urshifu Single Strike (ID interne 892 = API ID 892)
+                    apiId = 892;
+                }
+
+                const response = await fetch(
+                    `https://pokeapi.co/api/v2/pokemon/${apiId}`,
+                );
+                if (response.ok) {
+                    const data = await response.json();
+                    sprite =
+                        data.sprites.other?.home?.front_default ||
+                        data.sprites.front_default ||
+                        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${apiId}.png`;
+                }
+            } catch (error) {
+                // Fallback vers l'URL standard
+                const apiId = pokemonId === 1230 ? 10191 : 892;
+                sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${apiId}.png`;
+            }
+        }
+
+        // Cas spécial pour Enamorus : récupère le sprite "home" depuis l'API
+        if (isEnamorus && !sprite) {
+            try {
+                const response = await fetch(
+                    'https://pokeapi.co/api/v2/pokemon/905',
+                );
+                if (response.ok) {
+                    const data = await response.json();
+                    sprite =
+                        data.sprites.other?.home?.front_default ||
+                        data.sprites.front_default ||
+                        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/905.png`;
+                }
+            } catch (error) {
+                // Fallback vers l'URL standard
+                sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/905.png`;
             }
         }
 
@@ -1044,6 +1090,7 @@ async function parseRun(rows, startLine, runNumber, formulas) {
     if (personalBestRowIndex !== null) {
         const showcaseRow = personalBestRowIndex + 1;
         const formulaRow = formulas[showcaseRow] || [];
+
         // 1) Trainer: premier =VLOOKUP("...") rencontré -> imageName
         for (let col = 0; col < Math.min(20, formulaRow.length); col++) {
             const f = String(formulaRow[col] || '').trim();
@@ -1076,11 +1123,6 @@ async function parseRun(rows, startLine, runNumber, formulas) {
                 if (mId && mId[1]) {
                     const detectedId = mId[1];
                     showcasePokemon.push(detectedId); // store id as string
-                    console.log(
-                        `    🎯 Showcase Pokémon détecté: ID ${detectedId} (ligne ${
-                            rIdx + 1
-                        }, colonne ${c + 1})`,
-                    );
                 }
                 if (showcasePokemon.length >= 6) break;
             }
@@ -1107,69 +1149,96 @@ async function parseRun(rows, startLine, runNumber, formulas) {
         trainerSprite = trainerSprites[(runNumber - 1) % trainerSprites.length];
     }
 
-    console.log(`    🎭 Run #${runNumber} -> Sprite trainer: ${trainerSprite}`);
-
     // Build sprite URLs for numeric IDs (<=905) et formes alternatives (>905)
-    // Cas spécial pour Basculegion (ID 902) - utilise le sprite "home"
     const showcasePokemonSprites = await Promise.all(
         (showcasePokemon || []).map(async (entry) => {
             const id = parseInt(String(entry).trim(), 10);
+            let method = '';
+            let spriteUrl = '';
 
-            // Cas spécial pour Basculegion (ID 902)
-            if (id === 902) {
+            // Cas spéciaux pour Pokémon nécessitant le sprite "home"
+            // Basculegion (ID 902), Urshifu (ID 892) et Enamorus (ID 905) ont des formes différentes
+            if (id === 902 || id === 892 || id === 905) {
                 try {
                     const response = await fetch(
-                        'https://pokeapi.co/api/v2/pokemon/902',
+                        `https://pokeapi.co/api/v2/pokemon/${id}`,
                     );
                     if (response.ok) {
                         const data = await response.json();
-                        return (
+                        spriteUrl =
                             data.sprites.other?.home?.front_default ||
                             data.sprites.front_default ||
-                            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/902.png'
-                        );
+                            `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`;
+                        method = `API PokéAPI (sprite home)`;
                     }
                 } catch (error) {
-                    console.log(
-                        `    ⚠️  Erreur lors de la récupération de Basculegion (showcase): ${error.message}`,
-                    );
+                    method = `Fallback (sprite home)`;
                 }
-                // Fallback
-                return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/902.png';
+                if (!spriteUrl) {
+                    spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`;
+                    method = `Fallback (sprite home)`;
+                }
+                return spriteUrl;
             }
 
-            // Pour les IDs <= 905, utilise directement l'ID
-            if (!Number.isNaN(id) && id > 0 && id <= 905) {
-                return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+            // Pour les IDs <= 904, utilise directement l'ID (905 = Enamorus est exclu)
+            if (!Number.isNaN(id) && id > 0 && id <= 904) {
+                spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+                method = `URL directe (ID ${id})`;
+                return spriteUrl;
             }
 
             // Pour les IDs > 905 (formes alternatives comme Méga), utilise le mapping ALT_FORM_ID_MAP
             if (id > 905) {
                 const altFormEntry = ALT_FORM_ID_MAP[id];
                 if (altFormEntry && altFormEntry.apiId) {
-                    const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${altFormEntry.apiId}.png`;
-                    console.log(
-                        `    🎨 Showcase sprite (ID ${id} → apiId ${altFormEntry.apiId}): ${spriteUrl}`,
-                    );
+                    // Cas spécial pour Urshifu Rapid Strike (ID 1230 → apiId 10191)
+                    // Utilise le sprite "home" comme pour Urshifu Single Strike
+                    if (altFormEntry.apiId === 10191) {
+                        try {
+                            const response = await fetch(
+                                'https://pokeapi.co/api/v2/pokemon/10191',
+                            );
+                            if (response.ok) {
+                                const data = await response.json();
+                                spriteUrl =
+                                    data.sprites.other?.home?.front_default ||
+                                    data.sprites.front_default ||
+                                    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10191.png';
+                                method = `API PokéAPI (ID ${id} → apiId ${altFormEntry.apiId}, sprite home)`;
+                            }
+                        } catch (error) {
+                            method = `Fallback (ID ${id} → apiId ${altFormEntry.apiId}, sprite home)`;
+                        }
+                        if (!spriteUrl) {
+                            spriteUrl =
+                                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10191.png';
+                            method = `Fallback (ID ${id} → apiId ${altFormEntry.apiId}, sprite home)`;
+                        }
+                        return spriteUrl;
+                    }
+
+                    // Pour les autres formes alternatives, utilise l'URL standard
+                    spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${altFormEntry.apiId}.png`;
+                    method = `Mapping ALT_FORM (ID ${id} → apiId ${altFormEntry.apiId})`;
                     return spriteUrl;
-                } else {
-                    console.log(
-                        `    ⚠️  Showcase Pokémon ID ${id} non trouvé dans ALT_FORM_ID_MAP`,
-                    );
                 }
             }
 
-            if (id > 0) {
-                console.log(
-                    `    ⚠️  Showcase Pokémon ID ${id} non géré (hors plage 1-905 et non dans ALT_FORM_ID_MAP)`,
-                );
-            }
             return '';
         }),
     );
 
-    // Filtre les valeurs vides
-    const filteredShowcaseSprites = showcasePokemonSprites.filter(Boolean);
+    // ⚠️ IMPORTANT: Ne pas filtrer les valeurs vides pour préserver la correspondance des indices
+    // Si un sprite est vide, le composant TrainerShowcase utilisera le fallback avec l'ID
+    // Filtrer créerait un décalage entre showcasePokemon et showcasePokemonSprites
+    const filteredShowcaseSprites = showcasePokemonSprites.map(
+        (sprite, idx) => {
+            // Si le sprite est vide mais qu'on a un ID, on garde une chaîne vide
+            // Le composant TrainerShowcase gérera le fallback
+            return sprite || '';
+        },
+    );
 
     return {
         id: String(runNumber), // Sera remplacé par l'ID séquentiel dans parseSheetData
@@ -1358,27 +1427,17 @@ async function checkAndUpdateFirstRun() {
             }
         } catch {
             // Si le fichier n'existe pas, on continue
-            console.log('   ℹ️  Aucun fichier statique existant');
         }
 
         // Récupère seulement la première run depuis Google Sheets
-        console.log(
-            '🔄 Vérification de la première run depuis Google Sheets...',
-        );
         const firstRun = await getFirstRun();
 
         if (!firstRun) {
-            console.log('   ℹ️  Aucune première run trouvée');
             return false;
         }
 
         // Vérifie si la première run a un runEnd et si elle n'est pas déjà dans les statiques
         if (firstRun.runEnd && firstRun.runNumber > maxStaticRunNumber) {
-            console.log(
-                `\n🎯 La première run (Run #${firstRun.runNumber}) a un runEnd et n'est pas encore dans les statiques !`,
-            );
-            console.log('   ⚡ Mise à jour des statiques...\n');
-
             // Parse toutes les runs et met à jour les statiques
             // (nécessaire pour générer le fichier complet)
             return await fetchAndConvert();
@@ -1386,21 +1445,11 @@ async function checkAndUpdateFirstRun() {
             firstRun.runEnd &&
             firstRun.runNumber <= maxStaticRunNumber
         ) {
-            console.log(
-                `   ✅ La première run (Run #${firstRun.runNumber}) est déjà dans les statiques`,
-            );
             return false; // Pas besoin de mettre à jour
         } else {
-            console.log(
-                `   ℹ️  La première run (Run #${firstRun.runNumber}) est encore en cours (pas de runEnd)`,
-            );
             return false; // Pas besoin de mettre à jour
         }
     } catch (error) {
-        console.error(
-            '❌ Erreur lors de la vérification de la première run:',
-            error.message,
-        );
         return false;
     }
 }
@@ -1412,16 +1461,12 @@ async function fetchAndConvert() {
     try {
         // Vérifie la configuration
         if (!API_KEY) {
-            console.error('❌ Clé API Google Sheets non configurée !');
-            console.log('📝 Créez un fichier .env avec votre clé API');
             return false;
         }
 
         // ⚡ OPTIMISATION : Parallélise les 2 appels API pour réduire le temps total
         // On réutilise aussi le même client Google Sheets
-        console.log('🔄 Connexion à Google Sheets...');
         const sheets = await getGoogleSheetsClient();
-        console.log('🔄 Récupération des données et formules en parallèle...');
         const [rows, formulas] = await Promise.all([
             fetchSheetData(sheets),
             fetchSheetFormulas(sheets),
@@ -1433,12 +1478,8 @@ async function fetchAndConvert() {
             formulas,
         );
 
-        // Logs des badges supprimés
-
         // Parse les données
-        console.log('🔍 Analyse des données...');
         const allRuns = await parseSheetData(rows, formulas, allRunsBadges);
-        console.log(`✅ ${allRuns.length} run(s) trouvé(s)`);
 
         // ⚡ FILTRAGE : Ne garde que les runs terminées (avec runEnd) pour le cache statique
         // Les runs sans runEnd seront chargées dynamiquement depuis Google Sheets par l'API
@@ -1459,64 +1500,16 @@ async function fetchAndConvert() {
                 : isFirst
                 ? '(en cours - première run)'
                 : '(en cours)';
-            console.log(
-                `   → Run #${run.runNumber}: ${run.team.length} Pokémon ${status}`,
-            );
         });
-
-        if (runsWithoutEnd.length > 0) {
-            console.log(
-                `\n⚠️  ${runsWithoutEnd.length} run(s) en cours (sans runEnd) ne seront pas dans le cache statique:`,
-            );
-            runsWithoutEnd.forEach((run) => {
-                const isFirst = run.runNumber === firstRunNumber;
-                console.log(
-                    `   → Run #${run.runNumber} ${
-                        isFirst
-                            ? "(PREMIÈRE RUN - sera chargée en live par l'API)"
-                            : '(en cours, pas de runEnd)'
-                    }`,
-                );
-            });
-            console.log(
-                "   Ces runs seront chargées dynamiquement depuis Google Sheets par l'API.\n",
-            );
-        }
-
-        if (runsWithEnd.length === 0) {
-            console.warn(
-                '⚠️  Aucune run terminée trouvée. Le cache statique sera vide.',
-            );
-        } else {
-            console.log(
-                `\n✅ ${runsWithEnd.length} run(s) terminée(s) seront dans le cache statique (data/runs.ts):`,
-            );
-            runsWithEnd.forEach((run) => {
-                console.log(
-                    `   → Run #${run.runNumber} (terminée le ${run.runEnd})`,
-                );
-            });
-            console.log(
-                "\n📝 Note: Les nouvelles runs terminées seront automatiquement ajoutées au cache en mémoire par l'API",
-            );
-            console.log(
-                '   (pas besoin de régénérer ce fichier, compatible Vercel read-only filesystem)\n',
-            );
-        }
 
         // Génère le fichier TypeScript avec uniquement les runs terminées (cache par défaut)
         const tsContent = generateRunsFile(runsWithEnd);
 
         // Écrit le fichier
         fs.writeFileSync(OUTPUT_FILE, tsContent, 'utf-8');
-        console.log(`✅ Fichier généré : ${OUTPUT_FILE}`);
-        console.log(
-            `🕐 ${new Date().toLocaleTimeString()} - Synchronisation terminée\n`,
-        );
 
         return true;
     } catch (error) {
-        console.error('❌ Erreur lors de la synchronisation :', error.message);
         return false;
     }
 }
@@ -1536,9 +1529,7 @@ async function getRunsData() {
         // Au lieu d'attendre séquentiellement (10s + 10s = 20s),
         // on fait les 2 appels en parallèle (max(10s, 10s) = 10s)
         // On réutilise aussi le même client Google Sheets
-        console.log('🔄 Connexion à Google Sheets...');
         const sheets = await getGoogleSheetsClient();
-        console.log('🔄 Récupération des données et formules en parallèle...');
         const [rows, formulas] = await Promise.all([
             fetchSheetData(sheets),
             fetchSheetFormulas(sheets),
@@ -1555,10 +1546,6 @@ async function getRunsData() {
 
         return runs;
     } catch (error) {
-        console.error(
-            '❌ Erreur lors de la récupération des données:',
-            error.message,
-        );
         throw error;
     }
 }
@@ -1573,11 +1560,6 @@ async function fetchRunsListData(sheetsClient = null) {
         let clientStart = Date.now();
         const sheets = sheetsClient || (await getGoogleSheetsClient());
         const clientTime = Date.now() - clientStart;
-        if (clientTime > 10) {
-            console.log(
-                `[⏱️  fetchRunsListData] Client Google Sheets: ${clientTime}ms`,
-            );
-        }
 
         // ⚡ OPTIMISATION : Ne récupère que les colonnes A-F (6 colonnes) au lieu de ZZ (702 colonnes)
         // Les colonnes A-F contiennent "Run #", "Run end", etc.
@@ -1591,17 +1573,9 @@ async function fetchRunsListData(sheetsClient = null) {
         const apiTime = Date.now() - apiStart;
         const totalTime = Date.now() - totalStart;
         const rows = response.data.values || [];
-        console.log(
-            `[⏱️  fetchRunsListData] Total: ${totalTime}ms (Client: ${clientTime}ms, API: ${apiTime}ms) | ${rows.length} lignes`,
-        );
 
         return rows;
     } catch (error) {
-        const totalTime = Date.now() - totalStart;
-        console.error(
-            `[❌ fetchRunsListData] Erreur après ${totalTime}ms:`,
-            error.message,
-        );
         throw error;
     }
 }
@@ -1734,17 +1708,9 @@ async function getRunsList() {
 
         const parseTime = Date.now() - parseStart;
         const totalTime = Date.now() - totalStart;
-        console.log(
-            `[⏱️  getRunsList] Total: ${totalTime}ms (Fetch: ${fetchTime}ms, Parse: ${parseTime}ms, Sort: ${sortTime}ms) | ${runsList.length} runs`,
-        );
 
         return runsList;
     } catch (error) {
-        const totalTime = Date.now() - totalStart;
-        console.error(
-            `[❌ getRunsList] Erreur après ${totalTime}ms:`,
-            error.message,
-        );
         throw error;
     }
 }
@@ -1759,11 +1725,6 @@ async function fetchRunRange(startLine, sheetsClient = null) {
         let clientStart = Date.now();
         const sheets = sheetsClient || (await getGoogleSheetsClient());
         const clientTime = Date.now() - clientStart;
-        if (clientTime > 10) {
-            console.log(
-                `[⏱️  fetchRunRange] Client Google Sheets: ${clientTime}ms`,
-            );
-        }
 
         // Charge environ 50 lignes autour de la run
         // ⚡ OPTIMISATION : Limite les colonnes à NU (385) pour inclure NQ, NR, NS, NT
@@ -1774,9 +1735,9 @@ async function fetchRunRange(startLine, sheetsClient = null) {
         const endRow = startLine + 55; // +55 lignes au total (suffisant pour une run complète)
         const maxCol = 'NU'; // Colonne 385 pour inclure NQ, NR, NS, NT (384) + marge
 
-        // ⚡ OPTIMISATION : Les formules ne sont nécessaires que pour les badges (colonnes A-H) et showcase (F-H)
-        // On charge les formules pour toutes les lignes mais seulement les colonnes A-H (8 colonnes au lieu de 385)
-        const formulasRange = `A${startRow}:H${endRow}`; // Colonnes A-H seulement pour les badges/showcase
+        // ⚡ Les formules sont nécessaires pour les badges (colonnes A-H) ET pour les VLOOKUP des Pokémon (colonnes K et suivantes)
+        // On charge les formules pour toutes les colonnes nécessaires (jusqu'à NU pour inclure tous les Pokémon)
+        const formulasRange = `A${startRow}:${maxCol}${endRow}`; // Toutes les colonnes pour inclure les VLOOKUP des Pokémon
 
         const apiStart = Date.now();
         const [rows, formulas] = await measureFirstConnection(() =>
@@ -1797,13 +1758,13 @@ async function fetchRunRange(startLine, sheetsClient = null) {
         const adjustedRows = rows.data.values || [];
         const formulasData = formulas.data.values || [];
 
-        // ⚡ Les formules sont seulement pour les colonnes A-H, on doit les étendre pour correspondre aux rows
-        // On crée un tableau de formules avec la même structure que rows (mais seulement A-H seront remplis)
+        // ⚡ Les formules sont maintenant pour toutes les colonnes (A-NU), donc pas besoin d'extension
+        // On retourne simplement les formules telles quelles
         const adjustedFormulas = adjustedRows.map((row, rowIdx) => {
             const formulaRow = formulasData[rowIdx] || [];
-            // Crée un tableau de 385 colonnes (NU) avec les formules A-H aux bonnes positions
+            // Crée un tableau de 385 colonnes (NU) avec les formules aux bonnes positions
             const extendedRow = new Array(385).fill('');
-            for (let i = 0; i < Math.min(8, formulaRow.length); i++) {
+            for (let i = 0; i < Math.min(385, formulaRow.length); i++) {
                 extendedRow[i] = formulaRow[i] || '';
             }
             return extendedRow;
@@ -1819,9 +1780,6 @@ async function fetchRunRange(startLine, sheetsClient = null) {
         );
 
         const totalTime = Date.now() - totalStart;
-        console.log(
-            `[⏱️  fetchRunRange] Total: ${totalTime}ms (Client: ${clientTime}ms, API: ${apiTime}ms) | Lignes ${startRow}-${endRow} (${adjustedRows.length} lignes) | Colonnes A-${maxCol} (${maxColsLoaded} colonnes) | Formules A-H seulement`,
-        );
 
         return {
             rows: adjustedRows,
@@ -1829,11 +1787,6 @@ async function fetchRunRange(startLine, sheetsClient = null) {
             adjustedStartLine: 0,
         };
     } catch (error) {
-        const totalTime = Date.now() - totalStart;
-        console.error(
-            `[❌ fetchRunRange] Erreur après ${totalTime}ms:`,
-            error.message,
-        );
         throw error;
     }
 }
@@ -1848,11 +1801,6 @@ async function fetchMultipleRunsRange(runsWithStartLines, sheetsClient = null) {
         let clientStart = Date.now();
         const sheets = sheetsClient || (await getGoogleSheetsClient());
         const clientTime = Date.now() - clientStart;
-        if (clientTime > 10) {
-            console.log(
-                `[⏱️  fetchMultipleRunsRange] Client Google Sheets: ${clientTime}ms`,
-            );
-        }
 
         // Trouve la plage minimale qui couvre toutes les runs
         const calcStart = Date.now();
@@ -1867,9 +1815,9 @@ async function fetchMultipleRunsRange(runsWithStartLines, sheetsClient = null) {
         const endRow = maxStartLine + 55; // +55 lignes pour la dernière run
         const maxCol = 'NU'; // Colonne 385 pour inclure NQ, NR, NS, NT (384) + marge
 
-        // ⚡ OPTIMISATION : Les formules ne sont nécessaires que pour les badges (colonnes A-H) et showcase (F-H)
-        // On charge les formules pour toutes les lignes mais seulement les colonnes A-H (8 colonnes au lieu de 385)
-        const formulasRange = `A${startRow}:H${endRow}`; // Colonnes A-H seulement pour les badges/showcase
+        // ⚡ Les formules sont nécessaires pour les badges (colonnes A-H) ET pour les VLOOKUP des Pokémon (colonnes K et suivantes)
+        // On charge les formules pour toutes les colonnes nécessaires (jusqu'à NU pour inclure tous les Pokémon)
+        const formulasRange = `A${startRow}:${maxCol}${endRow}`; // Toutes les colonnes pour inclure les VLOOKUP des Pokémon
 
         const calcTime = Date.now() - calcStart;
 
@@ -1892,13 +1840,13 @@ async function fetchMultipleRunsRange(runsWithStartLines, sheetsClient = null) {
         const adjustedRows = rows.data.values || [];
         const formulasData = formulas.data.values || [];
 
-        // ⚡ Les formules sont seulement pour les colonnes A-H, on doit les étendre pour correspondre aux rows
-        // On crée un tableau de formules avec la même structure que rows (mais seulement A-H seront remplis)
+        // ⚡ Les formules sont maintenant pour toutes les colonnes (A-NU), donc pas besoin d'extension
+        // On retourne simplement les formules telles quelles
         const adjustedFormulas = adjustedRows.map((row, rowIdx) => {
             const formulaRow = formulasData[rowIdx] || [];
-            // Crée un tableau de 385 colonnes (NU) avec les formules A-H aux bonnes positions
+            // Crée un tableau de 385 colonnes (NU) avec les formules aux bonnes positions
             const extendedRow = new Array(385).fill('');
-            for (let i = 0; i < Math.min(8, formulaRow.length); i++) {
+            for (let i = 0; i < Math.min(385, formulaRow.length); i++) {
                 extendedRow[i] = formulaRow[i] || '';
             }
             return extendedRow;
@@ -1919,9 +1867,6 @@ async function fetchMultipleRunsRange(runsWithStartLines, sheetsClient = null) {
         const adjustTime = Date.now() - adjustStart;
 
         const totalTime = Date.now() - totalStart;
-        console.log(
-            `[⏱️  fetchMultipleRunsRange] Total: ${totalTime}ms (Client: ${clientTime}ms, Calc: ${calcTime}ms, API: ${apiTime}ms, Adjust: ${adjustTime}ms) | ${runsWithStartLines.length} runs | Lignes ${startRow}-${endRow} (${adjustedRows.length} lignes) | Colonnes A-${maxCol} (${maxColsLoaded} colonnes) | Formules A-H seulement`,
-        );
 
         return {
             rows: adjustedRows,
@@ -1929,11 +1874,6 @@ async function fetchMultipleRunsRange(runsWithStartLines, sheetsClient = null) {
             runs: adjustedRuns, // Chaque run avec son startLine ajusté
         };
     } catch (error) {
-        const totalTime = Date.now() - totalStart;
-        console.error(
-            `[❌ fetchMultipleRunsRange] Erreur après ${totalTime}ms:`,
-            error.message,
-        );
         throw error;
     }
 }
@@ -2064,21 +2004,9 @@ async function getRunByNumber(
         if (fetchTime > 0) parts.push(`Fetch: ${fetchTime}ms`);
         if (badgesTime > 0) parts.push(`Badges: ${badgesTime}ms`);
         if (parseTime > 0) parts.push(`Parse: ${parseTime}ms`);
-        console.log(
-            `[⏱️  getRunByNumber #${runNumber}] Total: ${totalTime}ms${
-                parts.length > 0
-                    ? ` (${parts.join(', ')})`
-                    : ' (données pré-chargées)'
-            }`,
-        );
 
         return run;
     } catch (error) {
-        const totalTime = Date.now() - totalStart;
-        console.error(
-            `[❌ getRunByNumber #${runNumber}] Erreur après ${totalTime}ms:`,
-            error.message,
-        );
         throw error;
     }
 }
@@ -2094,10 +2022,6 @@ async function getFirstRun() {
         if (!API_KEY) {
             throw new Error('Clé API Google Sheets non configurée');
         }
-
-        console.log(
-            '🔄 Récupération de la première run depuis Google Sheets...',
-        );
 
         let clientStart = Date.now();
         const sheets = await getGoogleSheetsClient();
@@ -2137,7 +2061,6 @@ async function getFirstRun() {
         const findTime = Date.now() - findStart;
 
         if (!firstRunInfo) {
-            console.log('⚠️  Aucune run trouvée dans Google Sheets');
             return null;
         }
 
@@ -2145,10 +2068,6 @@ async function getFirstRun() {
         const runsList = await getRunsList();
         const totalRuns = runsList.length;
         const sequentialNumber = totalRuns; // Première run = numéro le plus élevé
-
-        console.log(
-            `  📝 Première run détectée: Run originale #${firstRunInfo.originalRunNumber} -> ID séquentiel #${sequentialNumber}`,
-        );
 
         // Compte les badges pour cette run
         const badgesStart = Date.now();
@@ -2166,9 +2085,6 @@ async function getFirstRun() {
         const parseTime = Date.now() - parseStart;
 
         if (!run) {
-            console.log(
-                `⚠️  Impossible de parser la run originale #${firstRunInfo.originalRunNumber}`,
-            );
             return null;
         }
 
@@ -2186,28 +2102,11 @@ async function getFirstRun() {
         run.gymBadges = runBadges.length;
 
         const totalTime = Date.now() - totalStart;
-        console.log(
-            `[⏱️  getFirstRun] Total: ${totalTime}ms (Client: ${clientTime}ms, Fetch: ${fetchTime}ms, Find: ${findTime}ms, Badges: ${badgesTime}ms, Parse: ${parseTime}ms) | Run #${sequentialNumber} (originale #${firstRunInfo.originalRunNumber}) | ${rows.length} lignes chargées`,
-        );
 
         // ⚡ On retourne toujours la première run, même si elle a un runEnd
         // L'API décidera si elle doit l'inclure (si elle n'est pas encore dans les statiques)
-        if (run.runEnd) {
-            console.log(
-                `  ✅ Run #${sequentialNumber} récupérée (terminée avec runEnd: ${run.runEnd})`,
-            );
-        } else {
-            console.log(
-                `  ✅ Première run récupérée: Run #${sequentialNumber} (en cours)`,
-            );
-        }
         return run;
     } catch (error) {
-        const totalTime = Date.now() - totalStart;
-        console.error(
-            `[❌ getFirstRun] Erreur après ${totalTime}ms:`,
-            error.message,
-        );
         throw error;
     }
 }
@@ -2231,7 +2130,6 @@ if (require.main === module) {
             process.exit(success ? 0 : 1);
         })
         .catch((error) => {
-            console.error(error);
             process.exit(1);
         });
 }

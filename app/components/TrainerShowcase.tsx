@@ -79,9 +79,29 @@ export default function TrainerShowcase({ run }: TrainerShowcaseProps) {
                             {[0, 1, 2].map((idx) => {
                                 const nameOrId = run.showcasePokemon![idx];
                                 let spriteUrl = '';
+
+                                // Debug: vérifier ce qu'on reçoit
+                                if (
+                                    nameOrId === '892' ||
+                                    nameOrId === '1230' ||
+                                    String(nameOrId)
+                                        .toLowerCase()
+                                        .includes('urshifu')
+                                ) {
+                                    console.log(
+                                        `🔍 Urshifu détecté - idx=${idx}, nameOrId=${nameOrId}, sprite=${run.showcasePokemonSprites?.[idx]}`,
+                                    );
+                                }
+
                                 if (
                                     run.showcasePokemonSprites &&
-                                    run.showcasePokemonSprites[idx]
+                                    run.showcasePokemonSprites[idx] &&
+                                    run.showcasePokemonSprites[idx]!.trim() !==
+                                        '' &&
+                                    // Vérifier que l'URL ne contient pas un nom de Pokémon (comme "urshifu.png")
+                                    !run.showcasePokemonSprites[idx]!.match(
+                                        /\/pokemon\/[a-z-]+\.png$/i,
+                                    )
                                 ) {
                                     spriteUrl =
                                         run.showcasePokemonSprites[idx]!;
@@ -90,17 +110,36 @@ export default function TrainerShowcase({ run }: TrainerShowcaseProps) {
                                         String(nameOrId),
                                         10,
                                     );
-                                    if (!Number.isNaN(asNum) && asNum > 905) {
-                                        console.log(
-                                            `🔍 Showcase idx=${idx}, nameOrId=${nameOrId}, asNum=${asNum}`,
-                                        );
-                                        const resolved =
-                                            getAltFormSpriteById(asNum);
-                                        console.log(
-                                            `🔍 getAltFormSpriteById(${asNum}) =>`,
-                                            resolved,
-                                        );
-                                        spriteUrl = resolved || '';
+                                    if (!Number.isNaN(asNum)) {
+                                        // Cas spéciaux pour Pokémon nécessitant le sprite "home"
+                                        if (
+                                            asNum === 892 ||
+                                            asNum === 902 ||
+                                            asNum === 905
+                                        ) {
+                                            spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${asNum}.png`;
+                                        } else if (asNum > 905) {
+                                            // Formes alternatives (Méga, etc.)
+                                            // Cas spécial pour Urshifu Rapid Strike (ID 1230 → apiId 10191)
+                                            if (asNum === 1230) {
+                                                spriteUrl =
+                                                    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10191.png';
+                                            } else {
+                                                console.log(
+                                                    `🔍 Showcase idx=${idx}, nameOrId=${nameOrId}, asNum=${asNum}`,
+                                                );
+                                                const resolved =
+                                                    getAltFormSpriteById(asNum);
+                                                console.log(
+                                                    `🔍 getAltFormSpriteById(${asNum}) =>`,
+                                                    resolved,
+                                                );
+                                                spriteUrl = resolved || '';
+                                            }
+                                        } else if (asNum > 0 && asNum <= 904) {
+                                            // IDs normaux (905 = Enamorus est exclu)
+                                            spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${asNum}.png`;
+                                        }
                                     }
                                 }
                                 return (
@@ -120,7 +159,13 @@ export default function TrainerShowcase({ run }: TrainerShowcaseProps) {
                                 let spriteUrl = '';
                                 if (
                                     run.showcasePokemonSprites &&
-                                    run.showcasePokemonSprites[idx]
+                                    run.showcasePokemonSprites[idx] &&
+                                    run.showcasePokemonSprites[idx]!.trim() !==
+                                        '' &&
+                                    // Vérifier que l'URL ne contient pas un nom de Pokémon (comme "urshifu.png")
+                                    !run.showcasePokemonSprites[idx]!.match(
+                                        /\/pokemon\/[a-z-]+\.png$/i,
+                                    )
                                 ) {
                                     spriteUrl =
                                         run.showcasePokemonSprites[idx]!;
@@ -129,17 +174,36 @@ export default function TrainerShowcase({ run }: TrainerShowcaseProps) {
                                         String(nameOrId),
                                         10,
                                     );
-                                    if (!Number.isNaN(asNum) && asNum > 905) {
-                                        console.log(
-                                            `🔍 Showcase idx=${idx}, nameOrId=${nameOrId}, asNum=${asNum}`,
-                                        );
-                                        const resolved =
-                                            getAltFormSpriteById(asNum);
-                                        console.log(
-                                            `🔍 getAltFormSpriteById(${asNum}) =>`,
-                                            resolved,
-                                        );
-                                        spriteUrl = resolved || '';
+                                    if (!Number.isNaN(asNum)) {
+                                        // Cas spéciaux pour Pokémon nécessitant le sprite "home"
+                                        if (
+                                            asNum === 892 ||
+                                            asNum === 902 ||
+                                            asNum === 905
+                                        ) {
+                                            spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${asNum}.png`;
+                                        } else if (asNum > 905) {
+                                            // Formes alternatives (Méga, etc.)
+                                            // Cas spécial pour Urshifu Rapid Strike (ID 1230 → apiId 10191)
+                                            if (asNum === 1230) {
+                                                spriteUrl =
+                                                    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10191.png';
+                                            } else {
+                                                console.log(
+                                                    `🔍 Showcase idx=${idx}, nameOrId=${nameOrId}, asNum=${asNum}`,
+                                                );
+                                                const resolved =
+                                                    getAltFormSpriteById(asNum);
+                                                console.log(
+                                                    `🔍 getAltFormSpriteById(${asNum}) =>`,
+                                                    resolved,
+                                                );
+                                                spriteUrl = resolved || '';
+                                            }
+                                        } else if (asNum > 0 && asNum <= 904) {
+                                            // IDs normaux (905 = Enamorus est exclu)
+                                            spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${asNum}.png`;
+                                        }
                                     }
                                 }
                                 return (
