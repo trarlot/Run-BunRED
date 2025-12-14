@@ -365,10 +365,29 @@ async function fetchSheetWithImages() {
  */
 function extractBadgeNameFromFormula(formula) {
     try {
+        if (!formula || typeof formula !== 'string') return null;
+
         // Recherche le pattern =VLOOKUP("Nom Badge",...)
-        const match = formula.match(/=VLOOKUP\("([^"]+)"/);
+        // Supporte aussi les formules avec des espaces ou des variations
+        let match = formula.match(/=VLOOKUP\s*\(\s*"([^"]+)"/);
         if (match && match[1]) {
-            return match[1];
+            return match[1].trim();
+        }
+
+        // Essai avec un pattern alternatif (sans guillemets ou avec guillemets simples)
+        match = formula.match(/=VLOOKUP\s*\(\s*'([^']+)'/);
+        if (match && match[1]) {
+            return match[1].trim();
+        }
+
+        // Essai avec un pattern plus permissif
+        match = formula.match(/Badge["']?\s*,\s*["']?([^"',]+)["']?/i);
+        if (match && match[1]) {
+            const badgeName = match[1].trim();
+            // Vérifie que c'est bien un nom de badge (contient "Badge")
+            if (badgeName.toLowerCase().includes('badge')) {
+                return badgeName;
+            }
         }
     } catch (error) {
         // Erreur silencieuse
@@ -381,9 +400,11 @@ function extractBadgeNameFromFormula(formula) {
  * Exemple: "Knuckle Badge" -> "knuckle-badge.png"
  */
 function badgeNameToImagePath(badgeName) {
+    if (!badgeName) return '';
     return (
         badgeName
             .toLowerCase()
+            .trim()
             .replace(/\s+/g, '-')
             .replace(/[^a-z0-9-]/g, '') + '.png'
     );
@@ -451,12 +472,9 @@ function countBadgesInAllRuns(rows, formulas) {
                 if (badgeFormulaRow) {
                     let badgesInThisRow = 0;
 
-                    // Vérifie les colonnes A à H (0 à 7) pour les 8 badges
-                    for (
-                        let col = 0;
-                        col < Math.min(8, badgeFormulaRow.length);
-                        col++
-                    ) {
+                    // Vérifie toutes les colonnes disponibles (pas seulement les 8 premières)
+                    // Les badges peuvent être dans n'importe quelle colonne
+                    for (let col = 0; col < badgeFormulaRow.length; col++) {
                         const formula = String(
                             badgeFormulaRow[col] || '',
                         ).trim();
@@ -468,20 +486,28 @@ function countBadgesInAllRuns(rows, formulas) {
                             const badgeName =
                                 extractBadgeNameFromFormula(formula);
                             if (badgeName) {
-                                badgesInThisRow++;
-                                runBadgeCount++;
-                                totalBadges++;
+                                const imageName =
+                                    badgeNameToImagePath(badgeName);
+                                // Vérifie si le badge n'a pas déjà été ajouté (évite les doublons)
+                                const alreadyAdded = runBadges.some(
+                                    (b) => b.imageName === imageName,
+                                );
+                                if (!alreadyAdded) {
+                                    badgesInThisRow++;
+                                    runBadgeCount++;
+                                    totalBadges++;
 
-                                // Crée l'objet badge avec nom et chemin image
-                                const badge = {
-                                    name: badgeName,
-                                    imageName: badgeNameToImagePath(badgeName),
-                                    position: {
-                                        row: badgeRow + 1,
-                                        col: col + 1,
-                                    },
-                                };
-                                runBadges.push(badge);
+                                    // Crée l'objet badge avec nom et chemin image
+                                    const badge = {
+                                        name: badgeName,
+                                        imageName: imageName,
+                                        position: {
+                                            row: badgeRow + 1,
+                                            col: col + 1,
+                                        },
+                                    };
+                                    runBadges.push(badge);
+                                }
                             }
                         }
                     }
@@ -1051,6 +1077,8 @@ async function parseRun(rows, startLine, runNumber, formulas) {
     // Calcule les badges pour ce run en scannant sous la ligne "Gym Badges"
     const runBadges = [];
     if (gymBadgesRowIndex !== null && Array.isArray(formulas)) {
+        // Cherche les badges sur plusieurs lignes (jusqu'à 10 lignes après "Gym Badges")
+        // Ne s'arrête pas après la première ligne pour s'assurer de trouver tous les badges
         for (
             let badgeRow = gymBadgesRowIndex + 1;
             badgeRow < Math.min(gymBadgesRowIndex + 10, rows.length);
@@ -1058,29 +1086,64 @@ async function parseRun(rows, startLine, runNumber, formulas) {
         ) {
             const badgeFormulaRow = formulas[badgeRow];
             if (!badgeFormulaRow) continue;
-            let foundInRow = 0;
-            for (
-                let col = 0;
-                col < Math.min(8, badgeFormulaRow.length);
-                col++
-            ) {
+
+            // Cherche dans toutes les colonnes disponibles (pas seulement les 8 premières)
+            // Les badges peuvent être dans n'importe quelle colonne
+            for (let col = 0; col < badgeFormulaRow.length; col++) {
                 const formula = String(badgeFormulaRow[col] || '').trim();
-                if (
-                    formula.startsWith('=VLOOKUP(') &&
-                    formula.includes('Badge')
-                ) {
-                    const badgeName = extractBadgeNameFromFormula(formula);
-                    if (badgeName) {
-                        runBadges.push({
-                            name: badgeName,
-                            imageName: badgeNameToImagePath(badgeName),
-                            position: { row: badgeRow + 1, col: col + 1 },
-                        });
-                        foundInRow++;
+                if (formula.includes('Badge')) {
+                    // Debug: afficher toutes les formules contenant "Badge"
+                    if (runNumber === 1) {
+                        console.log(
+                            `🔍 Run #${runNumber}, Ligne ${badgeRow + 1}, Col ${
+                                col + 1
+                            }:`,
+                            formula,
+                        );
+                    }
+
+                    if (
+                        formula.startsWith('=VLOOKUP(') &&
+                        formula.includes('Badge')
+                    ) {
+                        const badgeName = extractBadgeNameFromFormula(formula);
+                        if (badgeName) {
+                            const imageName = badgeNameToImagePath(badgeName);
+                            // Vérifie si le badge n'a pas déjà été ajouté (évite les doublons)
+                            const alreadyAdded = runBadges.some(
+                                (b) => b.imageName === imageName,
+                            );
+                            if (!alreadyAdded) {
+                                runBadges.push({
+                                    name: badgeName,
+                                    imageName: imageName,
+                                    position: {
+                                        row: badgeRow + 1,
+                                        col: col + 1,
+                                    },
+                                });
+                            } else if (runNumber === 1) {
+                                console.log(
+                                    `⚠️ Badge dupliqué ignoré: ${badgeName} (${imageName})`,
+                                );
+                            }
+                        } else if (runNumber === 1) {
+                            console.log(
+                                `⚠️ Impossible d'extraire le nom du badge depuis:`,
+                                formula,
+                            );
+                        }
                     }
                 }
             }
-            if (foundInRow > 0) break;
+        }
+
+        // Debug: afficher les badges trouvés pour cette run
+        if (runNumber === 1 || runBadges.length < 8) {
+            console.log(
+                `🏅 Run #${runNumber}: ${runBadges.length} badges trouvés:`,
+                runBadges.map((b) => b.imageName),
+            );
         }
     }
 

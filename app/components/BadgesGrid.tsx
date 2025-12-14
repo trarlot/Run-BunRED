@@ -21,14 +21,35 @@ interface BadgesGridProps {
 export default function BadgesGrid({ run }: BadgesGridProps) {
     const badges = run.badges ?? [];
 
+    // Debug: afficher les badges obtenus
+    if (badges.length > 0) {
+        console.log('🏅 Badges obtenus pour la run:', run.runNumber);
+        badges.forEach((b) => {
+            console.log(`  - ${b.name} → ${b.imageName}`);
+        });
+        console.log('🏅 Badges attendus:', ALL_EMERALD_BADGES);
+    }
+
     return (
         <div className="w-[100px] sm:w-[268px]  xl:w-[344px]">
             {/* Grille 2x3 sur très petits écrans, flex-wrap sur sm, 3x2 à partir de md */}
             <div className="grid grid-cols-2 gap-1 sm:grid sm:grid-cols-4 sm:gap-1.5  md:gap-1.5 xl:gap-2">
                 {ALL_EMERALD_BADGES.map((imgName) => {
-                    const obtained = badges.some(
-                        (b) => b.imageName === imgName,
-                    );
+                    // Comparaison plus robuste : normalise les noms (trim, lowercase)
+                    const obtained = badges.some((b) => {
+                        const badgeImageName = (b.imageName || '')
+                            .trim()
+                            .toLowerCase();
+                        const expectedImageName = imgName.trim().toLowerCase();
+                        return badgeImageName === expectedImageName;
+                    });
+                    // Debug pour le dernier badge
+                    if (imgName === 'rain-badge.png' && !obtained) {
+                        console.log(
+                            `⚠️ Rain Badge non trouvé. Badges disponibles:`,
+                            badges.map((b) => b.imageName),
+                        );
+                    }
                     return (
                         <div
                             key={imgName}
