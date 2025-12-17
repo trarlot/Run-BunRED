@@ -206,10 +206,6 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
     // Effet de la nature
     const natureEffect = pokemon.nature ? getNatureEffect(pokemon.nature) : {};
 
-    // État pour le sprite avec fallback
-    const [spriteUrl, setSpriteUrl] = useState<string | null>(pokemon.sprite || null);
-    const fetchedPokemonRef = useRef<string | null>(null);
-
     // Fonction pour obtenir la couleur d'une stat selon la nature
     const getStatColor = (stat: string) => {
         if (natureEffect.increased === stat) return 'text-red-400'; // +10%
@@ -217,25 +213,8 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         return 'text-white'; // Neutre
     };
 
-    // Fallback: construit l'URL du sprite directement depuis le nom (sans appeler l'API)
-    useEffect(() => {
-        // Si le sprite est déjà défini, l'utiliser
-        if (pokemon.sprite) {
-            setSpriteUrl(pokemon.sprite);
-            fetchedPokemonRef.current = pokemon.nameEn; // Marquer comme traité
-            return;
-        }
-
-        // Si on a déjà traité ce Pokémon, ne pas refaire
-        if (fetchedPokemonRef.current === pokemon.nameEn) return;
-
-        fetchedPokemonRef.current = pokemon.nameEn;
-
-        // Construit l'URL directement depuis le nom, sans appeler l'API
-        // Cela évite les dépendances à Cloudflare/PokéAPI
-        const sprite = getPokemonSprite(pokemon.nameEn);
-        setSpriteUrl(sprite);
-    }, [pokemon.nameEn, pokemon.sprite]);
+    // Sprite avec fallback (sans état local pour éviter les problèmes de cache)
+    const spriteUrl = pokemon.sprite || getPokemonSprite(pokemon.nameEn);
 
     return (
         <div className="relative min-w-[140px] sm:min-w-[170px] lg:min-w-[280px] flex flex-col items-center">

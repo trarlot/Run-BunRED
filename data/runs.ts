@@ -3,7 +3,7 @@ import { getPokemonSprite } from '@/utils/pokemon';
 
 // 🔄 Ce fichier est généré automatiquement depuis Google Sheets
 // Ne pas modifier manuellement - vos modifications seront écrasées !
-// Dernière synchronisation : 09/12/2025 23:56:54
+// Dernière synchronisation : 17/12/2025 20:01:30
 // Source : https://docs.google.com/spreadsheets/d/1OrFcuxg5DE-TvhK9_dGrqWScT4PyjLJ3uObTP3Sclkk
 
 export const runs: Run[] = [
@@ -25,7 +25,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -45,7 +45,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Bubble'],
                 level: 3,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/283.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -65,7 +65,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Quick Attack', 'Pound', 'Foresight', 'Baby-Doll Eyes'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/427.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -105,7 +105,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Fake Out', 'Mega Drain', 'Absorb', 'Bubble Beam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/271.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -125,7 +125,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Tackle', 'Growl', 'Quick Attack', 'Aerial Ace'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/397.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -145,7 +145,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Air Cutter', 'Draining Kiss', 'Sleep Powder', 'Protect'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -165,7 +165,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Double Kick', 'Helping Hand', 'Fake Out', 'Foresight'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/106.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -185,7 +185,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Bubble Beam', 'Smokescreen', 'Leer', 'Twister'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/116.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -205,7 +205,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Tackle', 'Water Gun', 'Supersonic', 'Clamp'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -225,7 +225,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Iron Head', 'Rock Tomb', 'Bulldoze', 'Screech'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -245,7 +245,7 @@ export const runs: Run[] = [
                 nature: 'Bold',
                 moves: ['Bite', 'Brine', 'Smack Down', 'Aqua Jet'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/564.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -265,7 +265,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Bubble Beam', 'Lock-On', 'Psybeam', 'Aurora Beam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -285,7 +285,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Shock Wave', 'Thunder Wave', 'Thunder Punch', 'Cotton Spore'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/180.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -329,7 +329,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -349,7 +349,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Fake Out', 'Mega Drain', 'Magical Leaf', 'Bubble Beam'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/271.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -369,7 +369,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Quick Attack', 'Return', 'Covet', 'Jump Kick'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/428.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -410,7 +410,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Low Sweep', 'Trop Kick', 'Rapid Spin', 'Razor Leaf'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/763.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -430,7 +430,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Roost', 'Will-O-Wisp', 'Quick Attack', 'Aerial Ace'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/662.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -450,7 +450,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Venoshock', 'Smog', 'Flame Burst', 'Toxic'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/758.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -470,7 +470,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Rolling Kick', 'Helping Hand', 'Fake Out', 'Mach Punch'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/237.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -490,7 +490,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Octazooka', 'Lock-On', 'Psybeam', 'Aurora Beam'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/224.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -511,7 +511,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Charm', 'Brine', 'Aurora Beam', 'Icy Wind'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/364.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -531,7 +531,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Smack Down', 'Rock Blast', 'Scary Face', 'Bulldoze'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/111.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -551,7 +551,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Protect', 'Brine', 'Rock Slide', 'Aqua Jet'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/564.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -591,7 +591,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Thunder Wave', 'Shock Wave', 'Discharge', 'Quick Attack'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/310.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -611,7 +611,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Mach Punch', 'Worry Seed', 'Fake Tears', 'Giga Drain'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/286.png',
                 location: 'Petalburg Woods',
                 encounterOrder: 15,
                 ivs: {
@@ -631,7 +631,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Night Slash', 'Fury Swipes', 'Fake Out', 'Iron Head'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/863.png',
                 location: 'Rustboro City',
                 encounterOrder: 16,
                 ivs: {
@@ -651,7 +651,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Psyshock', 'Dazzling Gleam', 'Moonlight', 'Yawn'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/469.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/518.png',
                 location: 'Route 116',
                 encounterOrder: 17,
                 ivs: {
@@ -671,7 +671,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Crunch', 'Rock Slide', 'Bulldoze', 'Dig'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/901.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/328.png',
                 location: 'Rusturf Tunnel',
                 encounterOrder: 18,
                 ivs: {
@@ -732,7 +732,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -752,7 +752,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Bubble Beam', 'Growl', 'Mud-Slap', 'Mud Shot'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -772,7 +772,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Take Down', 'Mud Shot', 'Quick Attack', 'Dig'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/660.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -812,7 +812,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Absorb', 'Sludge', 'Worry Seed', 'Magical Leaf'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/315.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -832,7 +832,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Tackle', 'Growl', 'Quick Attack', 'Aerial Ace'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/397.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -852,7 +852,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Air Cutter', 'Draining Kiss', 'Sleep Powder', 'Protect'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -872,7 +872,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Pound', 'Leer', 'Focus Energy', 'Bide'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/532.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -892,7 +892,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Bubble Beam', 'Clear Smog', 'Leer', 'Twister'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -913,7 +913,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Tackle', 'Water Pulse', 'Bite'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/833.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -933,7 +933,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Brine', 'Bite', 'Smack Down', 'Aqua Jet'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/564.png',
                 location: 'Route 109',
                 encounterOrder: 11,
                 ivs: {
@@ -953,7 +953,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Aqua Jet', 'Growl', 'Water Sport'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/418.png',
                 location: 'Slateport City',
                 encounterOrder: 12,
                 ivs: {
@@ -973,7 +973,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Nuzzle', 'Bite', 'Baby-Doll Eyes', 'Spark'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/404.png',
                 location: 'Route 110',
                 encounterOrder: 13,
                 ivs: {
@@ -1014,7 +1014,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -1034,7 +1034,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Bubble Beam', 'Growl', 'Mud-Slap', 'Mud Shot'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -1054,7 +1054,7 @@ export const runs: Run[] = [
                 nature: 'Lonely',
                 moves: ['Leer', 'Covet', 'Baby-Doll Eyes', 'Bite'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/507.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -1094,7 +1094,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Bullet Seed', 'Psybeam', 'Hypnosis', 'Poison Powder'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/102.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -1114,7 +1114,7 @@ export const runs: Run[] = [
                 nature: 'Lonely',
                 moves: ['Air Cutter', 'Leer', 'Drill Peck', 'Psybeam'],
                 level: 22,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/178.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -1154,7 +1154,7 @@ export const runs: Run[] = [
                 nature: 'Quiet',
                 moves: ['Tackle', 'Focus Energy', 'Sand Attack', 'Arm Thrust'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/296.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -1174,7 +1174,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Water Gun', 'Lock-On'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -1194,7 +1194,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Charm', 'Brine', 'Powder Snow', 'Rollout'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/363.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -1214,7 +1214,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Iron Head', 'Bulldoze', 'Rock Tomb', 'Screech'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -1234,7 +1234,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Bubble Beam', 'Aqua Jet', 'Water Sport', 'Aurora Beam'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/692.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -1254,7 +1254,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Aqua Jet', 'Growl', 'Water Sport'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/418.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -1274,7 +1274,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Thunder Wave', 'Spark', 'Shock Wave', 'Crunch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/603.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -1342,7 +1342,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Fake Out', 'Energy Ball', 'Magical Leaf', 'Surf'],
                 level: 73,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -1362,7 +1362,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Rock Tomb', 'Crunch', 'Take Down', 'Play Rough'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/508.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -1403,7 +1403,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Energy Ball', 'Synthesis', 'Rapid Spin', 'Magical Leaf'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -1424,7 +1424,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Dual Wingbeat', 'Tailwind', 'Close Combat', 'Brave Bird'],
                 level: 54,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/398.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -1445,7 +1445,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Sparkling Aria', 'Moonblast', 'Flip Turn', 'Encore'],
                 level: 73,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/658.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/730.png',
                 location: 'Petalburg City',
                 encounterOrder: 7,
                 ivs: {
@@ -1465,7 +1465,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Hurricane', 'Bug Buzz', 'Powder', 'Protect'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png',
                 location: 'Route 104',
                 encounterOrder: 8,
                 ivs: {
@@ -1485,7 +1485,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Thunder Punch', 'Superpower', 'Hammer Arm', 'Payback'],
                 level: 73,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/760.png',
                 location: 'Dewford Town',
                 encounterOrder: 9,
                 ivs: {
@@ -1526,7 +1526,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Surf', 'Rapid Spin', 'Extrasensory', 'Ice Beam'],
                 level: 54,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png',
                 location: 'Route 106',
                 encounterOrder: 11,
                 ivs: {
@@ -1547,7 +1547,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Fake Out', 'Spiky Shield', 'Iron Head', 'Zing Zap'],
                 level: 54,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
                 location: 'Granite Cave',
                 encounterOrder: 12,
                 ivs: {
@@ -1588,7 +1588,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Octazooka', 'Water Spout', 'Psybeam', 'Ice Beam'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/224.png',
                 location: 'Slateport City',
                 encounterOrder: 14,
                 ivs: {
@@ -1608,7 +1608,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Shock Wave', 'Thunder Wave', 'Thunderbolt', 'Dragon Pulse'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png',
                 location: 'Route 110',
                 encounterOrder: 15,
                 ivs: {
@@ -1628,7 +1628,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Worry Seed', 'Mach Punch', 'Sky Uppercut', 'Seed Bomb'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/286.png',
                 location: 'Petalburg Woods',
                 encounterOrder: 16,
                 ivs: {
@@ -1648,7 +1648,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Rock Slide', 'Acrobatics', 'Power Gem', 'Tailwind'],
                 level: 65,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/567.png',
                 location: 'Rustboro City',
                 encounterOrder: 17,
                 ivs: {
@@ -1689,7 +1689,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Psyshock', 'Psychic', 'Hidden Power', 'Dazzling Gleam'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/469.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/858.png',
                 location: 'Route 116',
                 encounterOrder: 19,
                 ivs: {
@@ -1710,7 +1710,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Knock Off', 'Earthquake', 'High Horsepower', 'Bulldoze'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/901.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/553.png',
                 location: 'Rusturf Tunnel',
                 encounterOrder: 20,
                 ivs: {
@@ -1730,7 +1730,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Leaf Storm', 'Sludge Bomb', 'Synthesis', 'Magical Leaf'],
                 level: 73,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/232.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/407.png',
                 location: 'Verdanturf Town',
                 encounterOrder: 21,
                 ivs: {
@@ -1750,7 +1750,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Knock Off', 'Payback', 'Earthquake', 'Explosion'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10113.png',
                 location: 'Route 117',
                 encounterOrder: 22,
                 ivs: {
@@ -1770,7 +1770,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Dragon Pulse', 'Dark Pulse', 'Aura Sphere', 'U-turn'],
                 level: 73,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/373.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/635.png',
                 location: 'Mauville City',
                 encounterOrder: 23,
                 ivs: {
@@ -1790,7 +1790,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Iron Head', 'High Horsepower', 'Rapid Spin', 'Earthquake'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/530.png',
                 location: 'Route 111',
                 encounterOrder: 24,
                 ivs: {
@@ -1831,7 +1831,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Thunderbolt', 'Flash Cannon', 'Electroweb', 'Explosion'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/713.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/462.png',
                 location: 'Altering Cave',
                 encounterOrder: 26,
                 ivs: {
@@ -1851,7 +1851,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Toxic', 'Leech Life', 'Knock Off', 'Cross Poison'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/530.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/452.png',
                 location: 'Mirage Tower',
                 encounterOrder: 27,
                 ivs: {
@@ -1871,7 +1871,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Poison Jab', 'Knock Off', 'Toxic', 'Sucker Punch'],
                 level: 54,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/452.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/435.png',
                 location: 'Route 113',
                 encounterOrder: 28,
                 ivs: {
@@ -1892,7 +1892,7 @@ export const runs: Run[] = [
                 nature: 'Mild',
                 moves: ['Play Rough', 'Superpower', 'High Horsepower', 'Heavy Slam'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/184.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/879.png',
                 location: 'Fallarbor Town',
                 encounterOrder: 29,
                 ivs: {
@@ -1912,7 +1912,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Earthquake', 'Bulldoze', 'Poison Jab', 'Drill Run'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/558.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/34.png',
                 location: 'Desert Underpass',
                 encounterOrder: 30,
                 ivs: {
@@ -1932,7 +1932,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Moonblast', 'Dazzling Gleam', 'Bug Buzz', 'Tailwind'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/743.png',
                 location: 'Route 114',
                 encounterOrder: 31,
                 ivs: {
@@ -1973,7 +1973,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Crunch', 'Overheat', 'Will-O-Wisp', 'Hyper Voice'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/668.png',
                 location: 'Route 112',
                 encounterOrder: 33,
                 ivs: {
@@ -2013,7 +2013,7 @@ export const runs: Run[] = [
                 nature: 'Lonely',
                 moves: ['Dragon Pulse', 'Rapid Spin', 'Explosion', 'Flamethrower'],
                 level: 57,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/776.png',
                 location: 'Mt. Chimney',
                 encounterOrder: 35,
                 ivs: {
@@ -2034,7 +2034,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Toxic', 'Heat Wave', 'Slack Off', 'Will-O-Wisp'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/776.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/467.png',
                 location: 'Jagged Pass',
                 encounterOrder: 36,
                 ivs: {
@@ -2054,7 +2054,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Liquidation', 'Rock Slide', 'Earthquake', 'Protect'],
                 level: 73,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/256.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/260.png',
                 location: 'Lavaridge Town',
                 encounterOrder: 37,
                 ivs: {
@@ -2074,7 +2074,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Liquidation', 'Toxic', 'Throat Chop', 'Explosion'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/847.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/904.png',
                 location: 'Route 134',
                 encounterOrder: 38,
                 ivs: {
@@ -2114,7 +2114,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Moonblast', 'Follow Me', 'Wish', 'Heal Pulse'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/760.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/531.png',
                 location: 'Route 105',
                 encounterOrder: 40,
                 ivs: {
@@ -2214,7 +2214,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Future Sight', 'Power Gem', 'Surf', 'Psychic'],
                 level: 69,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/768.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/199.png',
                 location: 'Route 120',
                 encounterOrder: 45,
                 ivs: {
@@ -2254,7 +2254,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Psycho Cut', 'High Jump Kick', 'Zen Headbutt', 'Recover'],
                 level: 56,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/308.png',
                 location: 'Route 121',
                 encounterOrder: 47,
                 ivs: {
@@ -2300,7 +2300,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -2320,7 +2320,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Bubble Beam', 'Growl', 'Muddy Water', 'Mud Shot'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -2340,7 +2340,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Air Slash', 'Sand Attack', 'Feather Dance', 'Air Cutter'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -2380,7 +2380,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Absorb', 'Sludge', 'Worry Seed', 'Magical Leaf'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/315.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -2400,7 +2400,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Roost', 'Growl', 'Quick Attack', 'Aerial Ace'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/662.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -2420,7 +2420,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Air Cutter', 'Draining Kiss', 'Signal Beam', 'Protect'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -2440,7 +2440,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Rolling Kick', 'Helping Hand', 'Fake Out', 'Foresight'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/237.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -2460,7 +2460,7 @@ export const runs: Run[] = [
                 nature: 'Mild',
                 moves: ['Aqua Jet', 'Bite', 'Ice Fang', 'Water Pulse'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/318.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -2480,7 +2480,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Water Pulse', 'Rapid Spin', 'Psybeam', 'Aurora Beam'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/120.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -2500,7 +2500,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Fake Out', 'Nuzzle', 'Metal Claw', 'Spark'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -2520,7 +2520,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Acid Spray', 'Water Pulse', 'Brine', 'Acid'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -2540,7 +2540,7 @@ export const runs: Run[] = [
                 nature: 'Bold',
                 moves: ['Bubble Beam', 'Clear Smog', 'Aurora Beam', 'Twister'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -2560,7 +2560,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Shock Wave', 'Thunder Wave', 'Thunder Punch', 'Cotton Spore'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/180.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -2580,7 +2580,7 @@ export const runs: Run[] = [
                 nature: 'Mild',
                 moves: ['Growl', 'Synthesis', 'Poison Powder', 'Magical Leaf'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/153.png',
                 location: 'Petalburg Woods',
                 encounterOrder: 15,
                 ivs: {
@@ -2600,7 +2600,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Odor Sleuth', 'Sand Attack', 'Rock Throw', 'Bite'],
                 level: 14,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/744.png',
                 location: 'Rustboro City',
                 encounterOrder: 16,
                 ivs: {
@@ -2620,7 +2620,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Razor Shell', 'Ice Shard', 'Aurora Beam', 'Icicle Spear'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/593.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png',
                 location: 'Route 115',
                 encounterOrder: 17,
                 ivs: {
@@ -2640,7 +2640,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Confusion', 'Telekinesis', 'Lucky Chant', 'Yawn'],
                 level: 14,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/469.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/517.png',
                 location: 'Route 116',
                 encounterOrder: 18,
                 ivs: {
@@ -2660,7 +2660,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['First Impression', 'Dragon Claw', 'Bulldoze', 'Stomping Tantrum'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/901.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/330.png',
                 location: 'Rusturf Tunnel',
                 encounterOrder: 19,
                 ivs: {
@@ -2680,7 +2680,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Earth Power', 'Bite', 'Super Fang', 'Sludge Bomb'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/232.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png',
                 location: 'Verdanturf Town',
                 encounterOrder: 20,
                 ivs: {
@@ -2720,7 +2720,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Flamethrower', 'Yawn', 'Earthquake', 'Earth Power'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/713.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/323.png',
                 location: 'Altering Cave',
                 encounterOrder: 22,
                 ivs: {
@@ -2764,7 +2764,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -2804,7 +2804,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Submission', 'Tackle', 'Covet', 'Bite'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/508.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -2844,7 +2844,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Leaf Tornado', 'Synthesis', 'Rapid Spin', 'Magical Leaf'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -2864,7 +2864,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Kinesis', 'Recover', 'Disable', 'Psybeam'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/64.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -2884,7 +2884,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Burst', 'Encore', 'Venoshock', 'Toxic'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/758.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -2904,7 +2904,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Brick Break', 'Detect', 'Knock Off', 'Rock Smash'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: getPokemonSprite('Farfetch’d-Galar'),
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -2924,7 +2924,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Aqua Jet', 'Bite', 'Ice Fang', 'Surf'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/319.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -2964,7 +2964,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Bulldoze', 'Flash Cannon', 'Dig', 'Rock Smash'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/878.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -2984,7 +2984,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Crunch', 'Protect', 'Rock Slide', 'Aqua Jet'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/564.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -3005,7 +3005,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Octazooka', 'Lock-On', 'Psybeam', 'Aurora Beam'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/224.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -3025,7 +3025,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Thunder Wave', 'Discharge', 'Shock Wave', 'Quick Attack'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/310.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -3045,7 +3045,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Leaf Blade', 'Acid Spray', 'Crunch', 'Leaf Tornado'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/455.png',
                 location: 'Petalburg Woods',
                 encounterOrder: 15,
                 ivs: {
@@ -3065,7 +3065,7 @@ export const runs: Run[] = [
                 nature: 'Bold',
                 moves: ['Rock Tomb', 'Sand Attack', 'Rock Throw', 'Bite'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/744.png',
                 location: 'Rustboro City',
                 encounterOrder: 16,
                 ivs: {
@@ -3085,7 +3085,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Payback', 'Rock Smash', 'Fake Out', 'Force Palm'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/469.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/297.png',
                 location: 'Route 116',
                 encounterOrder: 17,
                 ivs: {
@@ -3105,7 +3105,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Crunch', 'Rock Slide', 'Bulldoze', 'Dig'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/901.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/328.png',
                 location: 'Rusturf Tunnel',
                 encounterOrder: 18,
                 ivs: {
@@ -3125,7 +3125,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Wrap', 'Acid', 'Sleep Powder', 'Poison Powder'],
                 level: 20,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/232.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/70.png',
                 location: 'Verdanturf Town',
                 encounterOrder: 19,
                 ivs: {
@@ -3170,7 +3170,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -3211,7 +3211,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Jump Kick', 'Horn Leech', 'Secret Power', 'Feint Attack'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/586.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -3251,7 +3251,7 @@ export const runs: Run[] = [
                 nature: 'Mild',
                 moves: ['Absorb', 'Sludge', 'Worry Seed', 'Magical Leaf'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/315.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -3271,7 +3271,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Roost', 'Will-O-Wisp', 'Quick Attack', 'Aerial Ace'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/662.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -3291,7 +3291,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Air Slash', 'Signal Beam', 'Sleep Powder', 'Protect'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -3311,7 +3311,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Low Kick', 'Payback', 'Rock Throw', 'Wake-Up Slap'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/533.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -3371,7 +3371,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Fake Out', 'Nuzzle', 'Smart Strike', 'Spark'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -3391,7 +3391,7 @@ export const runs: Run[] = [
                 nature: 'Quiet',
                 moves: ['Entrainment', 'Aqua Jet', 'Water Pulse', 'Aurora Beam'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/693.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -3411,7 +3411,7 @@ export const runs: Run[] = [
                 nature: 'Lonely',
                 moves: ['Aqua Jet', 'Ice Beam', 'Water Pulse', 'Fake Out'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/419.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -3431,7 +3431,7 @@ export const runs: Run[] = [
                 nature: 'Sassy',
                 moves: ['Shock Wave', 'Thunder Wave', 'Thunder Punch', 'Cotton Spore'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -3451,7 +3451,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Acid Spray', 'Leaf Blade', 'Crunch', 'Leaf Tornado'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/455.png',
                 location: 'Petalburg Woods',
                 encounterOrder: 15,
                 ivs: {
@@ -3471,7 +3471,7 @@ export const runs: Run[] = [
                 nature: 'Sassy',
                 moves: ['Aqua Jet', 'Razor Shell', 'Protect', 'Rock Slide'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
                 location: 'Rustboro City',
                 encounterOrder: 16,
                 ivs: {
@@ -3491,7 +3491,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Detect', 'Quick Attack', 'Air Cutter', 'Sonic Boom'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/469.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/193.png',
                 location: 'Route 116',
                 encounterOrder: 17,
                 ivs: {
@@ -3511,7 +3511,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Lick', 'Baby-Doll Eyes', 'Fury Swipes', 'Covet'],
                 level: 16,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/901.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/216.png',
                 location: 'Rusturf Tunnel',
                 encounterOrder: 18,
                 ivs: {
@@ -3531,7 +3531,7 @@ export const runs: Run[] = [
                 nature: 'Bold',
                 moves: ['Mud-Slap', 'Poison Jab', 'Double Kick', 'Poison Fang'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/232.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/33.png',
                 location: 'Verdanturf Town',
                 encounterOrder: 19,
                 ivs: {
@@ -3551,7 +3551,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Iron Head', 'Drill Run', 'Rapid Spin', 'Bulldoze'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/530.png',
                 location: 'Route 111',
                 encounterOrder: 20,
                 ivs: {
@@ -3591,7 +3591,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Bulldoze', 'Iron Head', 'Rock Slide', 'Iron Tail'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/530.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/306.png',
                 location: 'Mirage Tower',
                 encounterOrder: 22,
                 ivs: {
@@ -3635,7 +3635,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -3655,7 +3655,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Bubble Beam', 'Growl', 'Muddy Water', 'Mud Shot'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -3675,7 +3675,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Air Slash', 'Sand Attack', 'Feather Dance', 'Air Cutter'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -3715,7 +3715,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Absorb', 'Sludge', 'Worry Seed', 'Magical Leaf'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/315.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -3735,7 +3735,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Roost', 'Growl', 'Quick Attack', 'Aerial Ace'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/662.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -3755,7 +3755,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Air Cutter', 'Draining Kiss', 'Signal Beam', 'Protect'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -3775,7 +3775,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Rolling Kick', 'Helping Hand', 'Fake Out', 'Foresight'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/237.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -3795,7 +3795,7 @@ export const runs: Run[] = [
                 nature: 'Mild',
                 moves: ['Aqua Jet', 'Bite', 'Ice Fang', 'Water Pulse'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/318.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -3815,7 +3815,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Water Pulse', 'Rapid Spin', 'Psybeam', 'Aurora Beam'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/120.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -3835,7 +3835,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Fake Out', 'Nuzzle', 'Metal Claw', 'Spark'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -3855,7 +3855,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Acid Spray', 'Water Pulse', 'Brine', 'Acid'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -3875,7 +3875,7 @@ export const runs: Run[] = [
                 nature: 'Bold',
                 moves: ['Bubble Beam', 'Clear Smog', 'Aurora Beam', 'Twister'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -3895,7 +3895,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Shock Wave', 'Thunder Wave', 'Thunder Punch', 'Cotton Spore'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/180.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -3915,7 +3915,7 @@ export const runs: Run[] = [
                 nature: 'Mild',
                 moves: ['Growl', 'Synthesis', 'Poison Powder', 'Magical Leaf'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/153.png',
                 location: 'Petalburg Woods',
                 encounterOrder: 15,
                 ivs: {
@@ -3935,7 +3935,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Razor Shell', 'Hidden Power', 'Clamp', 'Icicle Spear'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/593.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png',
                 location: 'Route 115',
                 encounterOrder: 16,
                 ivs: {
@@ -3955,7 +3955,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Psyshock', 'Draining Kiss', 'Lucky Chant', 'Yawn'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/469.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/517.png',
                 location: 'Route 116',
                 encounterOrder: 17,
                 ivs: {
@@ -3996,7 +3996,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -4016,7 +4016,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Bubble', 'Quick Attack', 'Struggle Bug', 'Bubble Beam'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/283.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -4036,7 +4036,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Leer', 'Tackle'],
                 level: 2,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/506.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -4076,7 +4076,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Feint Attack', 'Nature Power', 'Fake Out', 'Razor Leaf'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/274.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -4096,7 +4096,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Tackle', 'Growl', 'Quick Attack', 'Aerial Ace'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/397.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -4136,7 +4136,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Double Kick', 'Helping Hand', 'Fake Out', 'Foresight'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/106.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -4176,7 +4176,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Charm', 'Brine', 'Powder Snow', 'Rollout'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/363.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -4196,7 +4196,7 @@ export const runs: Run[] = [
                 nature: 'Sassy',
                 moves: ['Rock Smash', 'Rock Tomb', 'Headbutt', 'Metal Claw'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/304.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -4216,7 +4216,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Metal Claw', 'Vise Grip', 'Leer', 'Aqua Jet'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/98.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -4236,7 +4236,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Bubble Beam', 'Lock-On', 'Psybeam', 'Aurora Beam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -4256,7 +4256,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Thunder Wave', 'Shock Wave', 'Bite', 'Quick Attack'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/309.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -4297,7 +4297,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -4317,7 +4317,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Fake Out', 'Growl', 'Mega Drain', 'Bubble Beam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/271.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -4377,7 +4377,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Leaf Tornado', 'Sing', 'Rapid Spin', 'Magical Leaf'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -4397,7 +4397,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Pluck', 'Steel Wing', 'Fury Attack', 'Sand Attack'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/822.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -4417,7 +4417,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Air Cutter', 'Draining Kiss', 'Sleep Powder', 'Protect'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -4437,7 +4437,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Tackle', 'Leer', 'Arm Thrust'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/674.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -4457,7 +4457,7 @@ export const runs: Run[] = [
                 nature: 'Bold',
                 moves: ['Bubble Beam', 'Smokescreen', 'Clear Smog', 'Twister'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -4478,7 +4478,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Tackle', 'Water Pulse', 'Bite'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/833.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -4498,7 +4498,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Tackle', 'Growl', 'Rock Throw'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/878.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -4518,7 +4518,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Water Pulse', 'Secret Power', 'Hidden Power', 'Acid'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -4538,7 +4538,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Water Gun', 'Lock-On', 'Psybeam'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -4558,7 +4558,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Nuzzle', 'Bite', 'Covet', 'Spark'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/404.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -4602,7 +4602,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -4622,7 +4622,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Fake Out', 'Mega Drain', 'Magical Leaf', 'Bubble Beam'],
                 level: 25,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/271.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -4642,7 +4642,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Tackle', 'Sand Attack'],
                 level: 3,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10174.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -4682,7 +4682,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Leaf Tornado', 'Synthesis', 'Rapid Spin', 'Magical Leaf'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -4702,7 +4702,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Dual Wingbeat', 'Growl', 'Quick Attack', 'Aerial Ace'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/397.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -4722,7 +4722,7 @@ export const runs: Run[] = [
                 nature: 'Mild',
                 moves: ['Air Cutter', 'Air Slash', 'Signal Beam', 'Protect'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -4742,7 +4742,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Pound', 'Leer', 'Focus Energy', 'Bide'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/532.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -4762,7 +4762,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Octazooka', 'Lock-On', 'Psybeam', 'Aurora Beam'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/224.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -4782,7 +4782,7 @@ export const runs: Run[] = [
                 nature: 'Quiet',
                 moves: ['Water Pulse', 'Rapid Spin', 'Psybeam', 'Confuse Ray'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/120.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -4802,7 +4802,7 @@ export const runs: Run[] = [
                 nature: 'Bold',
                 moves: ['Fake Out', 'Nuzzle', 'Smart Strike', 'Spark'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -4822,7 +4822,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Rock Tomb', 'Razor Shell', 'Rock Slide', 'Ice Fang'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -4842,7 +4842,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Octazooka', 'Aurora Beam', 'Clear Smog', 'Twister'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -4862,7 +4862,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Shock Wave', 'Thunder Wave', 'Thunder Punch', 'Cotton Spore'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -4882,7 +4882,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Fake Tears', 'Mach Punch', 'Worry Seed', 'Giga Drain'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/286.png',
                 location: 'Petalburg Woods',
                 encounterOrder: 15,
                 ivs: {
@@ -4902,7 +4902,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Fire Fang', 'Flame Burst', 'Smog', 'Crunch'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/229.png',
                 location: 'Rustboro City',
                 encounterOrder: 16,
                 ivs: {
@@ -4922,7 +4922,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Rolling Kick', 'Helping Hand', 'Fake Out', 'Mach Punch'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/469.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/237.png',
                 location: 'Route 116',
                 encounterOrder: 17,
                 ivs: {
@@ -4942,7 +4942,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Feint Attack', 'Baby-Doll Eyes', 'Play Nice', 'Play Rough'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/901.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/217.png',
                 location: 'Rusturf Tunnel',
                 encounterOrder: 18,
                 ivs: {
@@ -4962,7 +4962,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Feint Attack', 'Giga Drain', 'Ingrain', 'Sludge'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/232.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/590.png',
                 location: 'Verdanturf Town',
                 encounterOrder: 19,
                 ivs: {
@@ -5003,7 +5003,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -5023,7 +5023,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Fake Out', 'Mega Drain', 'Absorb', 'Bubble Beam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/271.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -5043,7 +5043,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Tackle', 'Sand Attack'],
                 level: 3,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10174.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -5083,7 +5083,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Leaf Tornado', 'Sing', 'Rapid Spin', 'Magical Leaf'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -5103,7 +5103,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Roost', 'Growl', 'Quick Attack', 'Aerial Ace'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/662.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -5123,7 +5123,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Hidden Power', 'Smog', 'Flame Burst', 'Dragon Rage'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/757.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -5143,7 +5143,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Tackle', 'Focus Energy', 'Sand Attack', 'Arm Thrust'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/296.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -5163,7 +5163,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Bubble Beam', 'Hidden Power', 'Psybeam', 'Aurora Beam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -5183,7 +5183,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Headbutt', 'Water Pulse', 'Bite', 'Ice Fang'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/833.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -5203,7 +5203,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Bite', 'Brine', 'Smack Down', 'Aqua Jet'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/564.png',
                 location: 'Route 109',
                 encounterOrder: 11,
                 ivs: {
@@ -5223,7 +5223,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Bubble Beam', 'Smokescreen', 'Clear Smog', 'Hidden Power'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png',
                 location: 'Slateport City',
                 encounterOrder: 12,
                 ivs: {
@@ -5243,7 +5243,7 @@ export const runs: Run[] = [
                 nature: 'Quiet',
                 moves: ['Thunder Wave', 'Spark', 'Shock Wave'],
                 level: 12,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/602.png',
                 location: 'Route 110',
                 encounterOrder: 13,
                 ivs: {
@@ -5284,7 +5284,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -5304,7 +5304,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Bubble Beam', 'Mud Shot', 'Supersonic', 'Mud-Slap'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -5324,7 +5324,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Tackle', 'Leer'],
                 level: 3,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/659.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -5364,7 +5364,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Magical Leaf', 'Play Nice', 'Rapid Spin', 'Razor Leaf'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/762.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -5384,7 +5384,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Tackle', 'Growl', 'Quick Attack', 'Aerial Ace'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/661.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -5404,7 +5404,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Scratch', 'Smog', 'Flame Burst', 'Venom Drench'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/757.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -5424,7 +5424,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Sludge', 'Seismic Toss', 'Fake Out', 'Vacuum Wave'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/453.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -5444,7 +5444,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Aqua Jet', 'Bite', 'Water Pulse', 'Poison Fang'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/318.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -5464,7 +5464,7 @@ export const runs: Run[] = [
                 nature: 'Quiet',
                 moves: ['Growl', 'Water Gun', 'Powder Snow', 'Rollout'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/363.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -5484,7 +5484,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Brine', 'Ancient Power', 'Smack Down', 'Aqua Jet'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/564.png',
                 location: 'Route 109',
                 encounterOrder: 11,
                 ivs: {
@@ -5504,7 +5504,7 @@ export const runs: Run[] = [
                 nature: 'Mild',
                 moves: ['Water Gun', 'Lock-On', 'Psybeam'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Slateport City',
                 encounterOrder: 12,
                 ivs: {
@@ -5524,7 +5524,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Thunder Wave', 'Spark', 'Shock Wave'],
                 level: 12,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/602.png',
                 location: 'Route 110',
                 encounterOrder: 13,
                 ivs: {
@@ -5565,7 +5565,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -5585,7 +5585,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Fake Out', 'Growl', 'Mega Drain', 'Bubble Beam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/271.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -5605,7 +5605,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Leer', 'Take Down', 'Covet', 'Bite'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/507.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -5645,7 +5645,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Absorb', 'Sludge', 'Worry Seed', 'Magical Leaf'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/315.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -5665,7 +5665,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Tackle', 'Growl', 'Quick Attack', 'Aerial Ace'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/397.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -5705,7 +5705,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Force Palm', 'Rock Smash', 'Confusion', 'Detect'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/307.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -5725,7 +5725,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Bubble Beam', 'Lock-On', 'Psybeam', 'Aurora Beam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -5745,7 +5745,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Growl', 'Brine', 'Aurora Beam', 'Charm'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/364.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -5765,7 +5765,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Fake Out', 'Nuzzle', 'Metal Claw', 'Spark'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -5786,7 +5786,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Bite', 'Brine', 'Smack Down', 'Aqua Jet'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/564.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -5806,7 +5806,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Aqua Jet', 'Fake Out', 'Sonic Boom', 'Water Pulse'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/418.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -5826,7 +5826,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Shock Wave', 'Thunder Wave', 'Thunder Punch', 'Cotton Spore'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/180.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -5867,7 +5867,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -5887,7 +5887,7 @@ export const runs: Run[] = [
                 nature: 'Mild',
                 moves: ['Fake Out', 'Growl', 'Mega Drain', 'Bubble Beam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/271.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -5907,7 +5907,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Leer', 'Tackle', 'Baby-Doll Eyes', 'Bite'],
                 level: 12,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/506.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -5947,7 +5947,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Leaf Tornado', 'Sing', 'Rapid Spin', 'Magical Leaf'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -5967,7 +5967,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Pluck', 'Leer', 'Scary Face', 'Steel Wing'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/822.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -6007,7 +6007,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Pound', 'Leer', 'Focus Energy', 'Bide'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/532.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -6027,7 +6027,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Bubble Beam', 'Smokescreen', 'Clear Smog', 'Twister'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -6047,7 +6047,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Hidden Power', 'Rapid Spin', 'Psybeam', 'Water Pulse'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/120.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -6067,7 +6067,7 @@ export const runs: Run[] = [
                 nature: 'Quiet',
                 moves: ['Fake Out', 'Nuzzle', 'Metal Claw', 'Spark'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -6087,7 +6087,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Tackle', 'Water Pulse', 'Bite'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/833.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -6107,7 +6107,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Aqua Jet', 'Sonic Boom', 'Water Pulse', 'Fake Out'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/418.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -6127,7 +6127,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Thunder Wave', 'Bite', 'Shock Wave', 'Quick Attack'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/309.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -6168,7 +6168,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -6188,7 +6188,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Bubble Beam', 'Mud Shot', 'Supersonic', 'Mud-Slap'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -6208,7 +6208,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Tackle', 'Growl'],
                 level: 2,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/396.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -6248,7 +6248,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Leaf Tornado', 'Sing', 'Rapid Spin', 'Magical Leaf'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -6268,7 +6268,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Tackle', 'Growl', 'Quick Attack', 'Aerial Ace'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/661.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -6308,7 +6308,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Bide', 'Rock Smash', 'Confusion'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/307.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -6328,7 +6328,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Water Gun', 'Lock-On'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -6348,7 +6348,7 @@ export const runs: Run[] = [
                 nature: 'Sassy',
                 moves: ['Headbutt', 'Water Pulse', 'Bite', 'Ice Fang'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/833.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -6368,7 +6368,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Tackle', 'Magnitude', 'Block'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/299.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -6388,7 +6388,7 @@ export const runs: Run[] = [
                 nature: 'Brave',
                 moves: ['Thunder Wave', 'Spark', 'Shock Wave'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/602.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -6408,7 +6408,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Aqua Jet', 'Growl', 'Water Sport'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/418.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -6428,7 +6428,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Tackle', 'Leer', 'Baby-Doll Eyes', 'Spark'],
                 level: 12,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/403.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -6469,7 +6469,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -6489,7 +6489,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Bubble Beam', 'Growl', 'Mud Shot', 'Mud-Slap'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -6509,7 +6509,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Tackle', 'Leer'],
                 level: 3,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/659.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -6549,7 +6549,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Leaf Tornado', 'Sing', 'Rapid Spin', 'Magical Leaf'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -6569,7 +6569,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Air Cutter', 'Leer', 'Night Shade', 'Confusion'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/177.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -6609,7 +6609,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Pound', 'Leer', 'Focus Energy', 'Bide'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/532.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -6629,7 +6629,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Water Gun', 'Lock-On'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -6649,7 +6649,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Headbutt', 'Water Pulse', 'Bite', 'Ice Fang'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/833.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -6669,7 +6669,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Horn Attack', 'Tail Whip', 'Scary Face'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/111.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -6689,7 +6689,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Thunder Wave', 'Spark', 'Shock Wave'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/602.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -6709,7 +6709,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Bubble', 'Smokescreen', 'Leer'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/116.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -6729,7 +6729,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Thunder Wave', 'Bite', 'Shock Wave', 'Quick Attack'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/309.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -6793,7 +6793,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Air Cutter', 'Bounce', 'Whirlpool', 'Surf'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/457.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -6813,7 +6813,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Submission', 'Take Down', 'Play Rough', 'Bite'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/508.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -6853,7 +6853,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Leaf Tornado', 'Synthesis', 'Rapid Spin', 'Magical Leaf'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -6873,7 +6873,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Roost', 'Will-O-Wisp', 'Quick Attack', 'Aerial Ace'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/663.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -6913,7 +6913,7 @@ export const runs: Run[] = [
                 nature: 'Quiet',
                 moves: ['Brick Break', 'Rock Smash', 'Fake Out', 'Detect'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/308.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -6933,7 +6933,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Octazooka', 'Clear Smog', 'Aurora Beam', 'Twister'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -6973,7 +6973,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Fake Out', 'Nuzzle', 'Smart Strike', 'Zing Zap'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -6993,7 +6993,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Protect', 'Aerial Ace', 'Razor Shell', 'Aqua Jet'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/99.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -7013,7 +7013,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Octazooka', 'Wring Out', 'Psybeam', 'Aurora Beam'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/224.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -7033,7 +7033,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Shock Wave', 'Thunder Wave', 'Growl', 'Thunder Punch'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -7053,7 +7053,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Fake Tears', 'Worry Seed', 'Mach Punch', 'Giga Drain'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/286.png',
                 location: 'Petalburg Woods',
                 encounterOrder: 15,
                 ivs: {
@@ -7073,7 +7073,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Psyshock', 'Dazzling Gleam', 'Moonlight', 'Yawn'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/469.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/518.png',
                 location: 'Route 116',
                 encounterOrder: 16,
                 ivs: {
@@ -7093,7 +7093,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Lick', 'Slash', 'Feint Attack', 'Play Rough'],
                 level: 35,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/901.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/217.png',
                 location: 'Rusturf Tunnel',
                 encounterOrder: 17,
                 ivs: {
@@ -7154,7 +7154,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Scratch', 'Leer', 'Ember', 'Mach Punch'],
                 level: 12,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/390.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -7174,7 +7174,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Bubble'],
                 level: 2,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/283.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -7194,7 +7194,7 @@ export const runs: Run[] = [
                 nature: 'Quiet',
                 moves: ['Splash', 'Pound'],
                 level: 3,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/427.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -7234,7 +7234,7 @@ export const runs: Run[] = [
                 nature: 'Mild',
                 moves: ['Absorb'],
                 level: 2,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/406.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -7254,7 +7254,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Gust', 'Sand Attack'],
                 level: 5,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -7274,7 +7274,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Scratch', 'Smog', 'Ember'],
                 level: 5,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/757.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -7315,7 +7315,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Scratch', 'Leer', 'Ember', 'Mach Punch'],
                 level: 12,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/390.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -7335,7 +7335,7 @@ export const runs: Run[] = [
                 nature: 'Lonely',
                 moves: ['Bubble'],
                 level: 3,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/283.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -7355,7 +7355,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Tackle', 'Leer'],
                 level: 3,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/659.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -7395,7 +7395,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Leafage', 'Sing'],
                 level: 2,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/829.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -7415,7 +7415,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Tackle', 'Growl', 'Quick Attack'],
                 level: 5,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/396.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -7435,7 +7435,7 @@ export const runs: Run[] = [
                 nature: 'Jolly',
                 moves: ['Tackle', 'String Shot', 'Stun Spore'],
                 level: 5,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/664.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -7476,7 +7476,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -7496,7 +7496,7 @@ export const runs: Run[] = [
                 nature: 'Quiet',
                 moves: ['Fake Out', 'Growl', 'Mega Drain', 'Bubble'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/271.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -7516,7 +7516,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Mud Shot', 'Mud-Slap', 'Quick Attack', 'Double Slap'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/659.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -7556,7 +7556,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Bullet Seed', 'Confusion', 'Sleep Powder', 'Stun Spore'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/102.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -7576,7 +7576,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Kinesis', 'Confusion'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/64.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -7616,7 +7616,7 @@ export const runs: Run[] = [
                 nature: 'Mild',
                 moves: ['Rock Throw', 'Leer', 'Low Kick', 'Bide'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/532.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -7636,7 +7636,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Aqua Jet', 'Bite', 'Water Pulse', 'Focus Energy'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/318.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -7656,7 +7656,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Tackle', 'Water Pulse', 'Bite', 'Ice Fang'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/833.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -7676,7 +7676,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Whirlpool', 'Bite', 'Smack Down', 'Aqua Jet'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/564.png',
                 location: 'Route 109',
                 encounterOrder: 11,
                 ivs: {
@@ -7717,7 +7717,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -7737,7 +7737,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Bubble Beam', 'Mud-Slap', 'Mud Shot', 'Echoed Voice'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -7757,7 +7757,7 @@ export const runs: Run[] = [
                 nature: 'Brave',
                 moves: ['Tackle', 'Leer', 'Quick Attack', 'Double Slap'],
                 level: 12,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/659.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -7797,7 +7797,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Leaf Tornado', 'Sing', 'Rapid Spin', 'Magical Leaf'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -7817,7 +7817,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Air Cutter', 'Leer', 'Night Shade', 'Psybeam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/177.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -7837,7 +7837,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Air Cutter', 'Draining Kiss', 'Sleep Powder', 'Protect'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -7857,7 +7857,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Double Kick', 'Helping Hand', 'Fake Out', 'Foresight'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/106.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -7877,7 +7877,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Bubble', 'Smokescreen'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/116.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -7897,7 +7897,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Tackle', 'Water Pulse', 'Bite', 'Ice Fang'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/833.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -7917,7 +7917,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Tackle', 'Bind', 'Rock Throw'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -7937,7 +7937,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Bubble', 'False Swipe', 'Leer', 'Mud Shot'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/341.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -7957,7 +7957,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Aqua Jet', 'Sonic Boom', 'Water Pulse', 'Fake Out'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/418.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -7977,7 +7977,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Thunder Wave', 'Spark', 'Shock Wave'],
                 level: 12,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/602.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -8018,7 +8018,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -8038,7 +8038,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Bubble', 'Quick Attack', 'Struggle Bug', 'Bubble Beam'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/283.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -8058,7 +8058,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Tackle', 'Leer'],
                 level: 3,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/659.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -8098,7 +8098,7 @@ export const runs: Run[] = [
                 nature: 'Bold',
                 moves: ['Splash', 'Play Nice', 'Rapid Spin', 'Razor Leaf'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/762.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -8118,7 +8118,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Tackle', 'Growl', 'Quick Attack', 'Aerial Ace'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/661.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -8138,7 +8138,7 @@ export const runs: Run[] = [
                 nature: 'Lonely',
                 moves: ['Glare', 'Leer', 'Poison Fang', 'Bite'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -8150,6 +8150,7 @@ export const runs: Run[] = [
                     speed: 15,
                     total: 110,
                 },
+                isDead: true,
             },
             {
                 nameFr: 'Cradopaud',
@@ -8158,7 +8159,7 @@ export const runs: Run[] = [
                 nature: 'Serious',
                 moves: ['Sludge', 'Mud Shot', 'Fake Out', 'Vacuum Wave'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/453.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -8178,7 +8179,7 @@ export const runs: Run[] = [
                 nature: 'Quiet',
                 moves: ['Water Gun', 'Lock-On'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -8198,7 +8199,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Charm', 'Brine', 'Powder Snow', 'Rollout'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/363.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -8218,7 +8219,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Poison Sting', 'Water Pulse', 'Confuse Ray', 'Acid'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png',
                 location: 'Route 109',
                 encounterOrder: 11,
                 ivs: {
@@ -8284,7 +8285,7 @@ export const runs: Run[] = [
                 nature: 'Brave',
                 moves: ['Bubble Beam', 'Earth Power', 'Mud Shot', 'Liquidation'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/537.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -8304,7 +8305,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Quick Attack', 'Return', 'Fake Out', 'Jump Kick'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/428.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -8344,7 +8345,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Leaf Storm', 'Synthesis', 'Rapid Spin', 'Magical Leaf'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -8364,7 +8365,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Dual Wingbeat', 'Tailwind', 'Close Combat', 'Brave Bird'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/398.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -8384,7 +8385,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Rage Powder', 'Bug Buzz', 'Air Slash', 'Protect'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -8404,7 +8405,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Fake Out', 'Heavy Slam', 'Knock Off', 'Bullet Punch'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/297.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -8424,7 +8425,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Octazooka', 'Dragon Pulse', 'Aurora Beam', 'Waterfall'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -8465,7 +8466,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Fake Out', 'Nuzzle', 'Iron Head', 'Zing Zap'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -8505,7 +8506,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Octazooka', 'Signal Beam', 'Psybeam', 'Ice Beam'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/224.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -8525,7 +8526,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Shock Wave', 'Thunder Wave', 'Discharge', 'Signal Beam'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -8565,7 +8566,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Ice Fang', 'Razor Shell', 'Dive', 'Sucker Punch'],
                 level: 32,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/593.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/367.png',
                 location: 'Route 115',
                 encounterOrder: 16,
                 ivs: {
@@ -8586,7 +8587,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Submission', 'Night Slash', 'Detect', 'Take Down'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/469.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/862.png',
                 location: 'Route 116',
                 encounterOrder: 17,
                 ivs: {
@@ -8606,7 +8607,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Scary Face', 'Slash', 'Feint Attack', 'Play Rough'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/901.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/217.png',
                 location: 'Rusturf Tunnel',
                 encounterOrder: 18,
                 ivs: {
@@ -8627,7 +8628,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Toxic', 'Poison Jab', 'Energy Ball', 'Knock Off'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/232.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png',
                 location: 'Verdanturf Town',
                 encounterOrder: 19,
                 ivs: {
@@ -8647,7 +8648,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Quick Attack', 'Discharge', 'Flamethrower', 'Shock Wave'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/310.png',
                 location: 'Route 117',
                 encounterOrder: 20,
                 ivs: {
@@ -8667,7 +8668,7 @@ export const runs: Run[] = [
                 nature: 'Sassy',
                 moves: ['Ice Punch', 'Avalanche', 'Stomping Tantrum', 'Iron Head'],
                 level: 48,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/713.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10102.png',
                 location: 'Altering Cave',
                 encounterOrder: 21,
                 ivs: {
@@ -8732,7 +8733,7 @@ export const runs: Run[] = [
                 nature: 'Brave',
                 moves: ['Bubble Beam', 'Earth Power', 'Mud Shot', 'Muddy Water'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/537.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -8752,7 +8753,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Quick Attack', 'Return', 'Fake Out', 'Jump Kick'],
                 level: 38,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/428.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -8792,7 +8793,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Energy Ball', 'Synthesis', 'Rapid Spin', 'Magical Leaf'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -8812,7 +8813,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Dual Wingbeat', 'Tailwind', 'Close Combat', 'Aerial Ace'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/398.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -8832,7 +8833,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Rage Powder', 'Bug Buzz', 'Air Slash', 'Protect'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -8852,7 +8853,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Fake Out', 'Brick Break', 'Knock Off', 'Bullet Punch'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/297.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -8872,7 +8873,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Octazooka', 'Clear Smog', 'Aurora Beam', 'Waterfall'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -8913,7 +8914,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Fake Out', 'Nuzzle', 'Iron Head', 'Zing Zap'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -8953,7 +8954,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Octazooka', 'Signal Beam', 'Psybeam', 'Ice Beam'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/224.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -8973,7 +8974,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Shock Wave', 'Thunder Wave', 'Discharge', 'Cotton Spore'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -9013,7 +9014,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Brick Break', 'Night Slash', 'Dig', 'Take Down'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/469.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/862.png',
                 location: 'Route 116',
                 encounterOrder: 16,
                 ivs: {
@@ -9033,7 +9034,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Scary Face', 'Slash', 'Feint Attack', 'Play Rough'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/901.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/217.png',
                 location: 'Rusturf Tunnel',
                 encounterOrder: 17,
                 ivs: {
@@ -9054,7 +9055,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Toxic', 'Poison Jab', 'Energy Ball', 'Knock Off'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/232.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png',
                 location: 'Verdanturf Town',
                 encounterOrder: 18,
                 ivs: {
@@ -9074,7 +9075,7 @@ export const runs: Run[] = [
                 nature: 'Hardy',
                 moves: ['Quick Attack', 'Discharge', 'Fire Fang', 'Shock Wave'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/777.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/310.png',
                 location: 'Route 117',
                 encounterOrder: 19,
                 ivs: {
@@ -9094,7 +9095,7 @@ export const runs: Run[] = [
                 nature: 'Sassy',
                 moves: ['Ice Punch', 'Avalanche', 'Stomping Tantrum', 'Iron Head'],
                 level: 42,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/713.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10102.png',
                 location: 'Altering Cave',
                 encounterOrder: 20,
                 ivs: {
@@ -9135,7 +9136,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -9155,7 +9156,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Bubble', 'Quick Attack', 'Struggle Bug', 'Bubble Beam'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/283.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -9175,7 +9176,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Splash', 'Pound'],
                 level: 3,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/427.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -9215,7 +9216,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Bullet Seed', 'Confusion', 'Hypnosis', 'Sleep Powder'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/102.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -9235,7 +9236,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Pluck', 'Leer', 'Fury Attack', 'Sand Attack'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/821.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -9255,7 +9256,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Flame Burst', 'Smog', 'Ember', 'Sweet Scent'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/757.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -9275,7 +9276,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Tackle', 'Helping Hand', 'Fake Out', 'Foresight'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/236.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -9295,7 +9296,7 @@ export const runs: Run[] = [
                 nature: 'Naughty',
                 moves: ['Water Gun', 'Lock-On'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -9315,7 +9316,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Tackle', 'Water Pulse', 'Bite', 'Ice Fang'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/833.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -9335,7 +9336,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Thunder Wave', 'Spark', 'Shock Wave'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/602.png',
                 location: 'Route 109',
                 encounterOrder: 11,
                 ivs: {
@@ -9376,7 +9377,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -9396,7 +9397,7 @@ export const runs: Run[] = [
                 nature: 'Bold',
                 moves: ['Bubble', 'Growl', 'Mud Shot', 'Mud-Slap'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -9416,7 +9417,7 @@ export const runs: Run[] = [
                 nature: 'Rash',
                 moves: ['Gust', 'Feather Dance', 'Tackle', 'Air Cutter'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -9456,7 +9457,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Sweet Scent', 'Play Nice', 'Rapid Spin', 'Razor Leaf'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/762.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -9476,7 +9477,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Pluck', 'Leer', 'Fury Attack', 'Sand Attack'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/821.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -9496,7 +9497,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Mega Drain', 'Stun Spore', 'Poison Powder', 'Bug Bite'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/46.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -9516,7 +9517,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Pound', 'Rock Smash'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/619.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -9536,7 +9537,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Leer', 'Bite', 'Rage', 'Focus Energy'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/318.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -9556,7 +9557,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Growl', 'Water Gun', 'Powder Snow', 'Rollout'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/363.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -9576,7 +9577,7 @@ export const runs: Run[] = [
                 nature: 'Sassy',
                 moves: ['Poison Sting', 'Supersonic', 'Constrict', 'Acid'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png',
                 location: 'Route 109',
                 encounterOrder: 11,
                 ivs: {
@@ -9617,7 +9618,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -9637,7 +9638,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Bubble Beam', 'Growl', 'Mud Shot', 'Echoed Voice'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -9657,7 +9658,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Splash', 'Pound'],
                 level: 3,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/427.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -9697,7 +9698,7 @@ export const runs: Run[] = [
                 nature: 'Lonely',
                 moves: ['Leaf Tornado', 'Sing', 'Rapid Spin', 'Magical Leaf'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/830.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -9717,7 +9718,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Roost', 'Growl', 'Quick Attack', 'Aerial Ace'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/662.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -9737,7 +9738,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Air Cutter', 'Draining Kiss', 'Sleep Powder', 'Protect'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -9757,7 +9758,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Tackle', 'Helping Hand', 'Fake Out', 'Foresight'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/236.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -9777,7 +9778,7 @@ export const runs: Run[] = [
                 nature: 'Modest',
                 moves: ['Bubble Beam', 'Lock-On', 'Psybeam', 'Aurora Beam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -9797,7 +9798,7 @@ export const runs: Run[] = [
                 nature: 'Gentle',
                 moves: ['Tackle', 'Water Gun', 'Supersonic', 'Clamp'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -9817,7 +9818,7 @@ export const runs: Run[] = [
                 nature: 'Quiet',
                 moves: ['Bulldoze', 'Stomp', 'Rock Throw', 'Rock Smash'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/878.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -9837,7 +9838,7 @@ export const runs: Run[] = [
                 nature: 'Timid',
                 moves: ['Bubble Beam', 'Knock Off', 'Leer', 'Mud Shot'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/341.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -9857,7 +9858,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Bubble Beam', 'Smokescreen', 'Clear Smog', 'Twister'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -9877,7 +9878,7 @@ export const runs: Run[] = [
                 nature: 'Brave',
                 moves: ['Nuzzle', 'Bite', 'Covet', 'Spark'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/404.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {
@@ -9918,7 +9919,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -9938,7 +9939,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Bubble'],
                 level: 3,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/283.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -9958,7 +9959,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Headbutt', 'Pin Missile', 'Rock Smash', 'Snarl'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/301.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10174.png',
                 location: 'Route 101',
                 encounterOrder: 3,
                 ivs: {
@@ -9998,7 +9999,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Double Kick', 'Razor Leaf', 'Feint Attack', 'Sand Attack'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/585.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -10018,7 +10019,7 @@ export const runs: Run[] = [
                 nature: 'Brave',
                 moves: ['Pluck', 'Leer', 'Fury Attack', 'Sand Attack'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/821.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -10038,7 +10039,7 @@ export const runs: Run[] = [
                 nature: 'Hasty',
                 moves: ['Scratch', 'Smog', 'Flame Burst', 'Sweet Scent'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/757.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -10058,7 +10059,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Pound', 'Leer', 'Focus Energy', 'Bide'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/532.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -10078,7 +10079,7 @@ export const runs: Run[] = [
                 nature: 'Brave',
                 moves: ['Aqua Jet', 'Bite', 'Water Pulse', 'Focus Energy'],
                 level: 17,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/318.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -10098,7 +10099,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Tackle', 'Water Gun', 'Supersonic', 'Clamp'],
                 level: 8,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -10118,7 +10119,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Tackle', 'Water Pulse', 'Bite'],
                 level: 10,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/833.png',
                 location: 'Route 109',
                 encounterOrder: 11,
                 ivs: {
@@ -10159,7 +10160,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Flame Wheel', 'Leer', 'Low Sweep', 'Mach Punch'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/391.png',
                 location: 'Starter',
                 encounterOrder: 1,
                 ivs: {
@@ -10179,7 +10180,7 @@ export const runs: Run[] = [
                 nature: 'Bold',
                 moves: ['Bubble Beam', 'Mud Shot', 'Mud-Slap', 'Echoed Voice'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/284.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png',
                 location: 'Littleroot Town',
                 encounterOrder: 2,
                 ivs: {
@@ -10239,7 +10240,7 @@ export const runs: Run[] = [
                 nature: 'Relaxed',
                 moves: ['Feint Attack', 'Nature Power', 'Fake Out', 'Razor Leaf'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/272.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/274.png',
                 location: 'Route 103',
                 encounterOrder: 5,
                 ivs: {
@@ -10259,7 +10260,7 @@ export const runs: Run[] = [
                 nature: 'Impish',
                 moves: ['Pluck', 'Leer', 'Scary Face', 'Steel Wing'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/822.png',
                 location: 'Route 102',
                 encounterOrder: 6,
                 ivs: {
@@ -10279,7 +10280,7 @@ export const runs: Run[] = [
                 nature: 'Adamant',
                 moves: ['Flame Wheel', 'Smokescreen', 'Bite', 'Bug Bite'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/850.png',
                 location: 'Route 104',
                 encounterOrder: 7,
                 ivs: {
@@ -10299,7 +10300,7 @@ export const runs: Run[] = [
                 nature: 'Careful',
                 moves: ['Sludge', 'Seismic Toss', 'Fake Out', 'Vacuum Wave'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/453.png',
                 location: 'Dewford Town',
                 encounterOrder: 8,
                 ivs: {
@@ -10319,7 +10320,7 @@ export const runs: Run[] = [
                 nature: 'Bashful',
                 moves: ['Aqua Jet', 'Bite', 'Water Pulse', 'Poison Fang'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/318.png',
                 location: 'Route 107',
                 encounterOrder: 9,
                 ivs: {
@@ -10339,7 +10340,7 @@ export const runs: Run[] = [
                 nature: 'Docile',
                 moves: ['Charm', 'Brine', 'Aurora Beam', 'Rollout'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/834.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/364.png',
                 location: 'Route 106',
                 encounterOrder: 10,
                 ivs: {
@@ -10359,7 +10360,7 @@ export const runs: Run[] = [
                 nature: 'Quirky',
                 moves: ['Ice Shard', 'Charm', 'Bulldoze', 'Rock Throw'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/231.png',
                 location: 'Granite Cave',
                 encounterOrder: 11,
                 ivs: {
@@ -10379,7 +10380,7 @@ export const runs: Run[] = [
                 nature: 'Lax',
                 moves: ['Bubble Beam', 'Aqua Jet', 'Bounce', 'Aurora Beam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/692.png',
                 location: 'Route 109',
                 encounterOrder: 12,
                 ivs: {
@@ -10399,7 +10400,7 @@ export const runs: Run[] = [
                 nature: 'Calm',
                 moves: ['Bubble Beam', 'Lock-On', 'Psybeam', 'Aurora Beam'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png',
                 location: 'Slateport City',
                 encounterOrder: 13,
                 ivs: {
@@ -10419,7 +10420,7 @@ export const runs: Run[] = [
                 nature: 'Naive',
                 moves: ['Nuzzle', 'Bite', 'Covet', 'Spark'],
                 level: 21,
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/836.png',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/404.png',
                 location: 'Route 110',
                 encounterOrder: 14,
                 ivs: {

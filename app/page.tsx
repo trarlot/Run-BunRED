@@ -230,7 +230,7 @@ export default function Home() {
                                     )
                                     .map((pokemon, index) => (
                                         <PokemonCard
-                                            key={index}
+                                            key={`${selectedRun.id}-${pokemon.nameEn}-${pokemon.location}-${index}`}
                                             pokemon={pokemon}
                                         />
                                     ))}

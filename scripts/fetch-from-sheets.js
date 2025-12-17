@@ -360,6 +360,132 @@ async function fetchSheetWithImages() {
 }
 
 /**
+ * Cache pour vérifier la correspondance ID ↔ nom depuis PokéAPI
+ */
+const pokemonIdVerificationCache = new Map();
+
+/**
+ * Convertit des lettres de colonne (ex: "AB") en index numérique (0-based)
+ */
+function columnLettersToIndex(letters) {
+    if (!letters) return -1;
+    let index = 0;
+    const cleaned = letters.replace(/\$/g, '').toUpperCase();
+    for (let i = 0; i < cleaned.length; i++) {
+        const charCode = cleaned.charCodeAt(i);
+        if (charCode < 65 || charCode > 90) {
+            return -1;
+        }
+        index = index * 26 + (charCode - 64);
+    }
+    return index - 1;
+}
+
+/**
+ * Récupère la valeur d'une cellule à partir d'une référence (ex: "$B$301")
+ */
+function getValueFromCellReference(cellRef, rows) {
+    if (!cellRef || !rows) return null;
+    const match = cellRef.match(/\$?([A-Z]+)\$?(\d+)/i);
+    if (!match || !match[1] || !match[2]) return null;
+
+    const columnIndex = columnLettersToIndex(match[1]);
+    const rowIndex = parseInt(match[2], 10) - 1; // Les lignes sont 1-based
+    if (
+        Number.isNaN(columnIndex) ||
+        columnIndex < 0 ||
+        Number.isNaN(rowIndex) ||
+        rowIndex < 0
+    ) {
+        return null;
+    }
+
+    return rows[rowIndex] && rows[rowIndex][columnIndex]
+        ? rows[rowIndex][columnIndex]
+        : null;
+}
+
+/**
+ * Extrait l'ID numérique depuis une formule =VLOOKUP
+ * Supporte les IDs directs (=VLOOKUP(392, ...)) et les références de cellules (=VLOOKUP($B$301, ...))
+ */
+function extractIdFromVlookup(formula, rows) {
+    if (!formula) return null;
+
+    // 1. Recherche un ID numérique direct
+    const directMatch = formula.match(/=VLOOKUP\(\s*(\d+)/i);
+    if (directMatch && directMatch[1]) {
+        const directId = parseInt(directMatch[1], 10);
+        if (!Number.isNaN(directId)) {
+            return directId;
+        }
+    }
+
+    // 2. Recherche une référence de cellule
+    const cellRefMatch = formula.match(/=VLOOKUP\(\s*(\$?[A-Z]+\$?\d+)/i);
+    if (cellRefMatch && cellRefMatch[1]) {
+        const cellValue = getValueFromCellReference(cellRefMatch[1], rows);
+        if (cellValue !== null && cellValue !== undefined) {
+            const idMatch = String(cellValue).match(/(\d+)/);
+            if (idMatch && idMatch[1]) {
+                const refId = parseInt(idMatch[1], 10);
+                if (!Number.isNaN(refId)) {
+                    return refId;
+                }
+            }
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Normalise un nom de Pokémon (anglais) en slug pokedex (lowercase, hyphen)
+ */
+function normalizePokemonName(name) {
+    if (!name) return '';
+    return name
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9-]/g, '')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+}
+
+/**
+ * Vérifie via PokéAPI que l'ID correspond bien au nom (évite les décalages)
+ */
+async function doesPokemonIdMatchName(pokemonId, englishName) {
+    if (!pokemonId || !englishName) return false;
+    const normalizedName = normalizePokemonName(englishName);
+    if (!normalizedName) return false;
+
+    if (pokemonIdVerificationCache.has(pokemonId)) {
+        const cachedName = pokemonIdVerificationCache.get(pokemonId);
+        return cachedName ? cachedName === normalizedName : false;
+    }
+
+    try {
+        const response = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/${pokemonId}`,
+        );
+        if (!response.ok) {
+            pokemonIdVerificationCache.set(pokemonId, null);
+            return false;
+        }
+        const data = await response.json();
+        const apiName = data?.name || null;
+        pokemonIdVerificationCache.set(pokemonId, apiName);
+        return apiName ? apiName === normalizedName : false;
+    } catch (error) {
+        pokemonIdVerificationCache.set(pokemonId, null);
+        return false;
+    }
+}
+
+/**
  * Extrait le nom du badge d'une formule =VLOOKUP
  * Exemple: =VLOOKUP("Knuckle Badge",Sprites!$A:$B,2,FALSE) -> "Knuckle Badge"
  */
@@ -870,11 +996,9 @@ async function parseRun(rows, startLine, runNumber, formulas) {
             for (const checkCol of colsToCheck) {
                 if (formulaRow && formulaRow[checkCol]) {
                     const f = String(formulaRow[checkCol] || '').trim();
-
-                    // Cherche un pattern comme =VLOOKUP(123 ou =VLOOKUP(123,
-                    const mId = f.match(/=VLOOKUP\((\d+)/i);
-                    if (mId && mId[1]) {
-                        pokemonId = parseInt(mId[1], 10);
+                    let extractedId = extractIdFromVlookup(f, rows);
+                    if (extractedId) {
+                        pokemonId = extractedId;
                         if (runNumber === 33) {
                             console.log(
                                 `    Run #${runNumber} - Team "${englishName}" (col ${col}) - VLOOKUP trouvé au-dessus du prénom:`,
@@ -886,6 +1010,18 @@ async function parseRun(rows, startLine, runNumber, formulas) {
                         break; // On a trouvé l'ID, on peut arrêter
                     }
                 }
+            }
+        }
+
+        // Vérifie que l'ID correspond bien au Pokémon (sinon, mieux vaut retomber sur le fallback par nom)
+        if (pokemonId && pokemonId > 0 && pokemonId <= 905 && englishName) {
+            // eslint-disable-next-line no-await-in-loop
+            const idMatchesName = await doesPokemonIdMatchName(
+                pokemonId,
+                englishName,
+            );
+            if (!idMatchesName) {
+                pokemonId = null;
             }
         }
 
